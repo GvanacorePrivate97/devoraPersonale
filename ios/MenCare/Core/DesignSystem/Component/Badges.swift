@@ -12,7 +12,7 @@ struct InitialsAvatar: View {
             .frame(width: size, height: size)
             .overlay(
                 Text(initials)
-                    .font(Typo.cormorant(size * 0.42, weight: .regular))
+                    .font(Typo.cormorant(size * 0.42, weight: .semibold))
                     .foregroundStyle(dark ? Color.bone : Color.ink)
             )
     }
@@ -34,11 +34,14 @@ struct Pill: View {
     }
 }
 
+/// Pill d'accento. Il fondo è un tono pieno, non l'oliva al 14%: con l'opacity
+/// il contrasto del testo cambiava a seconda di cosa c'era sotto (4.5:1 su
+/// Bone, 3.3:1 su Stone). Così è 4.76:1 ovunque.
 struct AccentPill: View {
     let text: String
 
     var body: some View {
-        Pill(text: text, container: .oliveWood.opacity(0.14), content: .oliveWood)
+        Pill(text: text, container: .oliveTint, content: .oliveWood)
     }
 }
 

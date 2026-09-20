@@ -41,12 +41,11 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.devora.mencare.core.common.formatDateLong
 import com.devora.mencare.core.common.formatTime
+import com.devora.mencare.core.designsystem.component.AgendaDayBar
 import com.devora.mencare.core.designsystem.component.AgendaGrid
 import com.devora.mencare.core.designsystem.component.AgendaHourLabels
 import com.devora.mencare.core.designsystem.component.AgendaHourLines
@@ -56,9 +55,9 @@ import com.devora.mencare.core.designsystem.component.NotificationBell
 import com.devora.mencare.core.designsystem.component.ProfileAvatar
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
-import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.OnDarkMuted
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -67,7 +66,6 @@ import com.devora.mencare.core.model.AppointmentStatus
 import com.devora.mencare.core.model.BlockReason
 import com.devora.mencare.core.model.BookingChannel
 import com.devora.mencare.core.model.TimeBlock
-import java.time.LocalDate
 import java.time.LocalTime
 
 /** One opening of the booking sheet: its own ViewModel key, and the tapped time if any. */
@@ -112,34 +110,33 @@ fun AgendaScreen(
                     )
                     Text(
                         state.operator?.title.orEmpty(),
-                        style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp),
-                        color = Bone,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = OnDarkMuted,
                     )
                 }
                 NotificationBell(hasUnread = state.hasUnreadNotifications, onClick = onNotifications)
             }
-            Spacer(Modifier.height(14.dp))
-            WeekStrip(state.selectedDate, viewModel::selectDate)
+            Spacer(Modifier.height(16.dp))
+            // Stessa barra del titolare: frecce, data, striscia dei giorni e
+            // "Oggi" quando si è altrove.
+            AgendaDayBar(
+                selected = state.selectedDate,
+                onSelect = viewModel::selectDate,
+            )
         }
 
-        Column(
-            modifier = Modifier
-                .readableWidth()
-                .padding(horizontal = 20.dp)
-                .padding(top = 16.dp, bottom = 10.dp),
-        ) {
+        // La data sta nella barra dei giorni, qui sopra: ripeterla sarebbe
+        // solo rumore. Resta la riga della giornata vuota.
+        if (state.appointments.isEmpty()) {
             Text(
-                formatDateLong(state.selectedDate).replaceFirstChar { it.uppercase() },
-                style = MaterialTheme.typography.headlineMedium.copy(fontSize = 24.sp),
-                color = Ink,
+                stringResource(R.string.staff_no_appointments),
+                style = MaterialTheme.typography.bodyMedium,
+                color = TextMuted,
+                modifier = Modifier
+                    .readableWidth()
+                    .padding(horizontal = 20.dp)
+                    .padding(top = 14.dp, bottom = 8.dp),
             )
-            if (state.appointments.isEmpty()) {
-                Text(
-                    stringResource(R.string.staff_no_appointments),
-                    style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp),
-                    color = TextMuted,
-                )
-            }
         }
 
         Box(Modifier.weight(1f)) {
@@ -222,52 +219,6 @@ fun AgendaScreen(
         }
         if (blockSheetOpen) {
             BlockSheet(onDismiss = { blockSheetOpen = false })
-        }
-    }
-}
-
-@Composable
-private fun WeekStrip(selected: LocalDate, onSelect: (LocalDate) -> Unit) {
-    val start = selected.minusDays(2)
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(6.dp),
-    ) {
-        for (offset in 0..5) {
-            val day = start.plusDays(offset.toLong())
-            val isSelected = day == selected
-            val isToday = day == LocalDate.now()
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .clip(RoundedCornerShape(13.dp))
-                    .background(
-                        when {
-                            isSelected -> OliveWood
-                            isToday -> Bone.copy(alpha = 0.12f)
-                            else -> Color.Transparent
-                        },
-                    )
-                    .clickable { onSelect(day) }
-                    .padding(vertical = 9.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Text(
-                    day.dayOfWeek.getDisplayName(
-                        java.time.format.TextStyle.SHORT,
-                        java.util.Locale.ITALIAN,
-                    ).uppercase().take(3),
-                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.1.em),
-                    color = Bone,
-                )
-                Spacer(Modifier.height(2.dp))
-                Text(
-                    "${day.dayOfMonth}",
-                    fontFamily = Cormorant,
-                    fontSize = 19.sp,
-                    color = Bone,
-                )
-            }
         }
     }
 }

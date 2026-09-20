@@ -109,34 +109,36 @@ struct AgendaScreen: View {
                     )
                     VStack(alignment: .leading, spacing: 0) {
                         Text(viewModel.op?.name ?? "")
-                            .font(Typo.jost(17, weight: .medium))
+                            .font(Typo.titleLarge)
                             .foregroundStyle(Color.bone)
                         Text(viewModel.op?.title ?? "")
-                            .font(Typo.jost(12))
-                            .foregroundStyle(Color.bone)
+                            .font(Typo.bodySmall)
+                            .foregroundStyle(Color.onDarkMuted)
                     }
                     Spacer()
                     NotificationBell(hasUnread: viewModel.hasUnreadNotifications, action: onNotifications)
                 }
-                weekStrip
-                    .padding(.top, 14)
+                // Stessa barra del titolare: frecce, data, striscia dei
+                // giorni e "Oggi" quando si è altrove.
+                AgendaDayBar(
+                    selected: viewModel.selectedDate,
+                    onSelect: { viewModel.selectedDate = $0 }
+                )
+                .padding(.top, 16)
             }
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text(formatDateLong(viewModel.selectedDate).capitalizedFirst)
-                    .font(Typo.cormorant(24))
-                    .foregroundStyle(Color.ink)
-                if viewModel.appointments.isEmpty {
-                    Text(L("staff_no_appointments"))
-                        .font(Typo.jost(12))
-                        .foregroundStyle(Color.textMuted)
-                }
+            // La data sta nella barra dei giorni, qui sopra: ripeterla
+            // sarebbe solo rumore. Resta la riga della giornata vuota.
+            if viewModel.appointments.isEmpty {
+                Text(L("staff_no_appointments"))
+                    .font(Typo.bodyMedium)
+                    .foregroundStyle(Color.textMuted)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 14)
+                    .padding(.bottom, 8)
+                    .readableWidth()
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 20)
-            .padding(.top, 16)
-            .padding(.bottom, 10)
-            .readableWidth()
 
             if let error = viewModel.state.error {
                 InlineErrorBar(message: error.displayMessage, retry: { Task { await viewModel.load() } })
@@ -244,47 +246,6 @@ struct AgendaScreen: View {
         }
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .frame(height: AgendaGrid.totalHeight, alignment: .topLeading)
-    }
-
-    private var weekStrip: some View {
-        let start = viewModel.selectedDate.minusDays(2)
-        return HStack(spacing: 6) {
-            ForEach(0..<6, id: \.self) { offset in
-                let day = start.plusDays(offset)
-                let isSelected = day == viewModel.selectedDate
-                let isToday = day == LocalDate.today()
-                Button {
-                    viewModel.selectedDate = day
-                } label: {
-                    VStack(spacing: 2) {
-                        Text(formatDateShort(day).prefix(3).uppercased())
-                            .font(Typo.jost(9, weight: .medium))
-                            .kerning(0.9)
-                        Text("\(day.day)")
-                            .font(Typo.cormorant(19, weight: .regular))
-                    }
-                    .foregroundStyle(Color.bone)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 9)
-                    .background(
-                        RoundedRectangle(cornerRadius: 13)
-                            .fill(isSelected ? Color.oliveWood : (isToday ? Color.bone.opacity(0.12) : Color.clear))
-                    )
-                }
-                .buttonStyle(.plain)
-            }
-        }
-    }
-
-    /// Minuti liberi fra la fine di `appointment` e il prossimo impegno della
-    /// giornata: e' lo spazio che una card corta puo' prendersi per restare intera.
-    private func freeMinutesAfter(_ appointment: Appointment) -> Int {
-        let end = AgendaGrid.minutesFromStart(appointment.time) + appointment.durationMinutes
-        var busyStarts = viewModel.appointments
-            .filter { $0.id != appointment.id }
-            .map { AgendaGrid.minutesFromStart($0.time) }
-        busyStarts += viewModel.dayBlocks.map { AgendaGrid.minutesFromStart($0.range.start) }
-        return AgendaGrid.freeMinutesAfter(endMinutes: end, busyStarts: busyStarts)
     }
 
     private func bookingCard(_ appointment: Appointment) -> some View {

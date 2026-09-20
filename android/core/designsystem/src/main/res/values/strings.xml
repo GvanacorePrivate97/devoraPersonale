@@ -10,6 +10,11 @@
     <string name="ds_notifications">Notifiche</string>
     <string name="ds_retry">Riprova</string>
 
+    <!-- Barra di navigazione del giorno in agenda (titolare e operatore). -->
+    <string name="ds_agenda_today">Oggi</string>
+    <string name="ds_agenda_previous_day">Giorno precedente</string>
+    <string name="ds_agenda_next_day">Giorno successivo</string>
+
     <!--
       Errori di lettura dal server. Sono volutamente poche frasi: all'utente
       serve sapere che non è colpa sua e che può riprovare, non quale codice

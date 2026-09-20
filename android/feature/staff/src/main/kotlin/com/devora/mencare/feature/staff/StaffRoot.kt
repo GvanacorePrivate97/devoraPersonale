@@ -11,13 +11,11 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -26,10 +24,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.devora.mencare.core.designsystem.component.brandNavBarItemColors
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
-import com.devora.mencare.core.designsystem.theme.Ink
-import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.ui.crm.CrmDetailScreen
 import com.devora.mencare.core.ui.crm.CrmListScreen
@@ -132,13 +129,7 @@ private fun androidx.compose.foundation.layout.RowScope.StaffBarItem(
         onClick = { navController.navigateTab(route) },
         icon = icon,
         label = { Text(label) },
-        colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = OliveWood,
-            selectedTextColor = OliveWood,
-            unselectedIconColor = Ink,
-            unselectedTextColor = Ink,
-            indicatorColor = Color.Transparent,
-        ),
+        colors = brandNavBarItemColors(),
     )
 }
 

@@ -1,27 +1,25 @@
 package com.devora.mencare.feature.admin
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Insights
 import androidx.compose.material.icons.outlined.People
 import androidx.compose.material.icons.outlined.PersonOutline
 import androidx.compose.material.icons.outlined.Tune
-import androidx.compose.material3.Icon
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -29,10 +27,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.devora.mencare.core.designsystem.component.brandNavBarItemColors
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
-import com.devora.mencare.core.designsystem.theme.Ink
-import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.ui.crm.CrmDetailScreen
 import com.devora.mencare.core.ui.crm.CrmListScreen
@@ -172,12 +169,6 @@ private fun androidx.compose.foundation.layout.RowScope.AdminBarItem(
         },
         icon = icon,
         label = { Text(label) },
-        colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = OliveWood,
-            selectedTextColor = OliveWood,
-            unselectedIconColor = Ink,
-            unselectedTextColor = Ink,
-            indicatorColor = Color.Transparent,
-        ),
+        colors = brandNavBarItemColors(),
     )
 }

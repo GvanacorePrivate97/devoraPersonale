@@ -64,7 +64,7 @@ struct ProfileAvatar: View {
 
     private var initialsLabel: some View {
         Text(initials.uppercased())
-            .font(Typo.cormorant(size * 0.34, weight: .regular))
+            .font(Typo.cormorant(size * 0.34, weight: .semibold))
             .foregroundStyle(Color.bone)
     }
 }

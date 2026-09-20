@@ -100,7 +100,7 @@ fun DarkHeaderTitle(
 fun SectionLabel(text: String, modifier: Modifier = Modifier, color: Color = com.devora.mencare.core.designsystem.theme.OliveWood) {
     Text(
         text.uppercase(),
-        style = MaterialTheme.typography.labelSmall,
+        style = com.devora.mencare.core.designsystem.theme.Overline,
         color = color,
         modifier = modifier,
     )
@@ -123,7 +123,7 @@ fun EmptyState(
                 )
                 Text(
                     message,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 20.dp),
                 )

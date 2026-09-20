@@ -189,8 +189,10 @@ prossimo mentre è in corso.
 ### 3.1 Agenda
 - Solo gli appuntamenti dell'operatore collegato. Banda: foto o iniziali (tocco →
   Profilo), nome, mansione, campanella (§5).
-- Striscia di sei giorni attorno al giorno scelto (oggi evidenziato); sotto, la data del
-  giorno scelto.
+- Sotto, la **barra dei giorni** (§7b), lo stesso comando dell'agenda del titolare
+  (§4.3): frecce giorno precedente/successivo, data del giorno scelto, "Oggi" quando il
+  giorno scelto non è oggi, e la striscia di sei giorni attorno. A giornata vuota la riga
+  "Nessun appuntamento · tocca un orario per prenotare" sta sotto la barra.
 - Griglia oraria del giorno, uguale a una colonna dell'agenda del titolare (§4.3): scala
   delle ore con le mezz'ore — le righe passano anche sotto le ore, così scala e griglia
   sono un tutt'uno — sempre visibile, anche a giornata vuota ("Nessun appuntamento
@@ -317,8 +319,10 @@ senza lavoro mostra zeri.
   in app "Campagna inviata". Una campagna già inviata non si modifica più.
 
 ### 4.3 Agenda
-- Banda: giorno scelto, frecce giorno precedente/successivo, "N operatori · N
-  appuntamenti", campanella (§5).
+- Banda: "Agenda settimanale", "N operatori · N appuntamenti", campanella (§5); sotto, la
+  **barra dei giorni** (§7b) — frecce giorno precedente/successivo, data del giorno scelto,
+  "Oggi" quando il giorno scelto non è oggi, e la striscia di sei giorni attorno. È lo
+  stesso comando dell'agenda operatore (§3.1): le due agende navigano il tempo allo stesso modo.
 - Una colonna per operatore (iniziali, nome) su una scala delle ore con le mezz'ore;
   altezza della card ∝ durata, con il minimo leggibile del §3.1 — una card troppo bassa
   per i suoi servizi mostra solo il nome del cliente invece di una riga tagliata, e un
@@ -587,6 +591,34 @@ e ultima visita non sono mai salvati sul cliente.
   larghezza, il contenuto sta in una larghezza di lettura di 640; i bottom sheet hanno lo
   stesso limite.
 - Eccezione: l'agenda del titolare (§4.3) usa tutta la larghezza per le colonne degli operatori.
+
+## 7b. Design system
+
+Le due app condividono un solo insieme di token (`core/designsystem` su Android,
+`Core/DesignSystem` su iOS); un token cambia in tutt'e due, nello stesso commit.
+
+- **Colore.** Ogni token regge almeno 4.5:1 (WCAG 2.1 AA, testo normale) sulla superficie
+  su cui l'app lo mette davvero — Stone `#EBEBEA` è la più severa delle due superfici
+  chiare, quindi è quella su cui sono tarati i toni di testo. L'accento ha due ruoli che
+  non vanno scambiati: `OliveWood` `#77654B` su superficie chiara (testo, icone, bordi e i
+  riempimenti che portano testo Bone), `OliveLight` `#BFA277` sulle bande near-black — è
+  l'oro della scritta "MEN CARE" del logo, campionato da `design/logo-lockup.png`. Il testo
+  secondario è `TextMuted` sul chiaro e `OnDarkMuted` sullo scuro, mai un Bone sbiadito. Le
+  pill d'accento usano il tono pieno `OliveTint`, non l'accento con un'alpha, così il loro
+  contrasto non dipende da cosa c'è sotto.
+- **Tipografia.** Jost ha le aste sottili e Cormorant è un serif ad alto contrasto, quindi
+  niente è in Regular: corpo da Medium, titoli ed etichette da SemiBold, display serif in
+  Bold. Nessuno stile scende sotto gli 11 sp, e sotto i 12 sp ci vanno solo etichette
+  maiuscole brevi. Le schermate prendono un ruolo dalla scala — `Overline` per le etichette
+  maiuscole di sezione, `Meta` per didascalie e ore della griglia — invece di
+  ridimensionare un ruolo sulla riga.
+- **Barra dei giorni.** La navigazione del giorno in agenda è un componente solo
+  (`AgendaDayBar`), usato uguale dal titolare (§4.3) e dall'operatore (§3.1): frecce, data,
+  "Oggi" (che compare solo quando il giorno scelto non è oggi) e la striscia dei giorni.
+  Oggi porta sempre il suo punto d'oro, anche quando è il giorno selezionato: "dove sono" e
+  "dov'è oggi" restano due letture distinte.
+- **Navigazione in fondo.** Tutti e tre i ruoli prendono i colori da un solo helper, così
+  le barre di cliente, operatore e titolare non possono divergere.
 
 ## 8. Differenze di piattaforma
 - **Login social**: Android offre solo Google; iOS offre Accedi con Apple + Google (linea

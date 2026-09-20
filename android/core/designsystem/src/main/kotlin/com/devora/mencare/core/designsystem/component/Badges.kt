@@ -13,12 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveTint
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 
@@ -40,6 +42,9 @@ fun InitialsAvatar(
         Text(
             initials,
             fontFamily = Cormorant,
+            // Le iniziali erano in Cormorant Regular: a corpo piccolo il serif
+            // ad alto contrasto si assottiglia fino a sparire.
+            fontWeight = FontWeight.SemiBold,
             fontSize = (size.value * 0.42).sp,
             color = if (dark) Bone else Ink,
         )
@@ -64,9 +69,14 @@ fun Pill(
     }
 }
 
+/**
+ * Pill d'accento. Il fondo è un tono pieno, non l'oliva al 14%: con l'alpha il
+ * contrasto del testo cambiava a seconda di cosa c'era sotto (4.5:1 su Bone,
+ * 3.3:1 su Stone). Così è 4.76:1 ovunque.
+ */
 @Composable
 fun AccentPill(text: String, modifier: Modifier = Modifier) =
-    Pill(text, modifier, container = OliveWood.copy(alpha = 0.14f), content = OliveWood)
+    Pill(text, modifier, container = OliveTint, content = OliveWood)
 
 @Composable
 fun DarkPill(text: String, modifier: Modifier = Modifier) =

@@ -217,10 +217,12 @@ struct WeeklyAgendaScreen: View {
                 contentPadding: EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 20),
                 fullWidthContent: true
             ) {
+                // Stessa impaginazione dell'agenda operatore: chi sono / cosa
+                // guardo in alto, la navigazione del giorno sotto.
                 HStack(spacing: 8) {
                     VStack(alignment: .leading, spacing: 0) {
-                        Text(formatDateLong(viewModel.selectedDay).capitalizedFirst)
-                            .font(Typo.cormorant(26))
+                        Text(L("week_title"))
+                            .font(Typo.headlineMedium)
                             .foregroundStyle(Color.bone)
                             .lineLimit(1)
                             .minimumScaleFactor(0.75)
@@ -229,18 +231,21 @@ struct WeeklyAgendaScreen: View {
                             viewModel.operators.count,
                             viewModel.appointments.filter { $0.date == viewModel.selectedDay && $0.isActive }.count
                         ))
-                        .font(Typo.jost(12))
-                        .foregroundStyle(Color.bone)
+                        .font(Typo.bodySmall)
+                        .foregroundStyle(Color.onDarkMuted)
                     }
                     Spacer()
-                    headerArrow("chevron.left") { viewModel.selectedDay = viewModel.selectedDay.minusDays(1) }
-                    headerArrow("chevron.right") { viewModel.selectedDay = viewModel.selectedDay.plusDays(1) }
                     NotificationBell(
                         hasUnread: viewModel.hasUnreadNotifications,
                         action: onNotifications
                     )
                     .padding(.leading, 4)
                 }
+                AgendaDayBar(
+                    selected: viewModel.selectedDay,
+                    onSelect: { viewModel.selectedDay = $0 }
+                )
+                .padding(.top, 16)
             }
 
             if let error = viewModel.state.error {
@@ -645,19 +650,6 @@ struct WeeklyAgendaScreen: View {
             .padding(16)
     }
 
-    private func headerArrow(_ systemImage: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            RoundedRectangle(cornerRadius: 11)
-                .fill(Color.bone.opacity(0.12))
-                .frame(width: 34, height: 34)
-                .overlay(
-                    Image(systemName: systemImage)
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundStyle(Color.bone)
-                )
-        }
-        .buttonStyle(.plain)
-    }
 }
 
 private func minutesFromStart(_ time: LocalTime) -> Int {

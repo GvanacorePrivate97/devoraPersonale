@@ -1,26 +1,24 @@
 package com.devora.mencare.feature.client
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.CalendarMonth
-import androidx.compose.material.icons.outlined.AddCircleOutline
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AddCircleOutline
+import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -29,16 +27,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.devora.mencare.core.designsystem.component.brandNavBarItemColors
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
-import com.devora.mencare.core.designsystem.theme.Ink
-import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.ui.notifications.NotificationsScreen
 import com.devora.mencare.feature.client.appointments.AppointmentsScreen
 import com.devora.mencare.feature.client.booking.BookingViewModel
 import com.devora.mencare.feature.client.booking.BookingWizardScreen
 import com.devora.mencare.feature.client.home.ClientHomeScreen
-import com.devora.mencare.core.ui.notifications.NotificationsScreen
 import com.devora.mencare.feature.client.home.QuickSlot
 import com.devora.mencare.feature.client.profile.ProfileScreen
 
@@ -187,12 +184,6 @@ private fun androidx.compose.foundation.layout.RowScope.BarItem(
         },
         icon = { Icon(icon, contentDescription = label) },
         label = { Text(label) },
-        colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = OliveWood,
-            selectedTextColor = OliveWood,
-            unselectedIconColor = Ink,
-            unselectedTextColor = Ink,
-            indicatorColor = Color.Transparent,
-        ),
+        colors = brandNavBarItemColors(),
     )
 }

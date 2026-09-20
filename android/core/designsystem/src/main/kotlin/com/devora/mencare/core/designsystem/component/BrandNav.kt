@@ -26,6 +26,7 @@ import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -38,12 +39,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.devora.mencare.core.designsystem.R
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.OliveTint
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.OnDarkMuted
+import com.devora.mencare.core.designsystem.theme.Overline
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -72,7 +76,7 @@ fun BrandTopBar(
                 Icon(
                     Icons.AutoMirrored.Outlined.ArrowBack,
                     contentDescription = stringResource(R.string.ds_back),
-                    tint = OliveWood,
+                    tint = OliveLight,
                     modifier = Modifier
                         .clickable(onClick = onBack)
                         .padding(vertical = 6.dp)
@@ -81,8 +85,8 @@ fun BrandTopBar(
                 if (backLabel != null) {
                     Text(
                         backLabel,
-                        style = MaterialTheme.typography.labelMedium.copy(fontSize = 13.sp, letterSpacing = 0.sp),
-                        color = OliveWood,
+                        style = MaterialTheme.typography.labelLarge,
+                        color = OliveLight,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.clickable(onClick = onBack).padding(start = 4.dp),
@@ -92,7 +96,7 @@ fun BrandTopBar(
         }
         Text(
             title,
-            style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp),
+            style = MaterialTheme.typography.titleMedium,
             color = Bone,
             textAlign = TextAlign.Center,
             maxLines = 1,
@@ -113,7 +117,7 @@ fun BrandTopBar(
 fun BarAction(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, color: Color = Bone) {
     Text(
         text,
-        style = MaterialTheme.typography.labelMedium.copy(fontSize = 13.sp, letterSpacing = 0.sp),
+        style = MaterialTheme.typography.labelLarge,
         color = color,
         maxLines = 1,
         modifier = modifier.clickable(onClick = onClick).padding(vertical = 8.dp, horizontal = 2.dp),
@@ -135,13 +139,13 @@ fun WizardSteps(labels: List<String>, currentIndex: Int, modifier: Modifier = Mo
                         .fillMaxWidth()
                         .height(3.dp)
                         .clip(RoundedCornerShape(2.dp))
-                        .background(if (done) OliveWood else Bone.copy(alpha = 0.16f)),
+                        .background(if (done) OliveLight else Bone.copy(alpha = 0.16f)),
                 )
                 Spacer(Modifier.height(6.dp))
                 Text(
                     label.uppercase(),
-                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.1.em),
-                    color = if (done) OliveWood else Bone,
+                    style = Overline,
+                    color = if (done) OliveLight else OnDarkMuted,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
@@ -234,7 +238,7 @@ fun BrandChip(
             textAlign = TextAlign.Center,
             maxLines = maxLines,
             overflow = if (fill) TextOverflow.Clip else TextOverflow.Ellipsis,
-            autoSize = if (fill) TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = style.fontSize) else null,
+            autoSize = if (fill) TextAutoSize.StepBased(minFontSize = 11.sp, maxFontSize = style.fontSize) else null,
         )
     }
 }
@@ -283,7 +287,7 @@ fun BrandSectionLabel(
 ) {
     Text(
         text.uppercase(),
-        style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp, letterSpacing = 0.16.em),
+        style = Overline,
         color = color,
         modifier = modifier,
     )
@@ -315,8 +319,8 @@ fun StatTile(
     ) {
         Text(
             label.uppercase(),
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.14.em),
-            color = contentColor.copy(alpha = 0.7f),
+            style = Overline,
+            color = contentColor,
             textAlign = TextAlign.Center,
             maxLines = 2,
         )
@@ -524,7 +528,7 @@ fun DarkContinueBar(
         ) {
             Text(
                 label,
-                style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp),
+                style = MaterialTheme.typography.titleMedium,
                 color = Bone,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -572,15 +576,15 @@ fun DarkTotalBar(
             Column(Modifier.weight(1f)) {
                 Text(
                     caption.uppercase(),
-                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.14.em),
-                    color = OliveWood,
+                    style = Overline,
+                    color = OliveLight,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
                 Spacer(Modifier.height(2.dp))
                 Text(
                     value,
-                    style = MaterialTheme.typography.headlineMedium.copy(fontSize = 26.sp),
+                    style = MaterialTheme.typography.headlineMedium,
                     color = Bone,
                     maxLines = 1,
                 )
@@ -596,7 +600,7 @@ fun DarkTotalBar(
             ) {
                 Text(
                     ctaLabel,
-                    style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp),
+                    style = MaterialTheme.typography.titleMedium,
                     color = Bone,
                 )
                 Spacer(Modifier.width(9.dp))
@@ -613,3 +617,19 @@ fun DarkTotalBar(
 
 /** One choice of a [MultiSelectDropdown]. */
 data class DropdownOption(val id: String, val label: String)
+
+/**
+ * Colori della barra di navigazione, uno per tutti e tre i ruoli.
+ *
+ * Erano tre copie identiche in `ClientRoot`, `StaffRoot` e `AdminRoot`: identiche
+ * finché qualcuno non ne toccava una. La navigazione di cliente, operatore e
+ * titolare deve avere lo stesso aspetto, quindi ha un posto solo da cui prenderlo.
+ */
+@Composable
+fun brandNavBarItemColors() = NavigationBarItemDefaults.colors(
+    selectedIconColor = OliveWood,
+    selectedTextColor = OliveWood,
+    unselectedIconColor = Ink,
+    unselectedTextColor = TextMuted,
+    indicatorColor = OliveTint,
+)
