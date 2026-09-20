@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -295,10 +296,24 @@ private fun DayColumn(
     ) {
         AgendaHourLines(Modifier.fillMaxWidth())
         state.blocks.forEach { block -> BlockCard(block) }
-        state.appointments.forEach { appointment ->
+        // In ordine di orario: se una card corta sborda di qualche dp finisce
+        // sotto quella dopo, non sopra il suo testo.
+        state.appointments.sortedBy { it.time }.forEach { appointment ->
             BookingCard(appointment, state, onAppointment)
         }
     }
+}
+
+/**
+ * Minuti liberi fra la fine di [appointment] e il prossimo impegno della
+ * giornata: e' lo spazio che una card corta puo' prendersi per restare intera.
+ */
+private fun AgendaUiState.freeMinutesAfter(appointment: Appointment): Int {
+    val end = AgendaGrid.minutesFromStart(appointment.time) + appointment.durationMinutes
+    val busyStarts = appointments.filter { it.id != appointment.id }
+        .map { AgendaGrid.minutesFromStart(it.time) } +
+        blocks.map { AgendaGrid.minutesFromStart(it.range.start) }
+    return AgendaGrid.freeMinutesAfter(end, busyStarts)
 }
 
 @Composable
@@ -322,27 +337,28 @@ private fun BookingCard(
         completed -> Ink
         else -> Bone
     }
-    val height = AgendaGrid.height(appointment.durationMinutes) - 4.dp
-    // Sotto la mezz'ora la card ha spazio per una riga sola.
-    val compact = height < 40.dp
+    // La durata detta l'altezza, ma una card corta si allarga nel tempo libero
+    // che ha davanti: anche dieci minuti restano leggibili per intero.
+    val height = AgendaGrid.cardHeight(appointment.durationMinutes, state.freeMinutesAfter(appointment))
+    val serviceLines = AgendaGrid.serviceLines(height)
     val client = state.clients[appointment.clientId]
     Column(
         modifier = Modifier
             .offset(y = AgendaGrid.y(appointment.time) + 2.dp)
             .padding(horizontal = 3.dp)
             .fillMaxWidth()
-            .height(height)
+            .heightIn(min = height)
             .clip(RoundedCornerShape(10.dp))
             .background(background)
             .border(1.dp, if (noShow) StoneBorder else Color.Transparent, RoundedCornerShape(10.dp))
             .clickable { onAppointment(appointment.id) }
-            .padding(horizontal = 10.dp, vertical = if (compact) 2.dp else 8.dp),
-        verticalArrangement = if (compact) Arrangement.Center else Arrangement.Top,
+            .padding(horizontal = 10.dp, vertical = 5.dp),
+        verticalArrangement = if (serviceLines == 0) Arrangement.Center else Arrangement.Top,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 listOfNotNull(client?.firstName, client?.lastName).joinToString(" "),
-                style = MaterialTheme.typography.titleMedium.copy(fontSize = 13.sp),
+                style = MaterialTheme.typography.titleMedium.copy(fontSize = 13.sp, lineHeight = 16.sp),
                 color = foreground,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -355,13 +371,13 @@ private fun BookingCard(
                     "${formatTime(appointment.time)} – " +
                         formatTime(appointment.time.plusMinutes(appointment.durationMinutes.toLong()))
                 },
-                style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+                style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp, lineHeight = 16.sp),
                 color = foreground,
                 maxLines = 1,
                 modifier = Modifier.padding(start = 6.dp),
             )
         }
-        if (!compact) {
+        if (serviceLines > 0) {
             Spacer(Modifier.height(2.dp))
             Text(
                 if (noShow) {
@@ -374,9 +390,9 @@ private fun BookingCard(
                             ""
                         }
                 },
-                style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+                style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp, lineHeight = 14.sp),
                 color = foreground,
-                maxLines = 2,
+                maxLines = serviceLines,
                 overflow = TextOverflow.Ellipsis,
             )
         }
