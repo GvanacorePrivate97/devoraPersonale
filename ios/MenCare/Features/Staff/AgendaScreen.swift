@@ -236,7 +236,9 @@ struct AgendaScreen: View {
             ForEach(viewModel.dayBlocks) { block in
                 blockCard(block)
             }
-            ForEach(viewModel.appointments) { appointment in
+            // In ordine di orario: se una card corta sborda di qualche punto
+            // finisce sotto quella dopo, non sopra il suo testo.
+            ForEach(viewModel.appointments.sorted { $0.time.minutesOfDay < $1.time.minutesOfDay }) { appointment in
                 bookingCard(appointment)
             }
         }
@@ -274,6 +276,17 @@ struct AgendaScreen: View {
         }
     }
 
+    /// Minuti liberi fra la fine di `appointment` e il prossimo impegno della
+    /// giornata: e' lo spazio che una card corta puo' prendersi per restare intera.
+    private func freeMinutesAfter(_ appointment: Appointment) -> Int {
+        let end = AgendaGrid.minutesFromStart(appointment.time) + appointment.durationMinutes
+        var busyStarts = viewModel.appointments
+            .filter { $0.id != appointment.id }
+            .map { AgendaGrid.minutesFromStart($0.time) }
+        busyStarts += viewModel.dayBlocks.map { AgendaGrid.minutesFromStart($0.range.start) }
+        return AgendaGrid.freeMinutesAfter(endMinutes: end, busyStarts: busyStarts)
+    }
+
     private func bookingCard(_ appointment: Appointment) -> some View {
         let inProgress = appointment.status == .inProgress
         let completed = appointment.status == .completed
@@ -282,9 +295,13 @@ struct AgendaScreen: View {
         // trascinamento. Il no-show è spento, con il filo, come dal titolare.
         let background: Color = noShow ? .bone : (completed ? .stone : .oliveWood)
         let foreground: Color = noShow ? .textMuted : (completed ? .ink : .bone)
-        let height = AgendaGrid.height(minutes: appointment.durationMinutes) - 4
-        // Sotto la mezz'ora la card ha spazio per una riga sola.
-        let compact = height < 40
+        // La durata detta l'altezza, ma una card corta si allarga nel tempo libero
+        // che ha davanti: anche dieci minuti restano leggibili per intero.
+        let height = AgendaGrid.cardHeight(
+            minutes: appointment.durationMinutes,
+            freeMinutesAfter: freeMinutesAfter(appointment)
+        )
+        let serviceLines = AgendaGrid.serviceLines(cardHeight: height)
         let client = viewModel.clients[appointment.clientId]
         return Button {
             onAppointment(appointment.id)
@@ -303,7 +320,7 @@ struct AgendaScreen: View {
                     .font(Typo.jost(11))
                     .lineLimit(1)
                 }
-                if !compact {
+                if serviceLines > 0 {
                     Text(
                         noShow
                             ? L("apt_detail_no_show")
@@ -311,14 +328,14 @@ struct AgendaScreen: View {
                                 (appointment.channel == .walkIn ? " · \(L("staff_walk_in"))" : "")
                     )
                     .font(Typo.jost(11))
-                    .lineLimit(2)
+                    .lineLimit(serviceLines)
                 }
             }
             .foregroundStyle(foreground)
             .padding(.horizontal, 10)
-            .padding(.vertical, compact ? 2 : 8)
+            .padding(.vertical, 5)
             .frame(maxWidth: .infinity, alignment: .topLeading)
-            .frame(height: height, alignment: compact ? .leading : .topLeading)
+            .frame(minHeight: height, alignment: serviceLines == 0 ? .leading : .topLeading)
             .background(RoundedRectangle(cornerRadius: 10).fill(background))
             .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(noShow ? Color.stoneBorder : .clear, lineWidth: 1))
         }
