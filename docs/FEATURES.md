@@ -196,6 +196,14 @@ is running.
   services, "walk-in" flag; olive while booked or in progress, stone once completed,
   outlined and faded with "No-show" when the client didn't come — kept visible so it can
   be corrected.
+  **A card is never too small to read.** Duration sets its height, but it stops at a
+  floor that keeps the first row — client and time range — whole, so even the shortest
+  service in the catalogue (10 minutes) is legible; and a short appointment takes the
+  empty time in front of it, up to the next appointment or block in the column, so it
+  can show its services too. It stops growing as soon as they fit: a card never runs
+  over what is booked next. The services line appears only where there is room for it,
+  on one line or two — text is dropped, never cut through. The same rule sizes the
+  owner's agenda cards (§4.3).
   Blocks (§3.2) are a grey band across the column with their label or reason centered
   ("Pausa pranzo", "Ferie"…), the same band as the owner's agenda.
 - Tap on a card → appointment detail (§3.3). Tap on a free spot → "Nuovo appuntamento"
@@ -308,7 +316,9 @@ period with no work shows zeros.
   "Oggi" when the selected day is not today, and the six-day strip around it. It is the
   same control as the staff agenda (§3.1): the two agendas navigate time identically.
 - One column per operator (initials, first name) over an hour rail with half-hour guides;
-  card height ∝ duration — a card shorter than 45 minutes shows the client's name only;
+  card height ∝ duration, with the readable floor of §3.1 — a card too short for its
+  services shows the client's name alone rather than a cut line, and a short appointment
+  with free time after it grows into it until the services fit;
   the hour rules run under the hour labels too. Cards use the same colours as the
   staff agenda (§3.1): olive while active, stone once completed, outlined and faded with
   "No-show" when the client didn't come — a card turns black only while it is being

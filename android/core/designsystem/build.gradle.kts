@@ -36,4 +36,6 @@ dependencies {
     api(libs.coil.compose)
     debugApi(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.core.ktx)
+
+    testImplementation(libs.junit)
 }

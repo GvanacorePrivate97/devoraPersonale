@@ -199,7 +199,16 @@ prossimo mentre è in corso.
   · tocca un orario per prenotare"). Card alte quanto la durata: cliente, fascia oraria (o
   "in corso"), servizi, etichetta "walk-in"; oliva se prenotato o in corso, pietra
   se completato, spenta con il filo e la scritta "No-show" se il cliente non è venuto —
-  resta visibile per poterla correggere. I blocchi (§3.2) sono una fascia grigia su tutta la colonna con
+  resta visibile per poterla correggere.
+  **Nessuna card è troppo piccola per leggerla.** L'altezza la detta la durata, ma si
+  ferma a un minimo che tiene intera la prima riga — cliente e fascia oraria — così anche
+  il servizio più breve del listino (10 minuti) si legge; e un appuntamento corto si
+  prende il tempo libero che ha davanti, fino al prossimo appuntamento o blocco della
+  colonna, per mostrare anche i servizi. Smette di crescere appena ci stanno: una card non
+  invade mai quello che viene prenotato dopo. La riga dei servizi compare solo dove c'è
+  posto, su una riga o due — il testo si toglie, non si taglia a metà. Stessa regola per
+  le card dell'agenda del titolare (§4.3).
+  I blocchi (§3.2) sono una fascia grigia su tutta la colonna con
   etichetta o motivo al centro ("Pausa pranzo", "Ferie"…), la stessa dell'agenda del
   titolare.
 - Tocco su una card → dettaglio appuntamento (§3.3). Tocco su uno spazio libero → foglio
@@ -315,8 +324,10 @@ senza lavoro mostra zeri.
   "Oggi" quando il giorno scelto non è oggi, e la striscia di sei giorni attorno. È lo
   stesso comando dell'agenda operatore (§3.1): le due agende navigano il tempo allo stesso modo.
 - Una colonna per operatore (iniziali, nome) su una scala delle ore con le mezz'ore;
-  altezza della card ∝ durata — una card sotto i 45 minuti mostra solo il nome del
-  cliente; le righe delle ore passano anche sotto la scala. Le card usano gli
+  altezza della card ∝ durata, con il minimo leggibile del §3.1 — una card troppo bassa
+  per i suoi servizi mostra solo il nome del cliente invece di una riga tagliata, e un
+  appuntamento corto con del tempo libero dopo ci cresce dentro finché i servizi non ci
+  stanno; le righe delle ore passano anche sotto la scala. Le card usano gli
   stessi colori dell'agenda dell'operatore (§3.1): olive se attivo, stone se completato,
   spenta con il filo e la scritta "No-show" se il cliente non è venuto — una card diventa
   nera solo mentre la si trascina; gli annullati non compaiono. Blocchi e fasce in cui un operatore non è in

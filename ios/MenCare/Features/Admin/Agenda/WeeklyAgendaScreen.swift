@@ -424,6 +424,10 @@ struct WeeklyAgendaScreen: View {
         let wholeDayOff = offRanges.count == 1 &&
             offRanges[0].start == LocalTime(AgendaGrid.dayStartHour, 0) &&
             offRanges[0].end == LocalTime(AgendaGrid.dayEndHour, 0)
+        // In ordine di orario: se una card corta sborda di qualche punto finisce
+        // sotto quella dopo, non sopra il suo testo.
+        let ordered = viewModel.appointmentsFor(operatorId)
+            .sorted { $0.time.minutesOfDay < $1.time.minutesOfDay }
         return ZStack(alignment: .topLeading) {
             // Tap su uno spazio libero: nuova prenotazione con operatore e ora già scelti.
             AgendaHourLines()
@@ -451,11 +455,23 @@ struct WeeklyAgendaScreen: View {
                     width: columnWidth
                 )
             }
-            ForEach(viewModel.appointmentsFor(operatorId)) { appointment in
+            ForEach(ordered) { appointment in
                 appointmentCard(appointment, columnIndex: index)
             }
         }
         .frame(width: columnWidth, height: AgendaGrid.totalHeight, alignment: .topLeading)
+    }
+
+    /// Minuti liberi fra la fine di `appointment` e il prossimo impegno della
+    /// colonna: e' lo spazio che una card corta puo' prendersi per restare intera.
+    private func freeMinutesAfter(_ appointment: Appointment, operatorId: String) -> Int {
+        let end = AgendaGrid.minutesFromStart(appointment.time) + appointment.durationMinutes
+        var busyStarts = viewModel.appointmentsFor(operatorId)
+            .filter { $0.id != appointment.id }
+            .map { AgendaGrid.minutesFromStart($0.time) }
+        busyStarts += viewModel.blocksFor(operatorId).map { AgendaGrid.minutesFromStart($0.range.start) }
+        busyStarts += viewModel.offDutyRanges(operatorId).map { AgendaGrid.minutesFromStart($0.start) }
+        return AgendaGrid.freeMinutesAfter(endMinutes: end, busyStarts: busyStarts)
     }
 
     private func appointmentCard(_ appointment: Appointment, columnIndex: Int) -> some View {
@@ -469,24 +485,28 @@ struct WeeklyAgendaScreen: View {
         let noShow = appointment.status == .noShow
         let background: Color = dragging ? .ink : (noShow ? .bone : (completed ? .stone : .oliveWood))
         let foreground: Color = noShow ? .textMuted : (completed ? .ink : .bone)
-        let height = hourHeight * CGFloat(appointment.durationMinutes) / 60 - 4
-        // Sotto i tre quarti d'ora la card ha spazio per una riga sola: il nome.
-        let compact = height < 44
+        // La durata detta l'altezza, ma una card corta si allarga nel tempo
+        // libero che ha davanti: anche dieci minuti restano leggibili per intero.
+        let height = AgendaGrid.cardHeight(
+            minutes: appointment.durationMinutes,
+            freeMinutesAfter: freeMinutesAfter(appointment, operatorId: appointment.operatorId)
+        )
+        let serviceLines = AgendaGrid.serviceLines(cardHeight: height)
         return VStack(alignment: .leading, spacing: 2) {
             Text([client?.firstName.first.map { "\($0)." }, client?.lastName].compactMap { $0 }.joined(separator: " "))
                 .font(Typo.jost(11, weight: .medium))
                 .lineLimit(1)
-            if !compact {
+            if serviceLines > 0 {
                 Text(noShow ? L("week_status_no_show") : appointment.serviceIds.compactMap { viewModel.services[$0]?.name }.joined(separator: " + "))
                     .font(Typo.jost(10, weight: .medium))
-                    .lineLimit(2)
+                    .lineLimit(serviceLines)
             }
         }
         .foregroundStyle(foreground)
         .padding(.horizontal, 8)
-        .padding(.vertical, compact ? 2 : 8)
-        .frame(width: columnWidth - 6, height: height, alignment: compact ? .leading : .topLeading)
-        .clipped()
+        .padding(.vertical, 5)
+        .frame(width: columnWidth - 6, alignment: .leading)
+        .frame(minHeight: height, alignment: serviceLines == 0 ? .leading : .topLeading)
         .background(RoundedRectangle(cornerRadius: 10).fill(background))
         .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(noShow ? Color.stoneBorder : .clear, lineWidth: 1))
         .offset(x: 3 + dragOffset.width, y: hourHeight * CGFloat(top) / 60 + 2 + dragOffset.height)

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -487,7 +488,9 @@ private fun OperatorColumn(
                 label = block.label ?: stringResource(blockReasonLabel(block.reason)),
             )
         }
-        state.appointmentsFor(operatorId).forEach { appointment ->
+        // In ordine di orario: se una card corta sborda di qualche dp finisce
+        // sotto quella dopo, non sopra il suo testo.
+        state.appointmentsFor(operatorId).sortedBy { it.time }.forEach { appointment ->
             val top = minutesFromStart(appointment.time)
             val dragging = drag?.appointmentId == appointment.id
             val dragOffset = if (dragging) drag.offset else Offset.Zero
@@ -506,10 +509,15 @@ private fun OperatorColumn(
                 completed -> Ink
                 else -> Bone
             }
-            // Sotto i tre quarti d'ora la card ha spazio per una riga sola: il nome.
-            val compact = HourHeight * (appointment.durationMinutes / 60f) - 4.dp < 44.dp
+            // La durata detta l'altezza, ma una card corta si allarga nel tempo
+            // libero che ha davanti: anche dieci minuti restano leggibili per intero.
+            val cardHeight = AgendaGrid.cardHeight(
+                appointment.durationMinutes,
+                state.freeMinutesAfter(operatorId, appointment),
+            )
+            val serviceLines = AgendaGrid.serviceLines(cardHeight)
             Column(
-                verticalArrangement = if (compact) Arrangement.Center else Arrangement.Top,
+                verticalArrangement = if (serviceLines == 0) Arrangement.Center else Arrangement.Top,
                 modifier = Modifier
                     .offset(y = HourHeight * (top / 60f))
                     .zIndex(if (dragging) 1f else 0f)
@@ -520,7 +528,7 @@ private fun OperatorColumn(
                     }
                     .padding(horizontal = 3.dp, vertical = 2.dp)
                     .fillMaxWidth()
-                    .height(HourHeight * (appointment.durationMinutes / 60f))
+                    .heightIn(min = cardHeight)
                     .clip(RoundedCornerShape(10.dp))
                     .background(background)
                     .border(1.dp, if (noShow) StoneBorder else Color.Transparent, RoundedCornerShape(10.dp))
@@ -536,26 +544,35 @@ private fun OperatorColumn(
                         }
                     }
                     .clickable { onTap(appointment.id) }
-                    .padding(horizontal = 8.dp, vertical = if (compact) 2.dp else 8.dp),
+                    .padding(horizontal = 8.dp, vertical = 5.dp),
             ) {
                 val client = state.clients[appointment.clientId]
                 Text(
                     listOfNotNull(client?.firstName?.first()?.plus("."), client?.lastName).joinToString(" "),
-                    style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp, letterSpacing = 0.sp),
+                    style = MaterialTheme.typography.labelMedium.copy(
+                        fontSize = 11.sp,
+                        lineHeight = 14.sp,
+                        letterSpacing = 0.sp,
+                    ),
                     color = foreground,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-                if (!compact) {
+                if (serviceLines > 0) {
+                    Spacer(Modifier.height(2.dp))
                     Text(
                         if (noShow) {
                             stringResource(R.string.week_status_no_show)
                         } else {
                             appointment.serviceIds.mapNotNull { state.services[it]?.name }.joinToString(" + ")
                         },
-                        style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.02.em),
+                        style = MaterialTheme.typography.labelSmall.copy(
+                            fontSize = 10.sp,
+                            lineHeight = 13.sp,
+                            letterSpacing = 0.02.em,
+                        ),
                         color = foreground,
-                        maxLines = 2,
+                        maxLines = serviceLines,
                         overflow = TextOverflow.Ellipsis,
                     )
                 }
@@ -565,6 +582,22 @@ private fun OperatorColumn(
 }
 
 private fun minutesFromStart(time: LocalTime): Int = AgendaGrid.minutesFromStart(time)
+
+/**
+ * Minuti liberi fra la fine di [appointment] e il prossimo impegno della
+ * colonna: e' lo spazio che una card corta puo' prendersi per restare intera.
+ */
+private fun WeeklyAgendaUiState.freeMinutesAfter(
+    operatorId: String,
+    appointment: com.devora.mencare.core.model.Appointment,
+): Int {
+    val end = minutesFromStart(appointment.time) + appointment.durationMinutes
+    val busyStarts = appointmentsFor(operatorId).filter { it.id != appointment.id }
+        .map { minutesFromStart(it.time) } +
+        blocksFor(operatorId).map { minutesFromStart(it.range.start) } +
+        offDutyRanges(operatorId).map { minutesFromStart(it.start) }
+    return AgendaGrid.freeMinutesAfter(end, busyStarts)
+}
 
 private fun blockReasonLabel(reason: com.devora.mencare.core.model.BlockReason): Int = when (reason) {
     com.devora.mencare.core.model.BlockReason.PERMESSO -> R.string.block_reason_permesso_admin
