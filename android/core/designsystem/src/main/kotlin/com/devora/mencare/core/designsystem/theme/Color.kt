@@ -25,6 +25,13 @@ val OliveWood = Color(0xFF77654B) // accent
  */
 val OliveLight = Color(0xFFBFA277)
 
+/**
+ * Oro chiaro: il testo e le icone della voce attiva nella barra di navigazione
+ * nera, dove l'oro pieno su fondo oro-trasparente perderebbe stacco. 13.4:1 su
+ * Ink.
+ */
+val GoldSoft = Color(0xFFE7D9BF)
+
 /** Stato premuto dell'accento chiaro. */
 val OliveWoodDark = Color(0xFF6A5A43)
 

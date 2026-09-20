@@ -21,33 +21,7 @@ struct LogoBadge: View {
 
 /// Hatched stand-in for a service photo — the mockup ships no imagery yet, and
 /// a labelled placeholder reads as deliberate where a grey box reads as broken.
-struct PhotoPlaceholder: View {
-    let label: String
-    var height: CGFloat = 54
-
-    var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            Canvas { context, size in
-                let step: CGFloat = 9
-                var x = -size.height
-                while x < size.width {
-                    var path = Path()
-                    path.move(to: CGPoint(x: x, y: size.height))
-                    path.addLine(to: CGPoint(x: x + size.height, y: 0))
-                    context.stroke(path, with: .color(.ink.opacity(0.07)), lineWidth: 1)
-                    x += step
-                }
-            }
-            Text(label)
-                .font(Typo.jost(8, weight: .medium))
-                .foregroundStyle(Color.ink.opacity(0.6))
-                .padding(6)
-        }
-        .frame(maxWidth: .infinity)
-        .frame(height: height)
-        .background(Color.stone)
-    }
-}
+s
 
 /// Bell on a dark band, with an olive dot while something is unread. Same
 /// button in the client, staff and owner headers.
@@ -58,7 +32,7 @@ struct NotificationBell: View {
     var body: some View {
         Button(action: action) {
             ZStack(alignment: .topTrailing) {
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: 10)
                     .fill(Color.bone.opacity(0.1))
                     .frame(width: 38, height: 38)
                     .overlay(

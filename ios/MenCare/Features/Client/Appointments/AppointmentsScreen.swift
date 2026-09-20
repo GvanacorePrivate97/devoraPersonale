@@ -92,7 +92,6 @@ struct AppointmentsScreen: View {
                             ForEach(viewModel.past) { appointment in
                                 pastRow(appointment)
                             }
-                            statsCard
                         }
                     }
                     .padding(.horizontal, 20)
@@ -182,18 +181,6 @@ struct AppointmentsScreen: View {
         .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
     }
 
-    private var statsCard: some View {
-        HStack {
-            statCell("\(viewModel.totalVisits)", L("apts_stat_visits"))
-            statCell(viewModel.favoriteOperatorName ?? "—", L("apts_stat_favorite_operator"))
-            statCell(viewModel.avgDaysBetweenVisits.map(String.init) ?? "—", L("apts_stat_cadence"))
-        }
-        .padding(.vertical, 18)
-        .frame(maxWidth: .infinity)
-        .background(RoundedRectangle(cornerRadius: 18).fill(Color.ink))
-        .padding(.top, 8)
-    }
-
     private func statCell(_ value: String, _ label: String) -> some View {
         VStack(spacing: 2) {
             Text(value)
@@ -276,7 +263,7 @@ struct AppointmentsScreen: View {
             .foregroundStyle(accent ? Color.bone : Color.ink)
             .padding(.horizontal, 10)
             .padding(.vertical, 6)
-            .background(RoundedRectangle(cornerRadius: 8).fill(accent ? Color.oliveWood : Color.stone))
+            .background(RoundedRectangle(cornerRadius: 6).fill(accent ? Color.oliveWood : Color.stone))
     }
 }
 
@@ -291,13 +278,11 @@ private struct UpcomingCard: View {
             HStack(alignment: .top, spacing: 12) {
                 AppointmentDateBlock(date: appointment.date, style: .accent)
                 VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(formatTime(appointment.time))
-                            .font(Typo.jost(19, weight: .medium))
-                            .foregroundStyle(Color.ink)
-                        Spacer()
-                        statusPill(L("apts_status_confirmed"), accent: true)
-                    }
+                    // Ogni prenotazione è confermata appena fatta (§6.2): un
+                    // badge che dice sempre la stessa cosa non informa.
+                    Text(formatTime(appointment.time))
+                        .font(Typo.jost(19, weight: .medium))
+                        .foregroundStyle(Color.ink)
                     Text(appointment.serviceIds.compactMap { viewModel.services[$0]?.name }.joined(separator: " · "))
                         .font(Typo.jost(12))
                         .foregroundStyle(Color.ink)
@@ -333,12 +318,12 @@ private struct UpcomingCard: View {
             }
             .frame(height: 46)
         }
-        .background(RoundedRectangle(cornerRadius: 18).fill(Color.bone))
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.bone))
         .overlay(
-            RoundedRectangle(cornerRadius: 18)
+            RoundedRectangle(cornerRadius: 16)
                 .strokeBorder(Color.oliveWood, lineWidth: 1.5)
         )
-        .clipShape(RoundedRectangle(cornerRadius: 18))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 
     private func cardAction(_ text: String, action: @escaping () -> Void) -> some View {
@@ -358,7 +343,7 @@ private struct UpcomingCard: View {
             .foregroundStyle(accent ? Color.bone : Color.ink)
             .padding(.horizontal, 10)
             .padding(.vertical, 6)
-            .background(RoundedRectangle(cornerRadius: 8).fill(accent ? Color.oliveWood : Color.stone))
+            .background(RoundedRectangle(cornerRadius: 6).fill(accent ? Color.oliveWood : Color.stone))
     }
 }
 
@@ -383,6 +368,6 @@ private struct AppointmentDateBlock: View {
         }
         .foregroundStyle(style == .accent ? Color.bone : Color.textMuted)
         .frame(width: 54, height: 62)
-        .background(RoundedRectangle(cornerRadius: 14).fill(style == .accent ? Color.oliveWood : Color.bone))
+        .background(RoundedRectangle(cornerRadius: 16).fill(style == .accent ? Color.oliveWood : Color.bone))
     }
 }

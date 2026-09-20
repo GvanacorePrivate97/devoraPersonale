@@ -1,30 +1,6 @@
 import SwiftUI
 
-struct PrimaryButton: View {
-    let text: String
-    let action: () -> Void
-    var enabled: Bool = true
-    var loading: Bool = false
-
-    var body: some View {
-        Button(action: action) {
-            Group {
-                if loading {
-                    ProgressView().tint(.bone)
-                } else {
-                    Text(text).font(Typo.titleMedium)
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 52)
-        }
-        .buttonStyle(.plain)
-        .foregroundStyle(Color.bone)
-        .background(RoundedRectangle(cornerRadius: 14).fill(Color.ink))
-        .opacity(enabled && !loading ? 1 : 0.5)
-        .disabled(!enabled || loading)
-    }
-}
+s
 
 struct AccentButton: View {
     let text: String
@@ -79,40 +55,6 @@ struct SocialButton: View {
     }
 }
 
-struct SecondaryButton: View {
-    let text: String
-    let action: () -> Void
-    var enabled: Bool = true
-    var onDark: Bool = false
+s
 
-    var body: some View {
-        Button(action: action) {
-            Text(text)
-                .font(Typo.titleMedium)
-                .frame(maxWidth: .infinity)
-                .frame(height: 52)
-        }
-        .buttonStyle(.plain)
-        .foregroundStyle(onDark ? Color.bone : Color.ink)
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .strokeBorder(onDark ? Color.bone.opacity(0.4) : Color.stoneBorder, lineWidth: 1)
-        )
-        .opacity(enabled ? 1 : 0.5)
-        .disabled(!enabled)
-    }
-}
-
-struct LinkButton: View {
-    let text: String
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            Text(text)
-                .font(Typo.labelLarge)
-                .foregroundStyle(Color.oliveWood)
-        }
-        .buttonStyle(.plain)
-    }
-}
+s

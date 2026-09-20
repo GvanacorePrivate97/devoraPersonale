@@ -53,7 +53,7 @@ fun MultiSelectDropdown(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
-                .clip(RoundedCornerShape(14.dp))
+                .clip(RoundedCornerShape(16.dp))
                 .background(Stone)
                 .clickable { open = true }
                 .padding(horizontal = 14.dp),

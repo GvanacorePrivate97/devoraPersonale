@@ -125,7 +125,7 @@ private fun ChosenOperatorRow(state: BookingUiState, viewModel: BookingViewModel
         Box(
             modifier = Modifier
                 .size(34.dp)
-                .clip(RoundedCornerShape(11.dp))
+                .clip(RoundedCornerShape(10.dp))
                 .background(Bone.copy(alpha = 0.12f)),
             contentAlignment = Alignment.Center,
         ) {

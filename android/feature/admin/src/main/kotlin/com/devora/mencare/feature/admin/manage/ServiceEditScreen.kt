@@ -161,7 +161,7 @@ fun ServiceEditScreen(
                             Box(
                                 modifier = Modifier
                                     .size(24.dp)
-                                    .clip(RoundedCornerShape(8.dp))
+                                    .clip(RoundedCornerShape(6.dp))
                                     .background(if (enabled) OliveWood else Bone),
                                 contentAlignment = Alignment.Center,
                             ) {

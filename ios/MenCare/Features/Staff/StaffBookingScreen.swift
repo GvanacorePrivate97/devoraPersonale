@@ -296,7 +296,7 @@ struct StaffBookingScreen: View {
                         }
                         .padding(.horizontal, 14)
                         .frame(height: 56)
-                        .background(RoundedRectangle(cornerRadius: 14).fill(Color.stone))
+                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
                     }
                     .buttonStyle(.plain)
 

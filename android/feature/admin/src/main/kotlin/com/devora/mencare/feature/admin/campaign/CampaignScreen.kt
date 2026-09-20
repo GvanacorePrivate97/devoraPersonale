@@ -319,7 +319,7 @@ private fun TokenChip(text: String, onClick: () -> Unit) {
         style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp),
         color = Ink,
         modifier = Modifier
-            .clip(RoundedCornerShape(9.dp))
+            .clip(RoundedCornerShape(10.dp))
             .background(Stone)
             .clickable(onClick = onClick)
             .padding(horizontal = 11.dp, vertical = 8.dp),

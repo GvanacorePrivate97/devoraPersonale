@@ -160,8 +160,7 @@ fun AppointmentsScreen(
                     items(state.past, key = { it.id }) { appointment ->
                         PastRow(appointment, state) { onRebook(appointment.id) }
                     }
-                    item(key = "stats") { StatsCard(state) }
-                }
+                        }
             }
         }
     }
@@ -212,23 +211,21 @@ private fun UpcomingCard(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(18.dp))
+            .clip(RoundedCornerShape(16.dp))
             .background(Bone)
-            .border(1.5.dp, OliveWood, RoundedCornerShape(18.dp)),
+            .border(1.5.dp, OliveWood, RoundedCornerShape(16.dp)),
     ) {
         Row(modifier = Modifier.padding(14.dp)) {
             DateBlock(appointment.date, muted = false)
             Column(Modifier.weight(1f).padding(start = 12.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
+                    // Ogni prenotazione è confermata appena fatta (§6.2): un badge
+                    // che dice sempre la stessa cosa non informa, occupa e basta.
                     Text(
                         formatTime(appointment.time),
                         style = MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp),
                         color = Ink,
                         modifier = Modifier.weight(1f),
-                    )
-                    StatusPill(
-                        text = stringResource(R.string.apts_status_confirmed),
-                        accent = true,
                     )
                 }
                 Spacer(Modifier.height(4.dp))
@@ -293,7 +290,7 @@ private fun DateBlock(date: LocalDate, muted: Boolean) {
     Column(
         modifier = Modifier
             .size(width = 54.dp, height = 62.dp)
-            .clip(RoundedCornerShape(14.dp))
+            .clip(RoundedCornerShape(16.dp))
             .background(if (muted) Bone else OliveWood),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -324,7 +321,7 @@ private fun StatusPill(text: String, accent: Boolean) {
         style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.14.em),
         color = if (accent) Bone else Ink,
         modifier = Modifier
-            .clip(RoundedCornerShape(8.dp))
+            .clip(RoundedCornerShape(6.dp))
             .background(if (accent) OliveWood else Stone)
             .padding(horizontal = 10.dp, vertical = 6.dp),
     )
@@ -428,31 +425,6 @@ private fun PastRow(appointment: Appointment, state: AppointmentsUiState, onRebo
                     .padding(horizontal = 14.dp, vertical = 10.dp),
             )
         }
-    }
-}
-
-@Composable
-private fun StatsCard(state: AppointmentsUiState) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 8.dp)
-            .clip(RoundedCornerShape(18.dp))
-            .background(Ink)
-            .padding(vertical = 18.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        StatCell("${state.totalVisits}", stringResource(R.string.apts_stat_visits), Modifier.weight(1f))
-        StatCell(
-            state.favoriteOperatorName ?: "—",
-            stringResource(R.string.apts_stat_favorite_operator),
-            Modifier.weight(1.3f),
-        )
-        StatCell(
-            state.avgDaysBetweenVisits?.toString() ?: "—",
-            stringResource(R.string.apts_stat_cadence),
-            Modifier.weight(1f),
-        )
     }
 }
 

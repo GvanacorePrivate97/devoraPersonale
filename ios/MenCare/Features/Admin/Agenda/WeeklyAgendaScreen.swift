@@ -646,7 +646,7 @@ struct WeeklyAgendaScreen: View {
             .foregroundStyle(Color.bone)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
-            .background(RoundedRectangle(cornerRadius: 12).fill(Color.ink))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color.ink))
             .padding(16)
     }
 

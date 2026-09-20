@@ -187,7 +187,7 @@ fun AppointmentDetailScreen(
                             overflow = TextOverflow.Ellipsis,
                             modifier = Modifier
                                 .weight(1f, fill = false)
-                                .clip(RoundedCornerShape(11.dp))
+                                .clip(RoundedCornerShape(10.dp))
                                 .background(Ink)
                                 .padding(horizontal = 14.dp, vertical = 11.dp),
                         )
@@ -206,7 +206,7 @@ fun AppointmentDetailScreen(
                         color = Ink,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clip(RoundedCornerShape(14.dp))
+                            .clip(RoundedCornerShape(16.dp))
                             .background(Stone)
                             .padding(horizontal = 15.dp, vertical = 14.dp),
                     )
@@ -222,7 +222,7 @@ fun AppointmentDetailScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 8.dp)
-                                .clip(RoundedCornerShape(14.dp))
+                                .clip(RoundedCornerShape(16.dp))
                                 .background(Stone)
                                 .padding(horizontal = 15.dp, vertical = 14.dp),
                             verticalAlignment = Alignment.CenterVertically,
@@ -288,18 +288,18 @@ fun AppointmentDetailScreen(
                     color = Ink,
                 )
             }
-            AccentButton(
-                text = stringResource(
-                    if (completed) R.string.apt_detail_completed else R.string.apt_detail_complete,
-                ),
-                onClick = viewModel::markCompleted,
-                // Completato arriva da solo a fine servizio; a mano serve prima
-                // della fine o per correggere un no-show.
-                enabled = apt.isActive || apt.canRevertNoShow,
-                height = 54.dp,
-                shape = RoundedCornerShape(16.dp),
-                modifier = Modifier.weight(1.2f),
-            )
+            // Lo stato si chiude da solo a fine servizio (§6.2): il pulsante
+            // resta solo dove serve davvero, cioè per rimettere a posto un
+            // no-show segnato per sbaglio.
+            if (apt.canRevertNoShow) {
+                AccentButton(
+                    text = stringResource(R.string.apt_detail_complete),
+                    onClick = viewModel::markCompleted,
+                    height = 54.dp,
+                    shape = RoundedCornerShape(16.dp),
+                    modifier = Modifier.weight(1.2f),
+                )
+            }
         }
     }
 
@@ -366,7 +366,7 @@ private fun HeaderPill(text: String, accent: Boolean) {
         style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.14.em),
         color = Bone,
         modifier = Modifier
-            .clip(RoundedCornerShape(8.dp))
+            .clip(RoundedCornerShape(6.dp))
             .background(if (accent) OliveWood else Bone.copy(alpha = 0.12f))
             .padding(horizontal = 10.dp, vertical = 6.dp),
     )

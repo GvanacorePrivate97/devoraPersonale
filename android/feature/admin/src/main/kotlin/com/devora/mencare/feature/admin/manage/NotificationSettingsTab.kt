@@ -64,7 +64,7 @@ internal fun NotificationSettingsTab(viewModel: NotificationSettingsViewModel = 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(18.dp))
+                .clip(RoundedCornerShape(16.dp))
                 .background(Ink)
                 .padding(horizontal = 16.dp, vertical = 6.dp),
         ) {
@@ -100,8 +100,8 @@ internal fun NotificationSettingsTab(viewModel: NotificationSettingsViewModel = 
                     .fillMaxWidth()
                     .padding(vertical = 10.dp)
                     .height(48.dp)
-                    .clip(RoundedCornerShape(14.dp))
-                    .border(1.dp, Bone.copy(alpha = 0.25f), RoundedCornerShape(14.dp))
+                    .clip(RoundedCornerShape(16.dp))
+                    .border(1.dp, Bone.copy(alpha = 0.25f), RoundedCornerShape(16.dp))
                     .clickable(onClick = viewModel::addReminder),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,

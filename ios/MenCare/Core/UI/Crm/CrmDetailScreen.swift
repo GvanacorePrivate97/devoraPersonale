@@ -95,7 +95,7 @@ struct CrmDetailScreen: View {
                     BarAction(text: L("crm_edit"), action: onBack, color: .oliveWood)
                 }
                 HStack(spacing: 13) {
-                    RoundedRectangle(cornerRadius: 17)
+                    RoundedRectangle(cornerRadius: 16)
                         .fill(Color.oliveWood)
                         .frame(width: 54, height: 54)
                         .overlay(
@@ -165,7 +165,7 @@ struct CrmDetailScreen: View {
                         }
                         .padding(.horizontal, 14)
                         .padding(.vertical, 13)
-                        .background(RoundedRectangle(cornerRadius: 14).fill(Color.ink))
+                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.ink))
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

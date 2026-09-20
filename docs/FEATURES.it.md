@@ -69,8 +69,9 @@ collegato a un account". Gli account di operatori e titolare non si auto-registr
 ## 2. Area Cliente — tab Home · Prenota · Appuntamenti · Profilo
 
 ### 2.1 Home
-- Banda scura: logo a sinistra, campanella con pallino dei non letti a destra (§5); saluto
-  "Ciao <nome>" e contatore visite ("14 visite").
+- Banda scura: logo a sinistra, campanella con pallino dei non letti a destra (§5); la data
+  del giorno sopra il saluto "Ciao <nome>". Il contatore delle visite non sta
+  nell'intestazione: quel numero appartiene al profilo (§2.5), non al saluto.
 - Card **prossimo appuntamento**: countdown ("tra 4 ore", "oggi"), ora, giorno e durata
   totale, operatore, servizi, "Al calendario". Nessun prezzo. Senza prenotazioni: "Nessun
   appuntamento in programma".
@@ -149,7 +150,9 @@ calendario", "Torna alla Home".
 Tab "Prossimi · N" e "Passati · N". La divisione è sull'ora di **fine**: un appuntamento
 resta fra i "Prossimi" finché non è terminato, e la Home continua a mostrarlo come
 prossimo mentre è in corso.
-- Card **prossimo**: blocco data, ora, badge "Confermato", servizi, operatore e durata;
+- Card **prossimo**: blocco data, ora, servizi, operatore e durata — nessun badge di stato,
+  perché ogni prenotazione è confermata appena fatta (§6.2) e un badge che dice sempre la
+  stessa cosa non informa nessuno;
   azioni **Modifica** (§2.2) e **Annulla** (dialogo "Annullare l'appuntamento?" →
   annullato dal cliente).
 - Sezione **Lista d'attesa**, sotto le card dei prossimi quando il cliente è in coda: una
@@ -161,10 +164,6 @@ prossimo mentre è in corso.
 - Righe **passate**: blocco data (spento se la visita non c'è stata), servizi, ora,
   operatore, "Riprenota"; gli annullati dicono chi ha annullato ("Annullato dal cliente" /
   "Annullato dal salone"), i no-show "No-show".
-- Striscia statistiche sotto i passati: visite completate (appuntamenti segnati come
-  completati), operatore preferito (nome di chi ha più visite completate) e giorni medi tra
-  una visita e l'altra (media degli intervalli fra i giorni distinti in cui il cliente è
-  venuto).
 - Tab prossimi vuoto: breve testo, "Prenota ora" e "Riprenota l'ultimo".
 
 ### 2.5 Profilo
@@ -241,8 +240,9 @@ quello collegato), alto quanto il contenuto con il pulsante subito sotto.
 - Azioni: "Annulla appuntamento" (dialogo; risulta annullato dal salone e il cliente riceve
   la notifica, a meno che il titolare non abbia spento "Annullamento" al §4.7), "Chiama"
   (apre il tastierino con il numero del cliente; disattivato se il cliente non ne ha uno),
-  principale **"Segna completato"** — serve solo per chiudere un appuntamento prima della
-  fine o per correggere un no-show, perché gli stati avanzano da soli (§6.2).
+  e, **solo su un no-show**, **"Segna completato"** per rimetterlo a posto. Gli stati
+  avanzano da soli (§6.2), quindi il pulsante non compare su un appuntamento che si chiude
+  da sé.
 - **"Non si è presentato"**, passato l'orario d'inizio — anche su un appuntamento già
   chiuso come completato: un dialogo chiede conferma ("Il cliente riceve una notifica…") e
   il cliente viene avvisato. Un no-show segnato per sbaglio torna indietro con "Segna
@@ -617,8 +617,18 @@ Le due app condividono un solo insieme di token (`core/designsystem` su Android,
   "Oggi" (che compare solo quando il giorno scelto non è oggi) e la striscia dei giorni.
   Oggi porta sempre il suo punto d'oro, anche quando è il giorno selezionato: "dove sono" e
   "dov'è oggi" restano due letture distinte.
-- **Navigazione in fondo.** Tutti e tre i ruoli prendono i colori da un solo helper, così
-  le barre di cliente, operatore e titolare non possono divergere.
+- **Raggi.** Sei valori e non uno di più (`Radii` su Android, `Radii` su iOS): 6 per i
+  micro-elementi, 10 per i controlli piccoli, 16 come misura di serie per bottoni, campi e
+  card, 22 per i contenitori scuri grandi, 28 per bande e fogli a tutta larghezza, più la
+  pillola. Una schermata sceglie il ruolo, mai il numero.
+- **Navigazione in fondo.** Una pillola nera sola per tutti e tre i ruoli
+  (`BrandBottomBar`): banda quasi nera con un filo d'oro sottile, sospesa sul corpo chiaro,
+  e la voce attiva dentro una pillola d'oro traslucida con etichetta oro. È lo stesso vetro
+  delle tab, così navigazione e tab si leggono come una famiglia sola invece di due
+  controlli scollegati.
+- **Tab.** `SegmentedTabs` sulla banda scura: pista traslucida con filo chiaro, voce attiva
+  in una pillola d'oro. La usano tutte le schermate con tab — Prossimi/Passati del cliente,
+  Giorno/Settimana/Mese del titolare, le quattro sotto-schede di Gestione.
 
 ## 8. Differenze di piattaforma
 - **Login social**: Android offre solo Google; iOS offre Accedi con Apple + Google (linea

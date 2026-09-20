@@ -102,7 +102,7 @@ struct ConfirmationScreen: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 4)
-        .background(RoundedRectangle(cornerRadius: 18).fill(Color.bone.opacity(0.06)))
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.bone.opacity(0.06)))
     }
 
     private var divider: some View {

@@ -61,7 +61,7 @@ private struct TodayButton: View {
                 .lineLimit(1)
                 .padding(.horizontal, 14)
                 .frame(height: 34)
-                .background(RoundedRectangle(cornerRadius: 11).fill(Color.oliveWood))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.oliveWood))
         }
         .buttonStyle(.plain)
     }
@@ -78,7 +78,7 @@ private struct DayArrow: View {
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundStyle(Color.bone)
                 .frame(width: 36, height: 36)
-                .background(RoundedRectangle(cornerRadius: 11).fill(Color.bone.opacity(0.10)))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.bone.opacity(0.10)))
         }
         .buttonStyle(.plain)
         .accessibilityLabel(label)
@@ -123,12 +123,12 @@ private struct DayStrip: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 8)
                     .background(
-                        RoundedRectangle(cornerRadius: 13)
+                        RoundedRectangle(cornerRadius: 10)
                             .fill(isSelected ? Color.oliveWood : Color.clear)
                     )
                     .overlay {
                         if isToday && !isSelected {
-                            RoundedRectangle(cornerRadius: 13)
+                            RoundedRectangle(cornerRadius: 10)
                                 .strokeBorder(Color.oliveLight, lineWidth: 1)
                         }
                     }

@@ -193,7 +193,7 @@ struct PickerTile: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 14)
             .padding(.vertical, 11)
-            .background(RoundedRectangle(cornerRadius: 14).fill(Color.stone))
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
         }
         .buttonStyle(.plain)
     }

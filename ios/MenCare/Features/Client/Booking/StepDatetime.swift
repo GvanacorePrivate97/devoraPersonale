@@ -86,7 +86,7 @@ struct StepDatetime: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: 44)
                         .background(
-                            RoundedRectangle(cornerRadius: 13)
+                            RoundedRectangle(cornerRadius: 10)
                                 .fill(isSelected ? Color.oliveWood : Color.stone)
                         )
                 }
@@ -175,7 +175,7 @@ struct StepDatetime: View {
         }
         .padding(.horizontal, 15)
         .padding(.vertical, 14)
-        .background(RoundedRectangle(cornerRadius: 15).fill(Color.stone))
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
     }
 }
 
@@ -253,10 +253,10 @@ private struct MonthCalendar: View {
                 Color.clear
                     .aspectRatio(1, contentMode: .fit)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 13)
+                        RoundedRectangle(cornerRadius: 10)
                             .fill(isSelected ? Color.oliveWood : (available ? Color.stone : Color.clear))
                             .overlay(
-                                RoundedRectangle(cornerRadius: 13)
+                                RoundedRectangle(cornerRadius: 10)
                                     .stroke(full && !isSelected ? Color.stoneBorder : Color.clear, lineWidth: 1)
                             )
                             .padding(3)

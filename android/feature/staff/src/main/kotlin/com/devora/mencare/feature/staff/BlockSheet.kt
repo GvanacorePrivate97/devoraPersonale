@@ -225,7 +225,7 @@ private fun ConflictsCard(state: BlockUiState, viewModel: BlockViewModel) {
                 Box(
                     modifier = Modifier
                         .size(26.dp)
-                        .clip(RoundedCornerShape(9.dp))
+                        .clip(RoundedCornerShape(10.dp))
                         .background(OliveWood),
                     contentAlignment = Alignment.Center,
                 ) {
@@ -259,7 +259,7 @@ private fun ConflictsCard(state: BlockUiState, viewModel: BlockViewModel) {
                             style = MaterialTheme.typography.titleSmall,
                             color = Bone,
                             modifier = Modifier
-                                .clip(RoundedCornerShape(11.dp))
+                                .clip(RoundedCornerShape(10.dp))
                                 .background(Ink)
                                 .clickable { viewModel.reassign(conflict.id, colleague.id) }
                                 .padding(horizontal = 14.dp, vertical = 11.dp),
@@ -270,7 +270,7 @@ private fun ConflictsCard(state: BlockUiState, viewModel: BlockViewModel) {
                         style = MaterialTheme.typography.titleSmall,
                         color = Ink,
                         modifier = Modifier
-                            .clip(RoundedCornerShape(11.dp))
+                            .clip(RoundedCornerShape(10.dp))
                             .background(Stone)
                             .clickable { viewModel.proposeNewTime(conflict.id) }
                             .padding(horizontal = 14.dp, vertical = 11.dp),

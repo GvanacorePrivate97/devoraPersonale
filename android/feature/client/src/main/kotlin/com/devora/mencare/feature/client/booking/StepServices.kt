@@ -101,7 +101,7 @@ private fun ServiceRow(service: Service, selected: Boolean, onClick: () -> Unit)
         Box(
             modifier = Modifier
                 .size(24.dp)
-                .clip(RoundedCornerShape(8.dp))
+                .clip(RoundedCornerShape(6.dp))
                 .background(Bone),
             contentAlignment = Alignment.Center,
         ) {

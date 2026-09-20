@@ -25,7 +25,7 @@ import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import java.time.LocalTime
 
-private val ChipShape = RoundedCornerShape(13.dp)
+private val ChipShape = RoundedCornerShape(10.dp)
 private val ChipHeight = 46.dp
 private val ChipMinWidth = 84.dp
 

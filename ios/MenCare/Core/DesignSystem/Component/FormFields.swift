@@ -213,7 +213,7 @@ struct DurationField: View {
             }
             .padding(.horizontal, 14)
             .frame(height: 56)
-            .background(RoundedRectangle(cornerRadius: 14).fill(Color.stone))
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
             FieldMessageRow(error: error, helper: nil)
         }
     }
@@ -358,7 +358,7 @@ struct FormErrorBanner: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
-            .background(RoundedRectangle(cornerRadius: 12).fill(Color.errorRed.opacity(0.10)))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color.errorRed.opacity(0.10)))
         }
     }
 }

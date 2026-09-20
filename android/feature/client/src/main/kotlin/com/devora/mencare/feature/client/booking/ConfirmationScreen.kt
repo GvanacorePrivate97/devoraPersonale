@@ -119,7 +119,7 @@ private fun ConfirmationContent(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(18.dp))
+                .clip(RoundedCornerShape(16.dp))
                 .background(Bone.copy(alpha = 0.06f))
                 .padding(horizontal = 16.dp, vertical = 4.dp),
         ) {

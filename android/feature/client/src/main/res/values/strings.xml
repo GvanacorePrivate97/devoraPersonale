@@ -8,7 +8,6 @@
 
     <!-- Home -->
     <string name="client_home_greeting">Ciao %1$s</string>
-    <string name="client_home_visits_label">visite</string>
     <string name="client_home_next_title">Prossimo</string>
     <string name="client_home_in_hours">tra %1$d ore</string>
     <string name="client_home_in_minutes">tra %1$d minuti</string>

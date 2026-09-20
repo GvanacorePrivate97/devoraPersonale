@@ -262,7 +262,7 @@ fun ManualBookingScreen(
                         onClick = viewModel::createClient,
                         loading = state.creatingClientBusy,
                         height = 48.dp,
-                        shape = RoundedCornerShape(14.dp),
+                        shape = RoundedCornerShape(16.dp),
                     )
                 }
 
@@ -415,7 +415,7 @@ private fun DropdownField(value: String, onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
-            .clip(RoundedCornerShape(14.dp))
+            .clip(RoundedCornerShape(16.dp))
             .background(Stone)
             .clickable(onClick = onClick)
             .padding(horizontal = 14.dp),

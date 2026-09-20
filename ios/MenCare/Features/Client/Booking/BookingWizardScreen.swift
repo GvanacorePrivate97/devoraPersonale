@@ -78,7 +78,7 @@ struct BookingWizardScreen: View {
     /// Recap of step 1 shown while picking services, with a shortcut back.
     private var chosenOperatorRow: some View {
         HStack(spacing: 10) {
-            RoundedRectangle(cornerRadius: 11)
+            RoundedRectangle(cornerRadius: 10)
                 .fill(Color.bone.opacity(0.12))
                 .frame(width: 34, height: 34)
                 .overlay(

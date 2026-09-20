@@ -79,16 +79,6 @@ struct ClientHomeScreen: View {
                         .font(Typo.cormorant(34))
                         .foregroundStyle(Color.bone)
                 }
-                Spacer()
-                VStack(alignment: .trailing, spacing: 0) {
-                    Text("\(viewModel.user?.visitCount ?? 0)")
-                        .font(Typo.cormorant(30, weight: .regular))
-                        .foregroundStyle(Color.oliveWood)
-                    Text(L("client_home_visits_label").uppercased())
-                        .font(Typo.jost(11, weight: .medium))
-                        .kerning(1.1)
-                        .foregroundStyle(Color.bone)
-                }
             }
             .padding(.top, 14)
         }
@@ -162,7 +152,7 @@ struct ClientHomeScreen: View {
                 onRebook(last.id)
             } label: {
                 HStack(spacing: 12) {
-                    RoundedRectangle(cornerRadius: 14)
+                    RoundedRectangle(cornerRadius: 16)
                         .fill(Color.bone)
                         .frame(width: 46, height: 46)
                         .overlay(
@@ -215,7 +205,7 @@ private struct NextAppointmentCard: View {
                         .foregroundStyle(Color.bone)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
-                        .background(RoundedRectangle(cornerRadius: 7).fill(Color.oliveWood))
+                        .background(RoundedRectangle(cornerRadius: 6).fill(Color.oliveWood))
                     Spacer()
                     Text(countdownLabel(next.start).uppercased())
                         .font(Typo.jost(11, weight: .medium))
@@ -267,7 +257,7 @@ private struct NextAppointmentCard: View {
                 .foregroundStyle(Color.bone)
                 .frame(maxWidth: .infinity)
                 .frame(height: 38)
-                .background(RoundedRectangle(cornerRadius: 11).fill(Color.bone.opacity(0.12)))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.bone.opacity(0.12)))
             }
             .padding(18)
         }

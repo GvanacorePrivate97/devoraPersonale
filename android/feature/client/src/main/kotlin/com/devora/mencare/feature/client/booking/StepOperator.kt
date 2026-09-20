@@ -102,7 +102,7 @@ private fun AnyOperatorCard(selected: Boolean, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(18.dp))
+            .clip(RoundedCornerShape(16.dp))
             .background(if (selected) OliveWood else Stone)
             .clickable(onClick = onClick)
             .padding(15.dp),
@@ -111,7 +111,7 @@ private fun AnyOperatorCard(selected: Boolean, onClick: () -> Unit) {
         Box(
             modifier = Modifier
                 .size(46.dp)
-                .clip(RoundedCornerShape(14.dp))
+                .clip(RoundedCornerShape(16.dp))
                 .background(if (selected) Bone.copy(alpha = 0.18f) else Bone),
             contentAlignment = Alignment.Center,
         ) {
@@ -158,7 +158,7 @@ private fun OperatorRow(option: OperatorOption, selected: Boolean, onClick: () -
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(18.dp))
+            .clip(RoundedCornerShape(16.dp))
             .background(if (selected) OliveWood else Stone)
             .clickable(onClick = onClick)
             .padding(12.dp),
