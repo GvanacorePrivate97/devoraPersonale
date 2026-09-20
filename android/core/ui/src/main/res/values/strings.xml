@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CRM: lista clienti e scheda, condivise da operatore e titolare -->
+    <string name="crm_title">Clienti</string>
+    <string name="crm_visits_suffix">visite</string>
+    <string name="crm_last_visit">ultima</string>
+    <string name="crm_search_hint">Nome, telefono o email</string>
+    <string name="crm_seg_all">Tutti</string>
+    <string name="crm_seg_inactive">Inattivi 60+</string>
+    <string name="crm_since">cliente dal %1$d</string>
+    <string name="crm_stats_visits">Visite</string>
+    <string name="crm_stats_spend">Spesa totale</string>
+    <string name="crm_stats_noshow">No-show</string>
+    <string name="crm_detail_title">Scheda</string>
+    <string name="crm_edit">Modifica</string>
+    <string name="crm_habits">Abitudini</string>
+    <string name="crm_favorite_operator">Operatore preferito</string>
+    <string name="crm_cadence">Torna in media ogni</string>
+    <string name="crm_cadence_value">%1$d giorni</string>
+    <string name="crm_history">Storico appuntamenti</string>
+    <string name="crm_call">Chiama</string>
+    <string name="crm_new_booking">Nuova prenotazione</string>
+    <string name="crm_empty">Nessun cliente trovato</string>
+
+    <!-- Notifiche: stessa pagina per cliente, operatore e titolare -->
+    <string name="notifications_title">Notifiche</string>
+    <string name="notifications_empty">Nessuna notifica</string>
+</resources>

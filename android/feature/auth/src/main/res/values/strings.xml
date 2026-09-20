@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_brand_name">Antonio De Vito</string>
+    <string name="auth_brand_claim">Men Care</string>
+    <string name="auth_powered_by">Powered by Devora</string>
+
+    <string name="auth_login_title">Bentornato</string>
+    <string name="auth_login_subtitle">Il tuo posto in poltrona è a due tap.</string>
+    <string name="auth_email">Email</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_login_cta">Accedi</string>
+    <string name="auth_forgot_password">Password dimenticata?</string>
+    <string name="auth_social_divider">oppure</string>
+    <string name="auth_social_google">Continua con Google</string>
+    <string name="auth_no_account">Non hai un account?</string>
+    <string name="auth_register_link">Registrati</string>
+    <string name="auth_error_credentials">Email o password non corretti</string>
+    <string name="auth_error_generic">Qualcosa è andato storto. Riprova.</string>
+    <string name="auth_error_social_unavailable">L\'accesso con Google non è ancora disponibile: usa email e password.</string>
+    <string name="auth_demo_hint">Demo: marco.esposito@gmail.com (cliente), luca.ferrante@mencare.it (operatore), antonio@mencare.it (titolare) — password mencare2026</string>
+
+    <string name="auth_register_title">Crea il tuo account</string>
+    <string name="auth_register_subtitle">Ti serve una volta sola. Poi prenoti in due tap.</string>
+    <string name="auth_register_topbar">Registrazione</string>
+    <string name="auth_first_name">Nome</string>
+    <string name="auth_last_name">Cognome</string>
+    <string name="auth_phone">Numero di telefono</string>
+    <string name="auth_password_confirm">Conferma password</string>
+    <string name="auth_register_cta">Crea account</string>
+    <string name="auth_terms">Accetto il trattamento dei dati e le condizioni del servizio.</string>
+    <string name="auth_terms_link">Leggi</string>
+    <string name="auth_error_terms">Devi accettare i termini per continuare</string>
+    <!-- Gli errori di campo (email, telefono, password…) vivono in :core:designsystem (validation_*). -->
+    <string name="auth_error_email_taken">Questa email è già registrata</string>
+    <string name="auth_have_account">Hai già un account?</string>
+    <string name="auth_login_link">Accedi</string>
+
+    <string name="auth_recover_title">Password dimenticata</string>
+    <string name="auth_recover_topbar">Recupero accesso</string>
+    <string name="auth_email_account">Email account</string>
+    <string name="auth_password_match">Coincide</string>
+    <string name="auth_recover_subtitle">Inserisci l\'email dell\'account: ti mandiamo un link per impostarne una nuova.</string>
+    <string name="auth_recover_cta">Invia link di recupero</string>
+    <string name="auth_recover_note">Il link resta valido 30 minuti. Se non arriva, controlla lo spam.</string>
+    <string name="auth_recover_sent_title">Link inviato</string>
+    <string name="auth_recover_sent_body">Controlla la casella %1$s e segui le istruzioni.</string>
+    <string name="auth_recover_other_ways">Altre vie</string>
+    <string name="auth_recover_sms">Codice via SMS al %1$s</string>
+    <string name="auth_recover_whatsapp">Scrivi al salone su WhatsApp</string>
+    <string name="auth_back_to_login">Torna al login</string>
+    <string name="auth_back">Indietro</string>
+</resources>

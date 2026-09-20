@@ -1,0 +1,48 @@
+build:
+  maxIssues: 0
+
+complexity:
+  LongMethod:
+    # Composable screens are declarative layouts, not imperative logic.
+    ignoreAnnotated: ['Composable']
+    # I dati dimostrativi sono un elenco di casi, non un algoritmo.
+    excludes: ['**/fake/DemoSeed.kt']
+  LongParameterList:
+    ignoreAnnotated: ['Composable']
+    ignoreDefaultParameters: true
+    constructorThreshold: 12
+  TooManyFunctions:
+    thresholdInFiles: 24
+    # Le interfacce Retrofit ricalcano un'area dell'API: spezzarle in due
+    # renderebbe più difficile confrontarle con docs/API.md, non più leggibili.
+    thresholdInInterfaces: 20
+    # Un ViewModel di un flusso lungo (il wizard di prenotazione) ha molte
+    # azioni piccole: è il flusso a essere lungo, non la classe a essere confusa.
+    thresholdInClasses: 24
+    ignoreAnnotatedFunctions: ['Composable']
+  CyclomaticComplexMethod:
+    ignoreAnnotated: ['Composable']
+    excludes: ['**/fake/DemoSeed.kt']
+
+naming:
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+  TopLevelPropertyNaming:
+    constantPattern: '[A-Z][A-Za-z0-9_]*'
+
+style:
+  MagicNumber:
+    active: false
+  MaxLineLength:
+    maxLineLength: 170
+    excludeCommentStatements: true
+  ReturnCount:
+    max: 4
+  UnusedPrivateMember:
+    ignoreAnnotated: ['Composable', 'Preview']
+  WildcardImport:
+    active: true
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false

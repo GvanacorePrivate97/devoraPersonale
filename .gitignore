@@ -1,0 +1,20 @@
+*.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.keystore
+bin/
+
+# iOS — il progetto e l'Info.plist li genera XcodeGen da ios/project.yml
+ios/MenCare.xcodeproj/
+ios/MenCare/Info.plist
+ios/DerivedData/
+xcuserdata/
+*.xcuserstate

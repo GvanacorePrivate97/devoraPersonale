@@ -1,0 +1,88 @@
+# XcodeGen manifest — run `xcodegen generate` on macOS to produce MenCare.xcodeproj.
+name: MenCare
+options:
+  bundleIdPrefix: com.devora
+  deploymentTarget:
+    iOS: "17.0"
+  developmentLanguage: it
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    # I regex letterali /…/ di Core/Common/Validation.swift: in language
+    # mode 5 vanno abilitati esplicitamente.
+    SWIFT_UPCOMING_FEATURE_BARE_SLASH_REGEX_LITERALS: YES
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  MenCare:
+    type: application
+    platform: iOS
+    sources:
+      - MenCare
+    info:
+      path: MenCare/Info.plist
+      properties:
+        CFBundleDisplayName: ADV MenCare
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        # iPhone solo in verticale; iPad in ogni verso, come chiede l'App Store
+        # per le app iPad (multitasking e Split View compresi).
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        # Il build copia i font nella radice del bundle, senza la cartella Fonts/:
+        # con il prefisso iOS non li trovava e ripiegava sul font di sistema.
+        UIAppFonts:
+          - CormorantGaramond.ttf
+          - Jost.ttf
+          - Jost-Italic.ttf
+        ITSAppUsesNonExemptEncryption: false
+        # Indirizzo dell'API, letto da `ApiEnvironment`. Il valore vero sta
+        # nelle impostazioni di build, una per configurazione: cosi' il binario
+        # di Release non contiene nessun riferimento a localhost.
+        MenCareApiBaseURL: $(MENCARE_API_BASE_URL)
+        # Icone chiare in status bar ovunque, come Android (SystemBarStyle.dark):
+        # ogni schermata dipinge la sua banda scura là sotto.
+        UIViewControllerBasedStatusBarAppearance: false
+        UIStatusBarStyle: UIStatusBarStyleLightContent
+        # HTTP in chiaro resta vietato ovunque. L'unica eccezione e' `localhost`,
+        # dove gira il backend sul Mac durante lo sviluppo: un indirizzo che dal
+        # telefono di un cliente non e' raggiungibile, quindi l'eccezione non
+        # apre nulla in produzione. In Release `MENCARE_API_BASE_URL` e' HTTPS e
+        # `ApiEnvironment` si rifiuta di partire se non lo e'.
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: false
+          NSExceptionDomains:
+            localhost:
+              NSExceptionAllowsInsecureHTTPLoads: true
+              NSIncludesSubdomains: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.devora.mencare
+        # iPhone e iPad: sul tablet il contenuto resta entro readableMaxWidth.
+        TARGETED_DEVICE_FAMILY: "1,2"
+      configs:
+        # Sviluppo: si parla con il backend in esecuzione sul Mac.
+        Debug:
+          MENCARE_API_BASE_URL: http://localhost:3000/v1
+        # Produzione: solo HTTPS. Da cambiare con il dominio vero al primo
+        # rilascio; l'app si ferma all'avvio se qui finisce un indirizzo in chiaro.
+        Release:
+          MENCARE_API_BASE_URL: https://api.mencare.app/v1
+  MenCareTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - MenCareTests
+    settings:
+      base:
+        # Senza questo il target non si firma e ⌘U non parte.
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: MenCare

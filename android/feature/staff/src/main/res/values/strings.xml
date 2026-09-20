@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="staff_tab_agenda">Agenda</string>
+    <string name="staff_tab_clients">Clienti</string>
+    <string name="staff_tab_profile">Profilo</string>
+
+    <string name="staff_walk_in">walk-in</string>
+    <string name="staff_in_progress">in corso</string>
+    <string name="staff_block_fab">Ferie e permessi</string>
+    <string name="staff_no_appointments">Nessun appuntamento · tocca un orario per prenotare</string>
+
+    <string name="block_title">Ferie e permessi</string>
+    <string name="block_reason">Motivo</string>
+    <string name="block_cancel">Annulla</string>
+    <string name="block_conflicts_count">%1$d appuntamenti in conflitto</string>
+    <string name="block_reason_permesso">Permesso</string>
+    <string name="block_reason_pausa">Pausa</string>
+    <string name="block_reason_ferie">Ferie</string>
+    <string name="block_reason_corso">Corso</string>
+    <string name="block_date">Data</string>
+    <string name="block_from">Dalle ore</string>
+    <string name="block_to">Alle ore</string>
+    <string name="block_half_day">Mezza giornata</string>
+    <string name="block_full_day">Giornata intera</string>
+    <string name="block_conflicts_title">Conflitti da risolvere</string>
+    <string name="block_conflict_desc">%1$s · %2$s · %3$s. Va spostato o passato a un collega.</string>
+    <string name="block_reassign">Passa a %1$s</string>
+    <string name="block_propose">Proponi altro orario</string>
+    <string name="block_cta">Blocca %1$s – %2$s</string>
+    <string name="block_created">Blocco salvato</string>
+
+    <string name="apt_detail_title">Dettaglio appuntamento</string>
+    <string name="apt_detail_title_short">Appuntamento</string>
+    <string name="apt_detail_time">Orario</string>
+    <string name="apts_status_confirmed_staff">Confermato</string>
+    <string name="apt_detail_visits">%1$d visite</string>
+    <string name="apt_detail_services">Servizi</string>
+    <string name="apt_detail_duration">Durata</string>
+    <string name="apt_detail_history">Storico visite</string>
+    <string name="apt_detail_call">Chiama</string>
+    <string name="apt_detail_edit">Modifica</string>
+    <string name="apt_detail_complete">Segna completato</string>
+    <string name="apt_detail_cancel">Annulla appuntamento</string>
+    <string name="apt_detail_no_show">No-show</string>
+    <string name="apt_detail_mark_no_show">Non si è presentato</string>
+    <string name="apt_detail_no_show_title">Segnare come no-show?</string>
+    <string name="apt_detail_no_show_body">Il cliente riceve una notifica che non si è presentato. Se ti sbagli, puoi rimetterlo come completato.</string>
+    <string name="apt_detail_no_show_yes">Sì, non è venuto</string>
+    <string name="apt_detail_cancel_title">Annullare l\'appuntamento?</string>
+    <string name="apt_detail_cancel_body">Il cliente riceve la notifica di annullamento dal salone.</string>
+    <string name="apt_detail_cancel_yes">Sì, annulla</string>
+    <string name="apt_detail_cancel_no">No, mantieni</string>
+    <string name="apt_detail_completed">Completato ✓</string>
+    <string name="apt_detail_client_note">Nota del cliente</string>
+
+    <string name="staff_profile_account">Account</string>
+    <string name="staff_profile_email">Email</string>
+    <string name="staff_profile_phone">Telefono</string>
+    <string name="staff_profile_photo_action">Cambia foto profilo</string>
+    <string name="staff_profile_photo_remove">Rimuovi foto</string>
+    <string name="staff_profile_logout">Esci dall\'account</string>
+    <string name="common_back">Indietro</string>
+
+    <string name="staff_booking_fab">Nuovo appuntamento</string>
+    <string name="staff_booking_title">Nuovo appuntamento</string>
+    <string name="staff_booking_title_edit">Modifica appuntamento</string>
+    <string name="staff_booking_cancel">Annulla</string>
+    <string name="staff_booking_save">Salva</string>
+    <string name="staff_booking_client">Cliente</string>
+    <string name="staff_booking_search_hint">Cerca per nome o telefono</string>
+    <string name="staff_booking_new_client">Crea nuovo cliente</string>
+    <string name="staff_booking_new_client_first">Nome</string>
+    <string name="staff_booking_new_client_last">Cognome</string>
+    <string name="staff_booking_new_client_phone">Telefono</string>
+    <string name="staff_booking_error_new_client">Non siamo riusciti a creare il cliente. Riprova.</string>
+    <string name="staff_booking_error_slot_taken">Quell\'orario è appena stato preso: scegline un altro.</string>
+    <string name="staff_booking_error_save">Non siamo riusciti a salvare la prenotazione. Riprova.</string>
+    <string name="staff_booking_visits">%1$d visite</string>
+    <string name="staff_booking_date">Data</string>
+    <string name="staff_booking_services">Servizi</string>
+    <string name="staff_booking_slots">Orario · %1$s</string>
+    <string name="staff_booking_slots_empty">Scegli i servizi per vedere gli orari</string>
+    <string name="staff_booking_slots_empty_preferred">Ore %1$s · scegli i servizi per confermare</string>
+    <string name="staff_booking_slot_unavailable">Alle %1$s non c\'è posto per questi servizi: scegli un altro orario</string>
+    <string name="staff_booking_sms">Invia SMS di conferma</string>
+    <string name="staff_booking_sms_hint">Il cliente non ha l\'app</string>
+    <string name="staff_booking_cta">Inserisci in agenda</string>
+    <string name="staff_booking_cta_edit">Salva modifiche</string>
+    <string name="manual_services_placeholder_staff">Scegli i servizi</string>
+</resources>

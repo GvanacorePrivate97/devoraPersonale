@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ds_show_password">Mostra password</string>
+    <string name="ds_hide_password">Nascondi password</string>
+    <string name="ds_show_password_short">Mostra</string>
+    <string name="ds_hide_password_short">Nascondi</string>
+    <string name="ds_back">Indietro</string>
+    <string name="ds_confirm">Conferma</string>
+    <string name="ds_cancel">Annulla</string>
+    <string name="ds_notifications">Notifiche</string>
+    <string name="ds_retry">Riprova</string>
+
+    <!--
+      Errori di lettura dal server. Sono volutamente poche frasi: all'utente
+      serve sapere che non è colpa sua e che può riprovare, non quale codice
+      HTTP è tornato.
+    -->
+    <string name="ds_error_title">Non riesco a caricare</string>
+    <string name="ds_error_connection">Controlla la connessione e riprova.</string>
+    <string name="ds_error_not_found">Questo contenuto non c\'è più.</string>
+    <string name="ds_error_slot_taken">Questo orario è appena stato preso.</string>
+    <string name="ds_error_generic">Qualcosa non ha funzionato. Riprova fra poco.</string>
+
+    <!-- Misuratore di sicurezza della password (core/common PasswordStrength). -->
+    <string name="ds_password_strength_weak">Debole</string>
+    <string name="ds_password_strength_medium">Media</string>
+    <string name="ds_password_strength_strong">Sicura</string>
+
+    <!-- Campi condivisi. -->
+    <string name="ds_phone_prefix">+39</string>
+    <string name="ds_phone_placeholder">347 812 4490</string>
+    <string name="ds_price_prefix">€</string>
+    <string name="ds_duration_less">Riduci la durata</string>
+    <string name="ds_duration_more">Aumenta la durata</string>
+
+    <!--
+      Copy degli errori di validazione: è la stessa del backend
+      (backend/src/lib/validation.ts) e dell'app iOS. Cambiare una riga qui
+      vuol dire cambiarla anche là.
+    -->
+    <string name="validation_required">Campo obbligatorio</string>
+    <string name="validation_name_length">Da %1$d a %2$d caratteri</string>
+    <string name="validation_name_chars">Sono ammesse solo lettere</string>
+    <string name="validation_email">Indirizzo email non valido</string>
+    <string name="validation_phone">Numero di telefono non valido</string>
+    <string name="validation_password_short">Almeno %1$d caratteri</string>
+    <string name="validation_password_long">Massimo %1$d caratteri</string>
+    <string name="validation_password_letter">Deve contenere almeno una lettera</string>
+    <string name="validation_password_digit">Deve contenere almeno un numero</string>
+    <string name="validation_password_match">Le password non coincidono</string>
+    <string name="validation_text_long">Testo troppo lungo</string>
+    <string name="validation_note_long">Massimo %1$d caratteri</string>
+    <string name="validation_duration_short">Almeno %1$d minuti</string>
+    <string name="validation_duration_long">Al massimo 8 ore</string>
+    <string name="validation_duration_step">Usa passi di %1$d minuti</string>
+    <string name="validation_price_invalid">Prezzo non valido</string>
+    <string name="validation_price_negative">Il prezzo non può essere negativo</string>
+    <string name="validation_price_high">Prezzo troppo alto</string>
+</resources>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tabs -->
+    <string name="client_tab_home">Home</string>
+    <string name="client_tab_book">Prenota</string>
+    <string name="client_tab_appointments">Appuntamenti</string>
+    <string name="client_tab_profile">Profilo</string>
+
+    <!-- Home -->
+    <string name="client_home_greeting">Ciao %1$s</string>
+    <string name="client_home_visits_label">visite</string>
+    <string name="client_home_next_title">Prossimo</string>
+    <string name="client_home_in_hours">tra %1$d ore</string>
+    <string name="client_home_in_minutes">tra %1$d minuti</string>
+    <string name="client_home_in_days">tra %1$d giorni</string>
+    <string name="client_home_today">oggi</string>
+    <string name="client_home_add_calendar">Al calendario</string>
+    <string name="client_confirm_add_calendar">Aggiungi al calendario</string>
+    <string name="client_home_quick_title">Primi slot liberi</string>
+    <string name="client_home_tomorrow">Domani</string>
+    <string name="client_home_book_now">Prenota ora</string>
+    <string name="client_home_rebook_title">Riprenota in un tap</string>
+    <string name="client_home_rebook_cta">Riprenota</string>
+    <string name="client_home_history_link">Storico</string>
+    <string name="client_home_no_upcoming">Nessun appuntamento in programma</string>
+
+    <!-- Booking wizard -->
+    <string name="wizard_title">Nuova prenotazione</string>
+    <string name="wizard_edit_title">Modifica prenotazione</string>
+    <string name="wizard_summary_title">Riepilogo</string>
+    <string name="wizard_cancel">Annulla</string>
+    <string name="wizard_step_of">Passo %1$d di 4</string>
+    <string name="wizard_step_operator">Operatore</string>
+    <string name="wizard_step_services">Servizi</string>
+    <string name="wizard_step_datetime">Data</string>
+    <string name="wizard_step_summary">Conferma</string>
+    <string name="wizard_continue">Continua</string>
+    <string name="wizard_any_operator">Qualsiasi operatore</string>
+    <string name="wizard_any_operator_hint">Il doppio degli orari disponibili</string>
+    <string name="wizard_operator_title">Scegli l\'operatore</string>
+    <string name="wizard_services_title">Scegli i servizi</string>
+    <string name="wizard_step_counter">%1$d di %2$d</string>
+    <string name="wizard_team_count">Il team · %1$d operatori</string>
+    <string name="wizard_continue_services">Continua ai servizi</string>
+    <string name="wizard_change">Cambia</string>
+    <string name="wizard_cart_caption">%1$d servizi · %2$s</string>
+    <string name="wizard_cart_caption_one">1 servizio · %1$s</string>
+    <string name="wizard_next_slot">Prossima disponibilità: %1$s</string>
+    <string name="wizard_unavailable_until">Non disponibile · torna %1$s</string>
+    <string name="wizard_change_operator">Cambia</string>
+    <string name="wizard_services_for">Solo i servizi che esegue %1$s</string>
+    <string name="wizard_cart_summary">%1$d servizi · %2$s · %3$s</string>
+    <string name="wizard_cart_summary_one">1 servizio · %1$s · %2$s</string>
+    <string name="wizard_slot_free">libero</string>
+    <string name="wizard_slot_chosen">scelto</string>
+    <string name="wizard_no_slots">Nessun orario disponibile per questa giornata</string>
+    <string name="wizard_waitlist_prompt">Le %1$s sono state appena prenotate</string>
+    <string name="wizard_waitlist_push_hint">Mettiti in lista: ti avvisiamo con una notifica se si libera</string>
+    <string name="wizard_waitlist_cta">Mettimi in lista</string>
+    <string name="wizard_waitlist_joined">%1$d° in fila</string>
+    <string name="wizard_full_title">Giornata al completo</string>
+    <string name="wizard_full_body">Tutti gli slot orari sono già prenotati. Vuoi essere avvisato quando si libera un posto?</string>
+    <string name="wizard_full_cta">Avvisami</string>
+    <string name="wizard_full_joined">Ti avviseremo · %1$d° in fila</string>
+    <string name="wizard_full_joined_hint">Trovi la richiesta in Appuntamenti, sotto Lista d\'attesa.</string>
+    <string name="wizard_notes_label">Note per l\'operatore</string>
+    <string name="wizard_notes_hint">Facoltative, max 200 caratteri</string>
+    <string name="wizard_confirm_cta">Conferma prenotazione</string>
+    <string name="wizard_summary_date">Data</string>
+    <string name="wizard_summary_duration">Durata</string>
+    <string name="wizard_summary_operator">Operatore</string>
+    <string name="wizard_summary_services">Servizi</string>
+    <string name="wizard_note_counter">%1$d/%2$d</string>
+    <string name="wizard_summary_total">Totale</string>
+    <string name="wizard_error_slot_taken">Questo orario è appena stato prenotato. Scegline un altro.</string>
+    <string name="wizard_error_generic">Qualcosa è andato storto. Riprova.</string>
+
+    <!-- Confirmation -->
+    <string name="confirm_title">Prenotazione confermata</string>
+    <string name="confirm_when">Ti aspettiamo %1$s alle ore %2$s</string>
+    <string name="confirm_note">Note</string>
+    <string name="confirm_back_home">Torna alla Home</string>
+
+    <!-- Appointments -->
+    <string name="apts_title">I tuoi appuntamenti</string>
+    <string name="apts_tab_upcoming">Prossimi · %1$d</string>
+    <string name="apts_tab_past">Passati · %1$d</string>
+    <string name="apts_waitlist_slots">%1$d slot</string>
+    <string name="apts_stat_visits">visite</string>
+    <string name="apts_stat_favorite_operator">operatore preferito</string>
+    <string name="apts_stat_cadence">giorni medi</string>
+    <string name="apts_upcoming">Prossimi</string>
+    <string name="apts_past">Passati</string>
+    <string name="apts_status_confirmed">Confermato</string>
+    <string name="apts_edit">Modifica</string>
+    <string name="apts_cancel">Annulla</string>
+    <string name="apts_cancel_confirm_title">Annullare l\'appuntamento?</string>
+    <string name="apts_cancel_confirm_body">%1$s · %2$s con %3$s</string>
+    <string name="apts_cancel_confirm_yes">Sì, annulla</string>
+    <string name="apts_cancel_confirm_no">No, mantieni</string>
+    <string name="apts_waitlist_title">Lista d\'attesa</string>
+    <string name="apts_waitlist_status">in attesa</string>
+    <string name="apts_waitlist_any">Qualsiasi operatore</string>
+    <string name="apts_waitlist_any_time">qualsiasi orario</string>
+    <string name="apts_waitlist_position">%1$d° in fila</string>
+    <string name="apts_waitlist_leave">Esci</string>
+    <string name="apts_rebook">Riprenota</string>
+    <string name="apts_cancelled_by_client">Annullato dal cliente</string>
+    <string name="apts_cancelled_by_salon">Annullato dal salone</string>
+    <string name="apts_no_show">No-show</string>
+    <string name="apts_stats_visits">%1$d visite totali</string>
+    <string name="apts_stats_cadence">%1$d giorni medi</string>
+    <string name="apts_empty_title">Nessun appuntamento in programma</string>
+    <string name="apts_empty_body">Prenota il tuo posto in poltrona: ti serviranno meno di trenta secondi.</string>
+    <string name="apts_empty_book">Prenota ora</string>
+    <string name="apts_empty_rebook">Riprenota l\'ultimo</string>
+
+    <!-- Waitlist join -->
+
+    <!-- Profile -->
+    <string name="profile_title">Profilo</string>
+    <string name="profile_since">Cliente dal %1$s · %2$d visite</string>
+    <string name="profile_personal_data">Dati personali</string>
+    <string name="profile_first_name">Nome</string>
+    <string name="profile_last_name">Cognome</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_phone">Telefono</string>
+    <string name="profile_salon_hours">Orari del salone</string>
+    <string name="profile_salon_closed">chiuso</string>
+    <string name="profile_save">Salva modifiche</string>
+    <string name="profile_saved">Profilo aggiornato</string>
+    <string name="profile_error_save">Non siamo riusciti a salvare. Riprova.</string>
+    <string name="profile_notifications">Notifiche</string>
+    <string name="profile_pref_reminder">Promemoria appuntamento</string>
+    <string name="profile_pref_reminder_hint">24 ore prima · push</string>
+    <string name="profile_pref_waitlist">Slot liberi in lista d\'attesa</string>
+    <string name="profile_pref_waitlist_hint">Push quando si libera un orario</string>
+    <string name="profile_edit">Modifica</string>
+    <string name="profile_pref_marketing">Promozioni e novità</string>
+    <string name="profile_pref_marketing_hint">Offerte occasionali, niente spam</string>
+    <string name="profile_logout">Esci dall\'account</string>
+    <string name="profile_account_management">Gestione profilo</string>
+    <string name="profile_change_password">Password</string>
+
+    <!-- Change password sheet -->
+    <string name="change_password_title">Cambia password</string>
+    <string name="change_password_cancel">Annulla</string>
+    <string name="change_password_current">Password attuale</string>
+    <string name="change_password_new">Nuova password</string>
+    <string name="change_password_confirm">Conferma nuova password</string>
+    <string name="change_password_cta">Salva password</string>
+    <string name="change_password_error_wrong_current">Password attuale errata</string>
+    <string name="change_password_error_generic">Qualcosa è andato storto. Riprova.</string>
+
+    <!-- Notifications screen -->
+
+    <!-- Shared -->
+    <string name="common_back">Indietro</string>
+    <string name="common_duration_total">Durata totale</string>
+</resources>
