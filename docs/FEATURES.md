@@ -265,6 +265,8 @@ After sign-in the owner lands on the Agenda tab.
 ### 4.1 Dashboard
 Every figure is computed by the server over the chosen period; nothing is padded, and a
 period with no work shows zeros.
+- Dark header: "Titolare" over the serif title "Andamento", then the period switcher —
+  the band carries its own title like every other owner screen.
 - Period switcher Giorno · Settimana · Mese (default Giorno): Giorno = today, Settimana =
   Monday to Sunday of the current week, Mese = the calendar month.
 - **Incassi**: total of the appointments **marked completed** whose start falls in the

@@ -181,7 +181,7 @@ struct ClientHomeScreen: View {
                         .foregroundStyle(Color.bone)
                         .padding(.horizontal, 13)
                         .padding(.vertical, 9)
-                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.ink))
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color.oliveWood))
                 }
                 .padding(13)
                 .background(RoundedRectangle(cornerRadius: tileCorner).fill(Color.stone))

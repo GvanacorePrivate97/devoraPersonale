@@ -2,6 +2,7 @@ package com.devora.mencare.feature.client.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -435,7 +435,7 @@ private fun RebookSection(
                 color = Bone,
                 modifier = Modifier
                     .clip(RoundedCornerShape(10.dp))
-                    .background(Ink)
+                    .background(OliveWood)
                     .padding(horizontal = 13.dp, vertical = 9.dp),
             )
         }

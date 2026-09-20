@@ -46,7 +46,9 @@ import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.Overline
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.StoneSoft
@@ -68,6 +70,20 @@ fun DashboardScreen(
             roundedBottom = true,
             contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 8.dp, bottom = 18.dp),
         ) {
+            // La banda porta il suo titolo, come le altre schermate del
+            // titolare: prima si sa dove si è, poi si sceglie il periodo.
+            Text(
+                stringResource(R.string.dash_overline).uppercase(),
+                style = Overline,
+                color = OliveLight,
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                stringResource(R.string.dash_title),
+                style = MaterialTheme.typography.displaySmall,
+                color = Bone,
+            )
+            Spacer(Modifier.height(16.dp))
             SegmentedTabs(
                 options = listOf(
                     stringResource(R.string.dash_period_day),

@@ -65,6 +65,16 @@ struct DashboardScreen: View {
             roundedBottom: true,
             contentPadding: EdgeInsets(top: 8, leading: 20, bottom: 18, trailing: 20)
         ) {
+            // La banda porta il suo titolo, come le altre schermate del
+            // titolare: prima si sa dove si è, poi si sceglie il periodo.
+            Text(L("dash_overline").uppercased())
+                .font(Typo.overline)
+                .foregroundStyle(Color.oliveLight)
+            Text(L("dash_title"))
+                .font(Typo.displaySmall)
+                .foregroundStyle(Color.bone)
+                .padding(.top, 4)
+                .padding(.bottom, 16)
             SegmentedTabs(
                 options: [L("dash_period_day"), L("dash_period_week"), L("dash_period_month")],
                 selectedIndex: DashboardPeriod.allCases.firstIndex(of: period) ?? 0,
@@ -83,6 +93,16 @@ struct DashboardScreen: View {
                     roundedBottom: true,
                     contentPadding: EdgeInsets(top: 8, leading: 20, bottom: 18, trailing: 20)
                 ) {
+                    // La banda porta il suo titolo, come le altre schermate del
+                    // titolare: prima si sa dove si è, poi si sceglie il periodo.
+                    Text(L("dash_overline").uppercased())
+                        .font(Typo.overline)
+                        .foregroundStyle(Color.oliveLight)
+                    Text(L("dash_title"))
+                        .font(Typo.displaySmall)
+                        .foregroundStyle(Color.bone)
+                        .padding(.top, 4)
+                        .padding(.bottom, 16)
                     SegmentedTabs(
                         options: [L("dash_period_day"), L("dash_period_week"), L("dash_period_month")],
                         selectedIndex: DashboardPeriod.allCases.firstIndex(of: period) ?? 0,

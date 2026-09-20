@@ -57,12 +57,11 @@ struct ManageScreen: View {
                     .font(Typo.cormorant(30))
                     .foregroundStyle(Color.bone)
                     .padding(.top, 2)
-                HStack(spacing: 8) {
-                    ForEach(Array(titles.enumerated()), id: \.offset) { index, title in
-                        BrandChip(text: title, selected: tab == index, action: { tab = index }, onDark: true, fill: true)
-                    }
-                }
-                .padding(.top, 14)
+                // Le stesse tab a vetro oro della dashboard e degli
+                // appuntamenti: quattro schede dello stesso oggetto vogliono
+                // un controllo solo.
+                SegmentedTabs(options: titles, selectedIndex: tab, onSelect: { tab = $0 })
+                    .padding(.top, 14)
             }
 
             switch tab {

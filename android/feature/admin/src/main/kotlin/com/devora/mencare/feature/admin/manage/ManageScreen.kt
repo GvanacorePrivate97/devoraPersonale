@@ -59,9 +59,9 @@ import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.core.model.BlockReason
 import com.devora.mencare.core.model.Operator
-import com.devora.mencare.core.model.groupConsecutiveDays
-import com.devora.mencare.core.model.TimeBlock
 import com.devora.mencare.core.model.Service
+import com.devora.mencare.core.model.TimeBlock
+import com.devora.mencare.core.model.groupConsecutiveDays
 import com.devora.mencare.feature.admin.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -99,18 +99,13 @@ fun ManageScreen(
                 color = Bone,
             )
             Spacer(Modifier.height(14.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                titles.forEachIndexed { index, title ->
-                    BrandChip(
-                        text = title,
-                        selected = tab == index,
-                        onClick = { tab = index },
-                        modifier = Modifier.weight(1f),
-                        onDark = true,
-                        fill = true,
-                    )
-                }
-            }
+            // Le stesse tab a vetro oro della dashboard e degli appuntamenti:
+            // quattro schede dello stesso oggetto vogliono un controllo solo.
+            SegmentedTabs(
+                options = titles,
+                selectedIndex = tab,
+                onSelect = { tab = it },
+            )
         }
 
         when (tab) {
