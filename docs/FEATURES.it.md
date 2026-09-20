@@ -271,6 +271,8 @@ Dopo l'accesso il titolare atterra sul tab Agenda.
 ### 4.1 Dashboard
 Tutte le cifre le calcola il server sul periodo scelto; niente è gonfiato, e un periodo
 senza lavoro mostra zeri.
+- Banda scura: "Titolare" sopra il titolo serif "Andamento", poi il selettore del periodo —
+  la banda porta il suo titolo come ogni altra schermata del titolare.
 - Selettore di periodo Giorno · Settimana · Mese (default Giorno): Giorno = oggi, Settimana
   = da lunedì a domenica della settimana corrente, Mese = il mese di calendario.
 - **Incassi**: totale degli appuntamenti **segnati come completati** che iniziano nel
