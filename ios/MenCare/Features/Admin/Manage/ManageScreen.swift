@@ -217,7 +217,7 @@ private struct OperatorsTab: View {
                             .foregroundStyle(Color.bone)
                             .padding(.horizontal, 9)
                             .padding(.vertical, 6)
-                            .background(RoundedRectangle(cornerRadius: 8).fill(Color.oliveWood))
+                            .background(RoundedRectangle(cornerRadius: 6).fill(Color.oliveWood))
                     } else if expanded {
                         Text(L("ops_detail"))
                             .font(Typo.jost(12, weight: .medium))
@@ -235,10 +235,10 @@ private struct OperatorsTab: View {
             }
         }
         .padding(14)
-        .background(RoundedRectangle(cornerRadius: 18).fill(expanded ? Color.bone : Color.stone))
+        .background(RoundedRectangle(cornerRadius: 16).fill(expanded ? Color.bone : Color.stone))
         .overlay(
             expanded
-                ? RoundedRectangle(cornerRadius: 18).strokeBorder(Color.oliveWood, lineWidth: 1.5)
+                ? RoundedRectangle(cornerRadius: 16).strokeBorder(Color.oliveWood, lineWidth: 1.5)
                 : nil
         )
     }
@@ -258,8 +258,8 @@ private struct OperatorsTab: View {
                 )
                 .background(
                     closed
-                        ? AnyView(RoundedRectangle(cornerRadius: 13).strokeBorder(Color.stoneBorder, lineWidth: 1))
-                        : AnyView(RoundedRectangle(cornerRadius: 13).fill(Color.stone))
+                        ? AnyView(RoundedRectangle(cornerRadius: 10).strokeBorder(Color.stoneBorder, lineWidth: 1))
+                        : AnyView(RoundedRectangle(cornerRadius: 10).fill(Color.stone))
                 )
             }
         }

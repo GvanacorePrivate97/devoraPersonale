@@ -1,6 +1,5 @@
 package com.devora.mencare.feature.admin
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -9,17 +8,11 @@ import androidx.compose.material.icons.outlined.Insights
 import androidx.compose.material.icons.outlined.People
 import androidx.compose.material.icons.outlined.PersonOutline
 import androidx.compose.material.icons.outlined.Tune
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -27,10 +20,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.devora.mencare.core.designsystem.component.brandNavBarItemColors
-import com.devora.mencare.core.designsystem.component.readableWidth
+import com.devora.mencare.core.designsystem.component.BrandBottomBar
+import com.devora.mencare.core.designsystem.component.BrandBottomBarItem
 import com.devora.mencare.core.designsystem.theme.Bone
-import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.ui.crm.CrmDetailScreen
 import com.devora.mencare.core.ui.crm.CrmListScreen
 import com.devora.mencare.core.ui.notifications.NotificationsScreen
@@ -69,32 +61,14 @@ fun AdminRoot(onLoggedOut: () -> Unit) {
         contentWindowInsets = WindowInsets(0),
         bottomBar = {
             if (showBar) {
-                Column {
-                    HorizontalDivider(color = Stone)
-                    // Sui tablet le voci restano raccolte al centro, non sparse sui bordi.
-                    NavigationBar(
-                        modifier = Modifier.readableWidth(),
-                        containerColor = Bone,
-                        tonalElevation = 0.dp,
-                    ) {
+                BrandBottomBar {
                     // L'agenda sta al centro: è la schermata che il titolare apre più spesso.
-                    AdminBarItem(navController, currentRoute, DASHBOARD, stringResource(R.string.admin_tab_dashboard)) {
-                        Icon(Icons.Outlined.Insights, contentDescription = null)
-                    }
-                    AdminBarItem(navController, currentRoute, CLIENTS, stringResource(R.string.admin_tab_clients)) {
-                        Icon(Icons.Outlined.People, contentDescription = null)
-                    }
-                    AdminBarItem(navController, currentRoute, AGENDA, stringResource(R.string.admin_tab_agenda)) {
-                        Icon(Icons.Outlined.CalendarMonth, contentDescription = null)
-                    }
-                    AdminBarItem(navController, currentRoute, MANAGE, stringResource(R.string.admin_tab_manage)) {
-                        Icon(Icons.Outlined.Tune, contentDescription = null)
-                    }
-                    AdminBarItem(navController, currentRoute, PROFILE, stringResource(R.string.admin_tab_profile)) {
-                        Icon(Icons.Outlined.PersonOutline, contentDescription = null)
-                    }
-                    }
-                    }
+                    AdminBarItem(navController, currentRoute, DASHBOARD, Icons.Outlined.Insights, stringResource(R.string.admin_tab_dashboard))
+                    AdminBarItem(navController, currentRoute, CLIENTS, Icons.Outlined.People, stringResource(R.string.admin_tab_clients))
+                    AdminBarItem(navController, currentRoute, AGENDA, Icons.Outlined.CalendarMonth, stringResource(R.string.admin_tab_agenda))
+                    AdminBarItem(navController, currentRoute, MANAGE, Icons.Outlined.Tune, stringResource(R.string.admin_tab_manage))
+                    AdminBarItem(navController, currentRoute, PROFILE, Icons.Outlined.PersonOutline, stringResource(R.string.admin_tab_profile))
+                }
             }
         },
     ) { padding ->
@@ -155,10 +129,10 @@ private fun androidx.compose.foundation.layout.RowScope.AdminBarItem(
     navController: NavHostController,
     currentRoute: String?,
     route: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
     label: String,
-    icon: @Composable () -> Unit,
 ) {
-    NavigationBarItem(
+    BrandBottomBarItem(
         selected = currentRoute == route,
         onClick = {
             navController.navigate(route) {
@@ -168,7 +142,6 @@ private fun androidx.compose.foundation.layout.RowScope.AdminBarItem(
             }
         },
         icon = icon,
-        label = { Text(label) },
-        colors = brandNavBarItemColors(),
+        label = label,
     )
 }

@@ -29,6 +29,10 @@ extension Color {
     static let oliveLight = Color(hex: 0xBFA277)
 
     /// Stato premuto dell'accento chiaro.
+    /// Oro chiaro: testo e icone della voce attiva nella barra nera, dove
+    /// l'oro pieno su fondo oro-trasparente perderebbe stacco. 13.4:1 su Ink.
+    static let goldSoft = Color(hex: 0xE7D9BF)
+
     static let oliveWoodDark = Color(hex: 0x6A5A43)
 
     /// Fondo piatto delle pill d'accento: niente opacity, così è uguale su Bone e su Stone.
@@ -98,4 +102,24 @@ extension View {
     func sectionTracking() -> some View {
         kerning(1.5)
     }
+}
+
+/// Scala dei raggi — sei valori, non venti, gli stessi di `Radii` su Android.
+///
+/// Le schermate giravano con una ventina di raggi scritti a mano: due card
+/// vicine non avevano mai lo stesso angolo. Qui si sceglie il ruolo, non il
+/// numero.
+enum Radii {
+    /// Micro-elementi: barre di avanzamento, tacche, indicatori.
+    static let xs: CGFloat = 6
+    /// Controlli piccoli: chip compatti, quadratini, riquadri d'icona.
+    static let sm: CGFloat = 10
+    /// Il raggio di serie: bottoni, campi, card, tessere.
+    static let md: CGFloat = 16
+    /// Contenitori grandi: card scure in evidenza, fogli, sheet.
+    static let lg: CGFloat = 22
+    /// Bande e fogli a tutta larghezza: la testa scura, il foglio chiaro.
+    static let xl: CGFloat = 28
+    /// Pillole: barra di navigazione, tab, badge di stato.
+    static let pill: CGFloat = 999
 }

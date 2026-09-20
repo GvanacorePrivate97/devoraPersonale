@@ -65,7 +65,7 @@ import java.time.LocalDateTime
 
 private val CardShape = RoundedCornerShape(22.dp)
 private val ButtonShape = RoundedCornerShape(16.dp)
-private val TileShape = RoundedCornerShape(18.dp)
+private val TileShape = RoundedCornerShape(16.dp)
 
 @Composable
 fun ClientHomeScreen(
@@ -177,20 +177,6 @@ private fun HomeHeader(state: HomeUiState, onNotifications: () -> Unit) {
                     color = Bone,
                 )
             }
-            Column(horizontalAlignment = Alignment.End) {
-                Text(
-                    "${state.user?.visitCount ?: 0}",
-                    fontFamily = Cormorant,
-                    fontSize = 30.sp,
-                    lineHeight = 32.sp,
-                    color = OliveWood,
-                )
-                Text(
-                    stringResource(R.string.client_home_visits_label).uppercase(),
-                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.12.em),
-                    color = Bone,
-                )
-            }
         }
     }
 }
@@ -219,7 +205,7 @@ private fun NextAppointmentCard(state: HomeUiState, next: Appointment) {
                     style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.16.em),
                     color = Bone,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(7.dp))
+                        .clip(RoundedCornerShape(6.dp))
                         .background(OliveWood)
                         .padding(horizontal = 10.dp, vertical = 5.dp),
                 )
@@ -283,7 +269,7 @@ private fun NextAppointmentCard(state: HomeUiState, next: Appointment) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(38.dp)
-                    .clip(RoundedCornerShape(11.dp))
+                    .clip(RoundedCornerShape(10.dp))
                     .background(Bone.copy(alpha = 0.12f)),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
@@ -412,7 +398,7 @@ private fun RebookSection(
             Box(
                 modifier = Modifier
                     .size(46.dp)
-                    .clip(RoundedCornerShape(14.dp))
+                    .clip(RoundedCornerShape(16.dp))
                     .background(Bone),
                 contentAlignment = Alignment.Center,
             ) {

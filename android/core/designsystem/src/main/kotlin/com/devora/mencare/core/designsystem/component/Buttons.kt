@@ -29,31 +29,6 @@ import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 
 @Composable
-fun PrimaryButton(
-    text: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    loading: Boolean = false,
-) {
-    Button(
-        onClick = onClick,
-        modifier = modifier.fillMaxWidth().height(52.dp),
-        enabled = enabled && !loading,
-        shape = MaterialTheme.shapes.medium,
-        colors = ButtonDefaults.buttonColors(containerColor = Ink),
-    ) {
-        if (loading) {
-            CircularProgressIndicator(
-                modifier = Modifier.height(20.dp),
-                color = MaterialTheme.colorScheme.onPrimary,
-                strokeWidth = 2.dp,
-            )
-        } else {
-            Text(text, style = MaterialTheme.typography.titleMedium)
-        }
-    }
-}
 
 @Composable
 fun AccentButton(

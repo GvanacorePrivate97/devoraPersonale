@@ -1,6 +1,5 @@
 package com.devora.mencare.feature.client
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -8,17 +7,11 @@ import androidx.compose.material.icons.outlined.AddCircleOutline
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -27,10 +20,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.devora.mencare.core.designsystem.component.brandNavBarItemColors
-import com.devora.mencare.core.designsystem.component.readableWidth
+import com.devora.mencare.core.designsystem.component.BrandBottomBar
+import com.devora.mencare.core.designsystem.component.BrandBottomBarItem
 import com.devora.mencare.core.designsystem.theme.Bone
-import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.ui.notifications.NotificationsScreen
 import com.devora.mencare.feature.client.appointments.AppointmentsScreen
 import com.devora.mencare.feature.client.booking.BookingViewModel
@@ -80,19 +72,11 @@ fun ClientRoot(onLoggedOut: () -> Unit) {
         contentWindowInsets = WindowInsets(0),
         bottomBar = {
             if (showBar) {
-                Column {
-                    HorizontalDivider(color = Stone)
-                    // Sui tablet le voci restano raccolte al centro, non sparse sui bordi.
-                    NavigationBar(
-                        modifier = Modifier.readableWidth(),
-                        containerColor = Bone,
-                        tonalElevation = 0.dp,
-                    ) {
-                        BarItem(navController, currentRoute, HOME, Icons.Outlined.Home, stringResource(R.string.client_tab_home))
-                        BarItem(navController, currentRoute, BOOKING, Icons.Outlined.AddCircleOutline, stringResource(R.string.client_tab_book))
-                        BarItem(navController, currentRoute, APPOINTMENTS, Icons.Outlined.CalendarMonth, stringResource(R.string.client_tab_appointments))
-                        BarItem(navController, currentRoute, PROFILE, Icons.Outlined.Person, stringResource(R.string.client_tab_profile))
-                    }
+                BrandBottomBar {
+                    BarItem(navController, currentRoute, HOME, Icons.Outlined.Home, stringResource(R.string.client_tab_home))
+                    BarItem(navController, currentRoute, BOOKING, Icons.Outlined.AddCircleOutline, stringResource(R.string.client_tab_book))
+                    BarItem(navController, currentRoute, APPOINTMENTS, Icons.Outlined.CalendarMonth, stringResource(R.string.client_tab_appointments))
+                    BarItem(navController, currentRoute, PROFILE, Icons.Outlined.Person, stringResource(R.string.client_tab_profile))
                 }
             }
         },
@@ -176,14 +160,13 @@ private fun androidx.compose.foundation.layout.RowScope.BarItem(
     icon: androidx.compose.ui.graphics.vector.ImageVector,
     label: String,
 ) {
-    NavigationBarItem(
+    BrandBottomBarItem(
         selected = currentRoute == route,
+        // La tab Prenota apre sempre un wizard nuovo (come su iOS).
         onClick = {
-            // La tab Prenota apre sempre un wizard nuovo (come su iOS).
             if (route == BOOKING) navController.navigateFresh(bookingRoute()) else navController.navigateTab(route)
         },
-        icon = { Icon(icon, contentDescription = label) },
-        label = { Text(label) },
-        colors = brandNavBarItemColors(),
+        icon = icon,
+        label = label,
     )
 }

@@ -67,7 +67,7 @@ struct BrandErrorRetry: View {
                     .foregroundStyle(Color.bone)
                     .padding(.horizontal, 22)
                     .frame(height: 44)
-                    .background(RoundedRectangle(cornerRadius: 14).fill(Color.ink))
+                    .background(RoundedRectangle(cornerRadius: 16).fill(Color.ink))
             }
             .buttonStyle(.plain)
         }

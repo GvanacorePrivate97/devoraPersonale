@@ -267,7 +267,7 @@ struct BlockSheet: View {
         AccentOutlinedCard {
             VStack(alignment: .leading, spacing: 0) {
                 HStack(spacing: 10) {
-                    RoundedRectangle(cornerRadius: 9)
+                    RoundedRectangle(cornerRadius: 10)
                         .fill(Color.oliveWood)
                         .frame(width: 26, height: 26)
                         .overlay(Text("!").font(Typo.titleSmall).foregroundStyle(Color.bone))
@@ -295,7 +295,7 @@ struct BlockSheet: View {
                                     .foregroundStyle(Color.bone)
                                     .padding(.horizontal, 14)
                                     .padding(.vertical, 11)
-                                    .background(RoundedRectangle(cornerRadius: 11).fill(Color.ink))
+                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.ink))
                             }
                             .buttonStyle(.plain)
                         }
@@ -307,7 +307,7 @@ struct BlockSheet: View {
                                 .foregroundStyle(Color.ink)
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 11)
-                                .background(RoundedRectangle(cornerRadius: 11).fill(Color.stone))
+                                .background(RoundedRectangle(cornerRadius: 10).fill(Color.stone))
                         }
                         .buttonStyle(.plain)
                     }

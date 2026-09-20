@@ -26,7 +26,6 @@ import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -39,12 +38,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.devora.mencare.core.designsystem.R
 import com.devora.mencare.core.designsystem.theme.Bone
+import com.devora.mencare.core.designsystem.theme.GoldSoft
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
-import com.devora.mencare.core.designsystem.theme.OliveTint
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.OnDarkMuted
 import com.devora.mencare.core.designsystem.theme.Overline
@@ -154,7 +154,14 @@ fun WizardSteps(labels: List<String>, currentIndex: Int, modifier: Modifier = Mo
     }
 }
 
-/** Pill segmented control — "Prossimi · 2 / Passati · 14" and friends. */
+/**
+ * Tab a pillola — "Prossimi · 2 / Passati · 14", il periodo della dashboard, le
+ * sotto-schede di Gestione.
+ *
+ * Sulla banda scura la voce attiva è una pillola d'oro traslucida con il filo
+ * chiaro: lo stesso vetro della barra di navigazione, così tab e navigazione si
+ * leggono come un'unica famiglia invece di due controlli diversi.
+ */
 @Composable
 fun SegmentedTabs(
     options: List<String>,
@@ -162,24 +169,36 @@ fun SegmentedTabs(
     onSelect: (Int) -> Unit,
     modifier: Modifier = Modifier,
     onDark: Boolean = true,
-    selectedContainer: Color = OliveWood,
 ) {
+    val trackShape = RoundedCornerShape(999.dp)
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(14.dp))
-            .background(if (onDark) Bone.copy(alpha = 0.1f) else Stone)
-            .padding(4.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
+            .clip(trackShape)
+            .background(if (onDark) Bone.copy(alpha = 0.08f) else Stone)
+            .then(
+                if (onDark) Modifier.border(1.dp, Bone.copy(alpha = 0.14f), trackShape) else Modifier,
+            )
+            .padding(5.dp),
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         options.forEachIndexed { index, option ->
             val selected = index == selectedIndex
+            val shape = RoundedCornerShape(999.dp)
             Box(
                 modifier = Modifier
                     .weight(1f)
                     .height(40.dp)
-                    .clip(RoundedCornerShape(11.dp))
-                    .background(if (selected) selectedContainer else Color.Transparent)
+                    .clip(shape)
+                    .then(
+                        when {
+                            selected && onDark -> Modifier
+                                .background(OliveLight.copy(alpha = 0.34f))
+                                .border(1.dp, GoldSoft.copy(alpha = 0.55f), shape)
+                            selected -> Modifier.background(Ink)
+                            else -> Modifier
+                        },
+                    )
                     .clickable { onSelect(index) },
                 contentAlignment = Alignment.Center,
             ) {
@@ -187,9 +206,10 @@ fun SegmentedTabs(
                     option,
                     style = MaterialTheme.typography.titleSmall,
                     color = when {
+                        selected && onDark -> GoldSoft
                         selected -> Bone
-                        onDark -> Bone
-                        else -> Ink
+                        onDark -> OnDarkMuted
+                        else -> TextMuted
                     },
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -224,7 +244,7 @@ fun BrandChip(
     Box(
         modifier = modifier
             .then(if (fill) Modifier.height(if (maxLines > 1) 58.dp else 42.dp) else Modifier)
-            .clip(RoundedCornerShape(11.dp))
+            .clip(RoundedCornerShape(10.dp))
             .background(container)
             .clickable(onClick = onClick)
             .padding(horizontal = if (fill) 6.dp else 16.dp, vertical = if (fill) 0.dp else 11.dp),
@@ -436,7 +456,7 @@ fun NavigationRow(
         modifier = modifier
             .fillMaxWidth()
             .height(50.dp)
-            .clip(RoundedCornerShape(15.dp))
+            .clip(RoundedCornerShape(16.dp))
             .background(Stone)
             .clickable(onClick = onClick)
             .padding(horizontal = 15.dp),
@@ -469,7 +489,7 @@ fun BrandCheckbox(checked: Boolean, onCheckedChange: (Boolean) -> Unit, modifier
     Box(
         modifier = modifier
             .size(22.dp)
-            .clip(RoundedCornerShape(7.dp))
+            .clip(RoundedCornerShape(6.dp))
             .background(if (checked) OliveWood else Stone)
             .clickable { onCheckedChange(!checked) },
         contentAlignment = Alignment.Center,
@@ -537,7 +557,7 @@ fun DarkContinueBar(
             Box(
                 modifier = Modifier
                     .size(38.dp)
-                    .clip(RoundedCornerShape(11.dp))
+                    .clip(RoundedCornerShape(10.dp))
                     .background(OliveWood),
                 contentAlignment = Alignment.Center,
             ) {
@@ -592,7 +612,7 @@ fun DarkTotalBar(
             Row(
                 modifier = Modifier
                     .height(50.dp)
-                    .clip(RoundedCornerShape(15.dp))
+                    .clip(RoundedCornerShape(16.dp))
                     .background(OliveWood)
                     .clickable(onClick = onClick)
                     .padding(horizontal = 22.dp),
@@ -619,17 +639,85 @@ fun DarkTotalBar(
 data class DropdownOption(val id: String, val label: String)
 
 /**
- * Colori della barra di navigazione, uno per tutti e tre i ruoli.
+ * Barra di navigazione: una pillola nera, per tutti e tre i ruoli.
  *
- * Erano tre copie identiche in `ClientRoot`, `StaffRoot` e `AdminRoot`: identiche
- * finché qualcuno non ne toccava una. La navigazione di cliente, operatore e
- * titolare deve avere lo stesso aspetto, quindi ha un posto solo da cui prenderlo.
+ * Prima era la `NavigationBar` di Material su fondo chiaro, con l'indicatore
+ * oliva: si confondeva con il contenuto e non c'entrava niente con le bande
+ * scure che sono la firma del marchio. Adesso è un blocco nero con il filo oro,
+ * e la voce attiva porta la sua pillola d'oro — lo stesso vetro delle tab, così
+ * navigazione e tab si leggono come una famiglia sola.
  */
 @Composable
-fun brandNavBarItemColors() = NavigationBarItemDefaults.colors(
-    selectedIconColor = OliveWood,
-    selectedTextColor = OliveWood,
-    unselectedIconColor = Ink,
-    unselectedTextColor = TextMuted,
-    indicatorColor = OliveTint,
-)
+fun BrandBottomBar(
+    modifier: Modifier = Modifier,
+    content: @Composable RowScope.() -> Unit,
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(Bone)
+            .padding(horizontal = 16.dp, vertical = 10.dp),
+    ) {
+        Row(
+            modifier = Modifier
+                .readableWidth()
+                .height(68.dp)
+                .clip(RoundedCornerShape(999.dp))
+                .background(Ink)
+                .border(1.dp, OliveLight.copy(alpha = 0.26f), RoundedCornerShape(999.dp))
+                .padding(horizontal = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            content = content,
+        )
+    }
+}
+
+/** Una voce della [BrandBottomBar]: icona in pillola d'oro quando è attiva. */
+@Composable
+fun RowScope.BrandBottomBarItem(
+    selected: Boolean,
+    onClick: () -> Unit,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    label: String,
+) {
+    val pill = RoundedCornerShape(999.dp)
+    Column(
+        modifier = Modifier
+            .weight(1f)
+            .clip(pill)
+            .clickable(onClick = onClick)
+            .padding(vertical = 6.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Box(
+            modifier = Modifier
+                .then(
+                    if (selected) {
+                        Modifier
+                            .clip(pill)
+                            .background(OliveLight.copy(alpha = 0.22f))
+                            .border(1.dp, OliveLight.copy(alpha = 0.45f), pill)
+                    } else {
+                        Modifier
+                    },
+                )
+                .padding(horizontal = 16.dp, vertical = 5.dp),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                icon,
+                contentDescription = null,
+                tint = if (selected) GoldSoft else OnDarkMuted,
+                modifier = Modifier.size(20.dp),
+            )
+        }
+        Spacer(Modifier.height(3.dp))
+        Text(
+            label,
+            style = MaterialTheme.typography.labelSmall,
+            color = if (selected) GoldSoft else OnDarkMuted,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
+}

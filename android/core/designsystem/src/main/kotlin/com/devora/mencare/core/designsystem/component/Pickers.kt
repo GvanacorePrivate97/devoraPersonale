@@ -55,7 +55,7 @@ fun BrandTimePickerDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         containerColor = Bone,
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(22.dp),
         confirmButton = {
             TextButton(onClick = { onConfirm(LocalTime.of(pickerState.hour, pickerState.minute)) }) {
                 Text(stringResource(R.string.ds_confirm), color = OliveWood)
@@ -103,7 +103,7 @@ fun BrandDatePickerDialog(
     AlertDialog(
         onDismissRequest = onDismiss,
         containerColor = Bone,
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(22.dp),
         confirmButton = {
             TextButton(
                 onClick = {
@@ -169,7 +169,7 @@ fun PickerTile(
 ) {
     Column(
         modifier = modifier
-            .clip(RoundedCornerShape(14.dp))
+            .clip(RoundedCornerShape(16.dp))
             .background(Stone)
             .clickable(onClick = onClick)
             .padding(horizontal = 14.dp, vertical = 11.dp),

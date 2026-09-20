@@ -156,7 +156,7 @@ private fun SlotGrid(slots: List<LocalTime>, selected: LocalTime?, onSelect: (Lo
                         modifier = Modifier
                             .weight(1f)
                             .height(44.dp)
-                            .clip(RoundedCornerShape(13.dp))
+                            .clip(RoundedCornerShape(10.dp))
                             .background(if (isSelected) OliveWood else Stone)
                             .clickable { onSelect(slot) },
                         contentAlignment = Alignment.Center,
@@ -259,7 +259,7 @@ private fun WaitlistPrompt(state: BookingUiState, viewModel: BookingViewModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(15.dp))
+            .clip(RoundedCornerShape(16.dp))
             .background(Stone)
             .padding(horizontal = 15.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -382,7 +382,7 @@ private fun DayCell(day: LocalDate?, state: BookingUiState, viewModel: BookingVi
         modifier = modifier
             .aspectRatio(1f)
             .padding(3.dp)
-            .clip(RoundedCornerShape(13.dp))
+            .clip(RoundedCornerShape(10.dp))
             .background(
                 when {
                     isSelected -> OliveWood
@@ -392,7 +392,7 @@ private fun DayCell(day: LocalDate?, state: BookingUiState, viewModel: BookingVi
             )
             .then(
                 if (full && !isSelected) {
-                    Modifier.border(1.dp, StoneBorder, RoundedCornerShape(13.dp))
+                    Modifier.border(1.dp, StoneBorder, RoundedCornerShape(10.dp))
                 } else {
                     Modifier
                 },

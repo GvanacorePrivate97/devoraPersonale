@@ -140,7 +140,7 @@ struct ProfileScreen: View {
         VStack(spacing: 0) {
             DarkHeader(contentPadding: EdgeInsets(top: 12, leading: 20, bottom: 20, trailing: 20)) {
                 HStack(spacing: 14) {
-                    RoundedRectangle(cornerRadius: 17)
+                    RoundedRectangle(cornerRadius: 16)
                         .fill(Color.oliveWood)
                         .frame(width: 56, height: 56)
                         .overlay(
@@ -314,8 +314,8 @@ struct ProfileScreen: View {
                     )
                     .background(
                         closed
-                            ? AnyView(RoundedRectangle(cornerRadius: 13).strokeBorder(Color.stoneBorder, lineWidth: 1))
-                            : AnyView(RoundedRectangle(cornerRadius: 13).fill(Color.stone))
+                            ? AnyView(RoundedRectangle(cornerRadius: 10).strokeBorder(Color.stoneBorder, lineWidth: 1))
+                            : AnyView(RoundedRectangle(cornerRadius: 10).fill(Color.stone))
                     )
                 }
             }

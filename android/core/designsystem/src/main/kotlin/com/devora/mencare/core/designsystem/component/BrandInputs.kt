@@ -45,7 +45,7 @@ import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.TextMuted
 
-internal val FieldShape = RoundedCornerShape(14.dp)
+internal val FieldShape = RoundedCornerShape(16.dp)
 internal val FieldHeight = 52.dp
 
 /** Uppercase letter-spaced label sitting above an input, as in the design mockup. */

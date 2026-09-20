@@ -68,7 +68,8 @@ a un account". Staff and owner accounts are never self-registered: see §4.6.
 
 ### 2.1 Home
 - Dark header: logo on the left, notification bell with unread dot on the right (§5);
-  greeting "Ciao <nome>" and lifetime visit counter ("14 visite").
+  the day's date over the greeting "Ciao <nome>". The lifetime visit counter is not in
+  the header: the number belongs to the profile (§2.5), not to the greeting.
 - **Next appointment** card: countdown ("tra 4 ore", "oggi"), time, day and total duration,
   operator, services, "Al calendario". No price. With nothing booked: "Nessun appuntamento
   in programma".
@@ -147,7 +148,9 @@ services, duration, total, note if any), "Aggiungi al calendario", "Torna alla H
 Tabs "Prossimi · N" and "Passati · N". The split is by **end** time: an appointment stays
 under "Prossimi" until it is over, and the Home keeps showing it as the next one while it
 is running.
-- **Upcoming** card: date block, time, "Confermato" badge, services, operator and duration;
+- **Upcoming** card: date block, time, services, operator and duration — no status badge,
+  since every booking is confirmed the moment it is made (§6.2) and a badge that always
+  says the same thing informs nobody;
   actions **Modifica** (§2.2) and **Annulla** (confirmation dialog "Annullare
   l'appuntamento?" → cancelled by the client).
 - **Lista d'attesa** section, under the upcoming cards when the client is queued: one row
@@ -158,9 +161,6 @@ is running.
 - **Past** rows: date block (dimmed when the visit didn't happen), services, time, operator,
   "Riprenota"; cancelled rows say who cancelled ("Annullato dal cliente" / "Annullato dal
   salone"), no-shows say "No-show".
-- Stats strip under the past list: completed visits (appointments marked completed),
-  favourite operator (first name of the operator with the most completed visits) and
-  average days between visits (mean gap between the distinct days the client came in).
 - Empty upcoming tab: short copy, "Prenota ora" and "Riprenota l'ultimo".
 
 ### 2.5 Profilo
@@ -236,8 +236,8 @@ signed-in operator), as tall as its content with the button right under it.
 - Actions: "Annulla appuntamento" (dialog; recorded as cancelled by the salon — the client
   gets a notification, unless the owner switched "Annullamento" off in §4.7), "Chiama"
   (opens the phone dialer with the client's number; disabled when the client has none),
-  primary **"Segna completato"** — only needed to close an appointment before its end or
-  to correct a no-show, since statuses advance by themselves (§6.2).
+  and, **only on a no-show**, **"Segna completato"** to put it back. Statuses advance by
+  themselves (§6.2), so the button is not offered on an appointment that will close itself.
 - **"Non si è presentato"**, once the start time has passed — also on an appointment
   already closed as completed: a dialog confirms ("Il cliente riceve una notifica…") and
   the client is notified. A no-show marked by mistake goes back with "Segna completato".
@@ -594,8 +594,17 @@ on iOS); a token changes in both, in the same commit.
   selected day is not today) and the day strip. Today always carries its gold dot, even
   when it is also the selected day — "where I am" and "where today is" stay two separate
   readings.
-- **Bottom navigation.** All three roles take their colours from one helper, so client,
-  staff and owner bars cannot drift apart.
+- **Radius.** Six values and no more (`Radii` on Android, `Radii` on iOS): 6 for
+  micro-elements, 10 for small controls, 16 as the default for buttons, fields and cards,
+  22 for large dark containers, 28 for full-width bands and sheets, and the pill. A screen
+  picks the role, never the number.
+- **Bottom navigation.** One black pill for all three roles (`BrandBottomBar`): a
+  near-black bar with a thin gold hairline, floating over the light body, where the active
+  item wears a translucent gold pill and gold label. It is the same glass as the tabs, so
+  navigation and tabs read as one family instead of two unrelated controls.
+- **Tabs.** `SegmentedTabs` on a dark band: translucent track with a light hairline, the
+  active option in a gold pill. Every tabbed surface uses it — the client's
+  Prossimi/Passati, the owner's Giorno/Settimana/Mese, the four Gestione sub-tabs.
 
 ## 8. Platform differences
 - **Social login**: Android offers Google only; iOS offers Sign in with Apple + Google

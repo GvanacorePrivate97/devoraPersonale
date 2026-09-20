@@ -42,7 +42,7 @@ struct StepOperator: View {
             viewModel.selectOperator(nil)
         } label: {
             HStack(spacing: 13) {
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: 16)
                     .fill(selected ? Color.bone.opacity(0.18) : Color.bone)
                     .frame(width: 46, height: 46)
                     .overlay(
@@ -70,7 +70,7 @@ struct StepOperator: View {
                 }
             }
             .padding(15)
-            .background(RoundedRectangle(cornerRadius: 18).fill(selected ? Color.oliveWood : Color.stone))
+            .background(RoundedRectangle(cornerRadius: 16).fill(selected ? Color.oliveWood : Color.stone))
         }
         .buttonStyle(.plain)
     }
@@ -96,7 +96,7 @@ struct StepOperator: View {
                 Spacer()
             }
             .padding(12)
-            .background(RoundedRectangle(cornerRadius: 18).fill(selected ? Color.oliveWood : Color.stone))
+            .background(RoundedRectangle(cornerRadius: 16).fill(selected ? Color.oliveWood : Color.stone))
         }
         .buttonStyle(.plain)
     }

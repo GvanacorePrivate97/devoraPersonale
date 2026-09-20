@@ -97,15 +97,20 @@ struct WizardSteps: View {
 }
 
 /// Pill segmented control — "Prossimi · 2 / Passati · 14" and friends.
+/// Tab a pillola — "Prossimi · 2 / Passati · 14", il periodo della dashboard,
+/// le sotto-schede di Gestione.
+///
+/// Sulla banda scura la voce attiva è una pillola d'oro traslucida con il filo
+/// chiaro: lo stesso vetro della barra di navigazione, così tab e navigazione
+/// si leggono come un'unica famiglia invece di due controlli diversi.
 struct SegmentedTabs: View {
     let options: [String]
     let selectedIndex: Int
     let onSelect: (Int) -> Void
     var onDark: Bool = true
-    var selectedContainer: Color = .oliveWood
 
     var body: some View {
-        HStack(spacing: 4) {
+        HStack(spacing: 6) {
             ForEach(Array(options.enumerated()), id: \.offset) { index, option in
                 let selected = index == selectedIndex
                 Button {
@@ -113,23 +118,38 @@ struct SegmentedTabs: View {
                 } label: {
                     Text(option)
                         .font(Typo.titleSmall)
-                        .foregroundStyle(selected || onDark ? Color.bone : Color.ink)
+                        .foregroundStyle(labelColor(selected: selected))
                         .lineLimit(1)
                         .frame(maxWidth: .infinity)
                         .frame(height: 40)
                         .background(
-                            RoundedRectangle(cornerRadius: 11)
-                                .fill(selected ? selectedContainer : Color.clear)
+                            ZStack {
+                                if selected && onDark {
+                                    Capsule().fill(Color.oliveLight.opacity(0.34))
+                                    Capsule().strokeBorder(Color.goldSoft.opacity(0.55), lineWidth: 1)
+                                } else if selected {
+                                    Capsule().fill(Color.ink)
+                                }
+                            }
                         )
                 }
                 .buttonStyle(.plain)
             }
         }
-        .padding(4)
+        .padding(5)
         .background(
-            RoundedRectangle(cornerRadius: 14)
-                .fill(onDark ? Color.bone.opacity(0.1) : Color.stone)
+            ZStack {
+                Capsule().fill(onDark ? Color.bone.opacity(0.08) : Color.stone)
+                if onDark {
+                    Capsule().strokeBorder(Color.bone.opacity(0.14), lineWidth: 1)
+                }
+            }
         )
+    }
+
+    private func labelColor(selected: Bool) -> Color {
+        if selected { return onDark ? .goldSoft : .bone }
+        return onDark ? .onDarkMuted : .textMuted
     }
 }
 
@@ -159,7 +179,7 @@ struct BrandChip: View {
                 .padding(.vertical, fill ? 0 : 11)
                 .contentShape(Rectangle())
                 .background(
-                    RoundedRectangle(cornerRadius: 11)
+                    RoundedRectangle(cornerRadius: 10)
                         .fill(selected ? Color.oliveWood : (onDark ? Color.bone.opacity(0.1) : Color.stone))
                 )
         }
@@ -355,7 +375,7 @@ struct NavigationRow: View {
             }
             .padding(.horizontal, 15)
             .frame(height: 50)
-            .background(RoundedRectangle(cornerRadius: 15).fill(Color.stone))
+            .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
         }
         .buttonStyle(.plain)
     }
@@ -369,7 +389,7 @@ struct BrandCheckbox: View {
         Button {
             checked.toggle()
         } label: {
-            RoundedRectangle(cornerRadius: 7)
+            RoundedRectangle(cornerRadius: 6)
                 .fill(checked ? Color.oliveWood : Color.stone)
                 .frame(width: 22, height: 22)
                 .overlay(
@@ -416,7 +436,7 @@ struct DarkContinueBar: View {
                         .foregroundStyle(Color.bone)
                         .lineLimit(1)
                     Spacer()
-                    RoundedRectangle(cornerRadius: 11)
+                    RoundedRectangle(cornerRadius: 10)
                         .fill(Color.oliveWood)
                         .frame(width: 38, height: 38)
                         .overlay(
@@ -468,7 +488,7 @@ struct DarkTotalBar: View {
                 .foregroundStyle(Color.bone)
                 .padding(.horizontal, 22)
                 .frame(height: 50)
-                .background(RoundedRectangle(cornerRadius: 15).fill(Color.oliveWood))
+                .background(RoundedRectangle(cornerRadius: 16).fill(Color.oliveWood))
             }
             .buttonStyle(.plain)
         }
@@ -480,5 +500,67 @@ struct DarkTotalBar: View {
                 .clipShape(.rect(topLeadingRadius: 26, topTrailingRadius: 26))
                 .ignoresSafeArea(edges: .bottom)
         )
+    }
+}
+
+/// Barra di navigazione: una pillola nera, per tutti e tre i ruoli.
+///
+/// Prima era una riga di icone su fondo chiaro: si confondeva con il contenuto
+/// e non c'entrava niente con le bande scure che sono la firma del marchio.
+/// Adesso è un blocco nero con il filo oro, e la voce attiva porta la sua
+/// pillola d'oro — lo stesso linguaggio delle tab della dashboard.
+struct BrandBottomBar<Content: View>: View {
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        HStack(spacing: 0) {
+            content
+        }
+        .padding(.horizontal, 6)
+        .frame(height: 68)
+        .background(
+            ZStack {
+                Capsule().fill(Color.ink)
+                Capsule().strokeBorder(Color.oliveLight.opacity(0.26), lineWidth: 1)
+            }
+        )
+        .readableWidth()
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .background(Color.bone)
+    }
+}
+
+/// Una voce della ``BrandBottomBar``: icona in pillola d'oro quando è attiva.
+struct BrandBottomBarItem: View {
+    let selected: Bool
+    let systemImage: String
+    let label: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 3) {
+                Image(systemName: systemImage)
+                    .font(.system(size: 19))
+                    .foregroundStyle(selected ? Color.goldSoft : Color.onDarkMuted)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 5)
+                    .background(
+                        ZStack {
+                            if selected {
+                                Capsule().fill(Color.oliveLight.opacity(0.22))
+                                Capsule().strokeBorder(Color.oliveLight.opacity(0.45), lineWidth: 1)
+                            }
+                        }
+                    )
+                Text(label)
+                    .font(Typo.labelSmall)
+                    .foregroundStyle(selected ? Color.goldSoft : Color.onDarkMuted)
+                    .lineLimit(1)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.plain)
     }
 }

@@ -71,7 +71,7 @@ internal fun StepSummary(state: BookingUiState, viewModel: BookingViewModel) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clip(RoundedCornerShape(14.dp))
+                            .clip(RoundedCornerShape(16.dp))
                             .background(Stone)
                             .padding(horizontal = 15.dp, vertical = 14.dp),
                         verticalAlignment = Alignment.CenterVertically,
@@ -146,7 +146,7 @@ private fun AppointmentRecapCard(state: BookingUiState) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(22.dp))
             .background(Ink)
             .padding(18.dp),
     ) {
@@ -169,7 +169,7 @@ private fun AppointmentRecapCard(state: BookingUiState) {
                 style = MaterialTheme.typography.labelMedium.copy(fontSize = 12.sp, letterSpacing = 0.sp),
                 color = Bone,
                 modifier = Modifier
-                    .clip(RoundedCornerShape(9.dp))
+                    .clip(RoundedCornerShape(10.dp))
                     .background(Bone.copy(alpha = 0.12f))
                     .padding(horizontal = 12.dp, vertical = 7.dp),
             )

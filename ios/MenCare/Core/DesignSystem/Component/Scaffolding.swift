@@ -69,37 +69,9 @@ struct DarkHeaderTitle: View {
 }
 
 /// Small uppercase section label in Olive Wood.
-struct SectionLabel: View {
-    let text: String
-    var color: Color = .oliveWood
+s
 
-    var body: some View {
-        Text(text.uppercased())
-            .font(Typo.labelSmall)
-            .sectionTracking()
-            .foregroundStyle(color)
-    }
-}
-
-struct EmptyState<Actions: View>: View {
-    let title: String
-    let message: String
-    @ViewBuilder var actions: Actions
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(title).font(Typo.headlineMedium).foregroundStyle(Color.ink)
-            Text(message)
-                .font(Typo.bodyMedium)
-                .foregroundStyle(Color.textMuted)
-                .padding(.top, 8)
-                .padding(.bottom, 20)
-            actions
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(32)
-    }
-}
+s
 
 /// Tendina ancorata al bordo inferiore, a tutta larghezza, alta quanto il suo
 /// contenuto. Da iOS 26 le sheet di sistema ad altezza ridotta galleggiano

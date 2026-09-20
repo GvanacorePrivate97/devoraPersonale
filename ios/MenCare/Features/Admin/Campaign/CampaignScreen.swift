@@ -319,7 +319,7 @@ struct CampaignScreen: View {
                 .foregroundStyle(Color.ink)
                 .padding(.horizontal, 11)
                 .padding(.vertical, 8)
-                .background(RoundedRectangle(cornerRadius: 9).fill(Color.stone))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.stone))
         }
         .buttonStyle(.plain)
     }

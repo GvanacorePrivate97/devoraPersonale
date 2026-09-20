@@ -38,7 +38,7 @@ struct StepServices: View {
             viewModel.toggleService(service.id)
         } label: {
             HStack(spacing: 12) {
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: 6)
                     .fill(Color.bone)
                     .frame(width: 24, height: 24)
                     .overlay(

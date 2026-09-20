@@ -33,7 +33,7 @@ fun NotificationBell(
     Box(
         modifier = modifier
             .size(38.dp)
-            .clip(RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(10.dp))
             .background(Bone.copy(alpha = 0.1f))
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,

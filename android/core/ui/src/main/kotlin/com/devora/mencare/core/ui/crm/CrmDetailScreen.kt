@@ -82,7 +82,7 @@ fun CrmDetailScreen(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(
-                    modifier = Modifier.size(54.dp).clip(RoundedCornerShape(17.dp)).background(OliveWood),
+                    modifier = Modifier.size(54.dp).clip(RoundedCornerShape(16.dp)).background(OliveWood),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
@@ -181,7 +181,7 @@ fun CrmDetailScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 9.dp)
-                        .clip(RoundedCornerShape(14.dp))
+                        .clip(RoundedCornerShape(16.dp))
                         .background(Ink)
                         .padding(horizontal = 14.dp, vertical = 13.dp),
                     verticalAlignment = Alignment.CenterVertically,

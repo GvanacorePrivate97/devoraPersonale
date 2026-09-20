@@ -180,7 +180,7 @@ struct ServiceEditScreen: View {
                                             .foregroundStyle(Color.ink)
                                         Spacer()
                                         let enabled = viewModel.enabledOperatorIds.contains(op.id)
-                                        RoundedRectangle(cornerRadius: 8)
+                                        RoundedRectangle(cornerRadius: 6)
                                             .fill(enabled ? Color.oliveWood : Color.bone)
                                             .frame(width: 24, height: 24)
                                             .overlay(

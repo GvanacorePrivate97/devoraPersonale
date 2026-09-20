@@ -151,14 +151,14 @@ struct NotificationSettingsTab: View {
                 .foregroundStyle(Color.bone)
                 .frame(maxWidth: .infinity)
                 .frame(height: 48)
-                .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(Color.bone.opacity(0.25), lineWidth: 1))
+                .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.bone.opacity(0.25), lineWidth: 1))
             }
             .buttonStyle(.plain)
             .padding(.vertical, 10)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 6)
-        .background(RoundedRectangle(cornerRadius: 18).fill(Color.ink))
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.ink))
     }
 
     private func typesPanel(_ settings: NotificationSettings) -> some View {

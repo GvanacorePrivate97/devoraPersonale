@@ -112,35 +112,12 @@ struct AdminRoot: View {
     }
 
     private var tabBar: some View {
-        VStack(spacing: 0) {
-            Rectangle().fill(Color.stone).frame(height: 1)
-            HStack {
-                tabItem(.dashboard, systemImage: "chart.line.uptrend.xyaxis", label: L("admin_tab_dashboard"))
-                tabItem(.clients, systemImage: "person.2", label: L("admin_tab_clients"))
-                tabItem(.agenda, systemImage: "calendar", label: L("admin_tab_agenda"))
-                tabItem(.manage, systemImage: "slider.horizontal.3", label: L("admin_tab_manage"))
-                tabItem(.profile, systemImage: "person", label: L("admin_tab_profile"))
-            }
-            .padding(.top, 8)
-            .padding(.bottom, 2)
-            // Sui tablet le voci restano raccolte al centro, non sparse sui bordi.
-            .readableWidth()
+        BrandBottomBar {
+            BrandBottomBarItem(selected: tab == .dashboard, systemImage: "chart.line.uptrend.xyaxis", label: L("admin_tab_dashboard")) { tab = .dashboard }
+            BrandBottomBarItem(selected: tab == .clients, systemImage: "person.2", label: L("admin_tab_clients")) { tab = .clients }
+            BrandBottomBarItem(selected: tab == .agenda, systemImage: "calendar", label: L("admin_tab_agenda")) { tab = .agenda }
+            BrandBottomBarItem(selected: tab == .manage, systemImage: "slider.horizontal.3", label: L("admin_tab_manage")) { tab = .manage }
+            BrandBottomBarItem(selected: tab == .profile, systemImage: "person", label: L("admin_tab_profile")) { tab = .profile }
         }
-        .background(Color.bone)
-    }
-
-    private func tabItem(_ target: AdminTab, systemImage: String, label: String) -> some View {
-        let selected = tab == target
-        return Button {
-            tab = target
-        } label: {
-            VStack(spacing: 3) {
-                Image(systemName: systemImage).font(.system(size: 19))
-                Text(label).font(Typo.jost(10, weight: .medium)).lineLimit(1)
-            }
-            .foregroundStyle(selected ? Color.oliveWood : Color.ink)
-            .frame(maxWidth: .infinity)
-        }
-        .buttonStyle(.plain)
     }
 }

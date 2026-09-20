@@ -84,38 +84,11 @@ struct ClientRoot: View {
     }
 
     private var tabBar: some View {
-        VStack(spacing: 0) {
-            Rectangle().fill(Color.stone).frame(height: 1)
-            HStack {
-                tabItem(.home, systemImage: "house", label: L("client_tab_home"))
-                tabItem(.booking, systemImage: "plus.circle", label: L("client_tab_book"))
-                tabItem(.appointments, systemImage: "calendar", label: L("client_tab_appointments"))
-                tabItem(.profile, systemImage: "person", label: L("client_tab_profile"))
-            }
-            .padding(.top, 8)
-            .padding(.bottom, 2)
-            // Sui tablet le voci restano raccolte al centro, non sparse sui bordi.
-            .readableWidth()
+        BrandBottomBar {
+            BrandBottomBarItem(selected: tab == .home, systemImage: "house", label: L("client_tab_home")) { tab = .home }
+            BrandBottomBarItem(selected: tab == .booking, systemImage: "plus.circle", label: L("client_tab_book")) { openBooking(.blank) }
+            BrandBottomBarItem(selected: tab == .appointments, systemImage: "calendar", label: L("client_tab_appointments")) { tab = .appointments }
+            BrandBottomBarItem(selected: tab == .profile, systemImage: "person", label: L("client_tab_profile")) { tab = .profile }
         }
-        .background(Color.bone)
-    }
-
-    private func tabItem(_ target: ClientTab, systemImage: String, label: String) -> some View {
-        let selected = tab == target
-        return Button {
-            if target == .booking {
-                openBooking(.blank)
-            } else {
-                tab = target
-            }
-        } label: {
-            VStack(spacing: 3) {
-                Image(systemName: systemImage).font(.system(size: 19))
-                Text(label).font(Typo.jost(10, weight: .medium))
-            }
-            .foregroundStyle(selected ? Color.oliveWood : Color.ink)
-            .frame(maxWidth: .infinity)
-        }
-        .buttonStyle(.plain)
     }
 }

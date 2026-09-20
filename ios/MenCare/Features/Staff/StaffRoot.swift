@@ -91,33 +91,10 @@ struct StaffRoot: View {
     }
 
     private var tabBar: some View {
-        VStack(spacing: 0) {
-            Rectangle().fill(Color.stone).frame(height: 1)
-            HStack {
-                tabItem(.agenda, systemImage: "calendar", label: L("staff_tab_agenda"))
-                tabItem(.clients, systemImage: "person.2", label: L("staff_tab_clients"))
-                tabItem(.profile, systemImage: "person", label: L("staff_tab_profile"))
-            }
-            .padding(.top, 8)
-            .padding(.bottom, 2)
-            // Sui tablet le voci restano raccolte al centro, non sparse sui bordi.
-            .readableWidth()
+        BrandBottomBar {
+            BrandBottomBarItem(selected: tab == .agenda, systemImage: "calendar", label: L("staff_tab_agenda")) { tab = .agenda }
+            BrandBottomBarItem(selected: tab == .clients, systemImage: "person.2", label: L("staff_tab_clients")) { tab = .clients }
+            BrandBottomBarItem(selected: tab == .profile, systemImage: "person", label: L("staff_tab_profile")) { tab = .profile }
         }
-        .background(Color.bone)
-    }
-
-    private func tabItem(_ target: StaffTab, systemImage: String, label: String) -> some View {
-        let selected = tab == target
-        return Button {
-            tab = target
-        } label: {
-            VStack(spacing: 3) {
-                Image(systemName: systemImage).font(.system(size: 19))
-                Text(label).font(Typo.jost(10, weight: .medium))
-            }
-            .foregroundStyle(selected ? Color.oliveWood : Color.ink)
-            .frame(maxWidth: .infinity)
-        }
-        .buttonStyle(.plain)
     }
 }

@@ -237,11 +237,11 @@ private fun OperatorList(state: ManageUiState, modifier: Modifier = Modifier) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(18.dp))
+                    .clip(RoundedCornerShape(16.dp))
                     .background(if (expanded) Bone else Stone)
                     .then(
                         if (expanded) {
-                            Modifier.border(1.5.dp, OliveWood, RoundedCornerShape(18.dp))
+                            Modifier.border(1.5.dp, OliveWood, RoundedCornerShape(16.dp))
                         } else {
                             Modifier
                         },
@@ -279,7 +279,7 @@ private fun OperatorList(state: ManageUiState, modifier: Modifier = Modifier) {
                             style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
                             color = Bone,
                             modifier = Modifier
-                                .clip(RoundedCornerShape(8.dp))
+                                .clip(RoundedCornerShape(6.dp))
                                 .background(OliveWood)
                                 .padding(horizontal = 9.dp, vertical = 6.dp),
                         )
@@ -306,10 +306,10 @@ private fun OperatorList(state: ManageUiState, modifier: Modifier = Modifier) {
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .clip(RoundedCornerShape(13.dp))
+                                    .clip(RoundedCornerShape(10.dp))
                                     .then(
                                         if (closed) {
-                                            Modifier.border(1.dp, StoneBorder, RoundedCornerShape(13.dp))
+                                            Modifier.border(1.dp, StoneBorder, RoundedCornerShape(10.dp))
                                         } else {
                                             Modifier.background(Stone)
                                         },

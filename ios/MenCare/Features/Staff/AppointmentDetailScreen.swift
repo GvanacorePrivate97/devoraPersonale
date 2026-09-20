@@ -171,7 +171,7 @@ struct AppointmentDetailScreen: View {
                                     .lineLimit(1)
                                     .padding(.horizontal, 14)
                                     .padding(.vertical, 11)
-                                    .background(RoundedRectangle(cornerRadius: 11).fill(Color.ink))
+                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.ink))
                             }
                         }
                     }
@@ -186,7 +186,7 @@ struct AppointmentDetailScreen: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 15)
                                 .padding(.vertical, 14)
-                                .background(RoundedRectangle(cornerRadius: 14).fill(Color.stone))
+                                .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
                         }
                     }
 
@@ -206,7 +206,7 @@ struct AppointmentDetailScreen: View {
                                 }
                                 .padding(.horizontal, 15)
                                 .padding(.vertical, 14)
-                                .background(RoundedRectangle(cornerRadius: 14).fill(Color.stone))
+                                .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
                             }
                         }
                     }
@@ -262,16 +262,18 @@ struct AppointmentDetailScreen: View {
                         .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
                 }
                 .buttonStyle(.plain)
-                // Completato arriva da solo a fine servizio; a mano serve prima
-                // della fine o per correggere un no-show.
-                AccentButton(
-                    text: L(completed ? "apt_detail_completed" : "apt_detail_complete"),
-                    action: viewModel.markCompleted,
-                    enabled: apt.isActive || apt.canRevertNoShow,
-                    height: 54,
-                    corner: 16
-                )
-                .frame(maxWidth: .infinity)
+                // Lo stato si chiude da solo a fine servizio (§6.2): il
+                // pulsante resta solo dove serve davvero, cioè per rimettere a
+                // posto un no-show segnato per sbaglio.
+                if apt.canRevertNoShow {
+                    AccentButton(
+                        text: L("apt_detail_complete"),
+                        action: viewModel.markCompleted,
+                        height: 54,
+                        corner: 16
+                    )
+                    .frame(maxWidth: .infinity)
+                }
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 14)
@@ -331,7 +333,7 @@ struct AppointmentDetailScreen: View {
             .padding(.horizontal, 10)
             .padding(.vertical, 6)
             .background(
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: 6)
                     .fill(accent ? Color.oliveWood : Color.bone.opacity(0.12))
             )
     }

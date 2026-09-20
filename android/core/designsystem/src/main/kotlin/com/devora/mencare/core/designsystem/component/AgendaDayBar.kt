@@ -118,7 +118,7 @@ private fun TodayButton(onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .height(34.dp)
-            .clip(RoundedCornerShape(11.dp))
+            .clip(RoundedCornerShape(10.dp))
             .background(OliveWood)
             .clickable(onClick = onClick)
             .padding(horizontal = 14.dp),
@@ -138,7 +138,7 @@ private fun DayArrow(icon: ImageVector, contentDescription: String, onClick: () 
     Box(
         modifier = Modifier
             .size(36.dp)
-            .clip(RoundedCornerShape(11.dp))
+            .clip(RoundedCornerShape(10.dp))
             .background(Bone.copy(alpha = 0.10f))
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
@@ -176,11 +176,11 @@ private fun DayStrip(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(13.dp))
+                    .clip(RoundedCornerShape(10.dp))
                     .background(if (isSelected) OliveWood else Color.Transparent)
                     .then(
                         if (isToday && !isSelected) {
-                            Modifier.border(1.dp, OliveLight, RoundedCornerShape(13.dp))
+                            Modifier.border(1.dp, OliveLight, RoundedCornerShape(10.dp))
                         } else {
                             Modifier
                         },

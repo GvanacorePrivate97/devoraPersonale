@@ -59,7 +59,7 @@ struct StepSummary: View {
                     .foregroundStyle(Color.bone)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 7)
-                    .background(RoundedRectangle(cornerRadius: 9).fill(Color.bone.opacity(0.12)))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.bone.opacity(0.12)))
             }
             .padding(.top, 6)
             Rectangle().fill(Color.bone.opacity(0.14)).frame(height: 1).padding(.vertical, 12)
@@ -79,7 +79,7 @@ struct StepSummary: View {
         }
         .padding(18)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(RoundedRectangle(cornerRadius: 20).fill(Color.ink))
+        .background(RoundedRectangle(cornerRadius: 22).fill(Color.ink))
     }
 
     private var servicesBlock: some View {
@@ -97,7 +97,7 @@ struct StepSummary: View {
                 }
                 .padding(.horizontal, 15)
                 .padding(.vertical, 14)
-                .background(RoundedRectangle(cornerRadius: 14).fill(Color.stone))
+                .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
             }
             HStack {
                 Text(L("wizard_summary_total"))

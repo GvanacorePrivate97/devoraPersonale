@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import com.devora.mencare.core.designsystem.theme.Bone
@@ -97,38 +96,5 @@ fun DarkHeaderTitle(
 
 /** Small uppercase section label in Olive Wood. */
 @Composable
-fun SectionLabel(text: String, modifier: Modifier = Modifier, color: Color = com.devora.mencare.core.designsystem.theme.OliveWood) {
-    Text(
-        text.uppercase(),
-        style = com.devora.mencare.core.designsystem.theme.Overline,
-        color = color,
-        modifier = modifier,
-    )
-}
 
 @Composable
-fun EmptyState(
-    title: String,
-    message: String,
-    modifier: Modifier = Modifier,
-    actions: @Composable ColumnScope.() -> Unit = {},
-) {
-    Column(modifier = modifier.fillMaxWidth().padding(32.dp)) {
-        Box(modifier = Modifier.fillMaxWidth()) {
-            Column {
-                Text(
-                    title,
-                    style = MaterialTheme.typography.headlineMedium,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-                Text(
-                    message,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 20.dp),
-                )
-                actions()
-            }
-        }
-    }
-}
