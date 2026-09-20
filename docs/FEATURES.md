@@ -185,7 +185,10 @@ is running.
 ### 3.1 Agenda
 - Only the signed-in operator's appointments. Header: photo or initials (tap → Profilo),
   name, role, notification bell (§5).
-- Six-day strip around the selected day (today highlighted); under it the selected day's date.
+- Under it the **day bar** (§7b), the same control as the owner's agenda (§4.3):
+  previous/next-day arrows, the selected day's date, "Oggi" when the selected day is not
+  today, and the six-day strip around it. On an empty day the line "Nessun appuntamento ·
+  tocca un orario per prenotare" sits under the bar.
 - Day time grid, the same as one column of the owner's agenda (§4.3): hour rail with
   half-hour guides — the rules run under the hour labels too, so rail and grid read as
   one — always shown, even on an empty day ("Nessun appuntamento · tocca un
@@ -300,8 +303,10 @@ period with no work shows zeros.
   notification "Campagna inviata". A campaign already sent can no longer be edited.
 
 ### 4.3 Agenda
-- Header: selected day, previous/next-day arrows, "N operatori · N appuntamenti",
-  notification bell (§5).
+- Header: "Agenda settimanale", "N operatori · N appuntamenti", notification bell (§5);
+  under it the **day bar** (§7b) — previous/next-day arrows, the selected day's date,
+  "Oggi" when the selected day is not today, and the six-day strip around it. It is the
+  same control as the staff agenda (§3.1): the two agendas navigate time identically.
 - One column per operator (initials, first name) over an hour rail with half-hour guides;
   card height ∝ duration — a card shorter than 45 minutes shows the client's name only;
   the hour rules run under the hour labels too. Cards use the same colours as the
@@ -555,6 +560,32 @@ and last visit are never stored on the client.
 - Phone layouts are kept, centered: dark bands, bars and backgrounds span the full width,
   content stays within a 640 readable width; bottom sheets are capped at the same width.
 - Exception: the owner's agenda (§4.3) uses the whole width for its operator columns.
+
+## 7b. Design system
+
+The two apps share one set of tokens (`core/designsystem` on Android, `Core/DesignSystem`
+on iOS); a token changes in both, in the same commit.
+
+- **Colour.** Every token clears 4.5:1 (WCAG 2.1 AA, normal text) on the surface the app
+  actually puts it on — Stone `#EBEBEA` is the stricter of the two light surfaces, so the
+  ink tones are measured against it. The accent has two roles that must not be swapped:
+  `OliveWood` `#77654B` on light surfaces (text, icons, borders, and fills carrying Bone
+  text), `OliveLight` `#BFA277` on the near-black bands — the gold of the logo's "MEN
+  CARE", sampled from `design/logo-lockup.png`. Secondary text is `TextMuted` on light and
+  `OnDarkMuted` on dark, never a faded Bone. Accent pills use the flat `OliveTint`, not the
+  accent at an alpha, so their contrast does not depend on what is underneath.
+- **Type.** Jost is thin-stemmed and Cormorant is a high-contrast serif, so nothing is set
+  Regular: body from Medium, titles and labels from SemiBold, display serif Bold. No style
+  goes under 11 sp, and only short uppercase labels go under 12 sp. Screens take a role
+  from the scale — `Overline` for uppercase section labels, `Meta` for captions and grid
+  hours — rather than resizing a role at the call site.
+- **Day bar.** The agendas' day navigation is one component (`AgendaDayBar`), used by the
+  owner (§4.3) and the operator (§3.1) alike: arrows, date, "Oggi" (shown only when the
+  selected day is not today) and the day strip. Today always carries its gold dot, even
+  when it is also the selected day — "where I am" and "where today is" stay two separate
+  readings.
+- **Bottom navigation.** All three roles take their colours from one helper, so client,
+  staff and owner bars cannot drift apart.
 
 ## 8. Platform differences
 - **Social login**: Android offers Google only; iOS offers Sign in with Apple + Google

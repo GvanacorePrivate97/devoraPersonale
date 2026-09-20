@@ -66,6 +66,13 @@ func formatDateShort(_ date: LocalDate) -> String {
     "\(daysShort[date.dayOfWeek.rawValue - 1]) \(date.day) \(monthsShort[date.month - 1])"
 }
 
+/// "lun" — il nome breve del giorno, senza data: la striscia dei giorni
+/// dell'agenda vuole solo quello, e ritagliarlo da `formatDateShort` significava
+/// dipendere dal fatto che il nome venga per primo.
+func formatDayNameShort(_ date: LocalDate) -> String {
+    daysShort[date.dayOfWeek.rawValue - 1]
+}
+
 /// "settembre 2026"
 func formatMonthYear(_ date: LocalDate) -> String {
     "\(monthsFull[date.month - 1]) \(date.year)"
@@ -93,4 +100,15 @@ func formatDayGroup(_ days: [DayOfWeek]) -> String {
 func phoneDialURL(_ phone: String?) -> URL? {
     let number = (phone ?? "").filter { $0.isNumber || $0 == "+" }
     return number.isEmpty ? nil : URL(string: "tel:\(number)")
+}
+
+extension String {
+    /// "venerdì 11 settembre" → "Venerdì 11 settembre".
+    ///
+    /// Stava in `StepDatetime.swift`, cioè dentro una feature, mentre a usarlo
+    /// sono anche il design system e due agende: da lì in giù nessuno può
+    /// importare una feature, quindi vive qui.
+    var capitalizedFirst: String {
+        prefix(1).uppercased() + dropFirst()
+    }
 }

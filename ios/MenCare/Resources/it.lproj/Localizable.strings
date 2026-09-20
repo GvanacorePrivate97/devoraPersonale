@@ -6,6 +6,11 @@
 "ds_show_password_short" = "Mostra";
 "ds_hide_password_short" = "Nascondi";
 "ds_back" = "Indietro";
+
+/* Barra di navigazione del giorno in agenda (titolare e operatore). */
+"ds_agenda_today" = "Oggi";
+"ds_agenda_previous_day" = "Giorno precedente";
+"ds_agenda_next_day" = "Giorno successivo";
 "ds_confirm" = "Conferma";
 "ds_cancel" = "Annulla";
 "ds_notifications" = "Notifiche";

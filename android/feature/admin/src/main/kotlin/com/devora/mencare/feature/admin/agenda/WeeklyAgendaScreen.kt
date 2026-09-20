@@ -62,8 +62,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.devora.mencare.core.common.formatDateLong
 import com.devora.mencare.core.common.formatTime
+import com.devora.mencare.core.designsystem.component.AgendaDayBar
 import com.devora.mencare.core.designsystem.component.AgendaGrid
 import com.devora.mencare.core.designsystem.component.AgendaHourLabels
 import com.devora.mencare.core.designsystem.component.AgendaHourLines
@@ -74,15 +74,16 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.OnDarkMuted
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.feature.admin.R
 import com.devora.mencare.feature.admin.manual.ManualBookingScreen
+import java.time.LocalTime
 import kotlin.math.roundToInt
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.time.LocalTime
 
 private const val MOVE_FEEDBACK_MILLIS = 2200L
 private val HourHeight = AgendaGrid.HourHeight
@@ -139,11 +140,13 @@ fun WeeklyAgendaScreen(
             contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 8.dp, bottom = 16.dp),
             fullWidthContent = true,
         ) {
+            // Stessa impaginazione dell'agenda operatore: chi sono / cosa
+            // guardo in alto, la navigazione del giorno sotto.
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
                     Text(
-                        formatDateLong(state.selectedDay).replaceFirstChar { it.uppercase() },
-                        style = MaterialTheme.typography.headlineMedium.copy(fontSize = 26.sp),
+                        stringResource(R.string.week_title),
+                        style = MaterialTheme.typography.headlineMedium,
                         color = Bone,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -154,20 +157,17 @@ fun WeeklyAgendaScreen(
                             state.operators.size,
                             state.appointments.count { it.date == state.selectedDay && it.isActive },
                         ),
-                        style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp),
-                        color = Bone,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = OnDarkMuted,
                     )
                 }
-                HeaderArrow(Icons.AutoMirrored.Outlined.KeyboardArrowLeft) {
-                    viewModel.selectDay(state.selectedDay.minusDays(1))
-                }
-                Spacer(Modifier.width(8.dp))
-                HeaderArrow(Icons.AutoMirrored.Outlined.KeyboardArrowRight) {
-                    viewModel.selectDay(state.selectedDay.plusDays(1))
-                }
-                Spacer(Modifier.width(12.dp))
                 NotificationBell(hasUnread = state.hasUnreadNotifications, onClick = onNotifications)
             }
+            Spacer(Modifier.height(16.dp))
+            AgendaDayBar(
+                selected = state.selectedDay,
+                onSelect = viewModel::selectDay,
+            )
         }
 
         BoxWithConstraints(Modifier.weight(1f)) {
@@ -433,20 +433,6 @@ private fun ScrollHint(
             .size(30.dp)
             .clip(CircleShape)
             .background(Ink.copy(alpha = 0.85f))
-            .clickable(onClick = onClick),
-        contentAlignment = Alignment.Center,
-    ) {
-        Icon(icon, contentDescription = null, tint = Bone, modifier = Modifier.size(18.dp))
-    }
-}
-
-@Composable
-private fun HeaderArrow(icon: androidx.compose.ui.graphics.vector.ImageVector, onClick: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .size(34.dp)
-            .clip(RoundedCornerShape(11.dp))
-            .background(Bone.copy(alpha = 0.12f))
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
     ) {

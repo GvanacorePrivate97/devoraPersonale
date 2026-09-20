@@ -284,8 +284,3 @@ private struct MonthCalendar: View {
     }
 }
 
-extension String {
-    var capitalizedFirst: String {
-        prefix(1).uppercased() + dropFirst()
-    }
-}

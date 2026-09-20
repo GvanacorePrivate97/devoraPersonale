@@ -30,18 +30,18 @@ struct BrandTopBar<Trailing: View>: View {
                                 .font(.system(size: 16, weight: .medium))
                             if let backLabel {
                                 Text(backLabel)
-                                    .font(Typo.jost(13, weight: .medium))
+                                    .font(Typo.labelLarge)
                                     .lineLimit(1)
                             }
                         }
-                        .foregroundStyle(Color.oliveWood)
+                        .foregroundStyle(Color.oliveLight)
                     }
                     .buttonStyle(.plain)
                 }
             }
             .frame(width: 88, alignment: .leading)
             Text(title)
-                .font(Typo.jost(15, weight: .medium))
+                .font(Typo.titleMedium)
                 .foregroundStyle(Color.bone)
                 .lineLimit(1)
                 .frame(maxWidth: .infinity)
@@ -61,7 +61,7 @@ struct BarAction: View {
     var body: some View {
         Button(action: action) {
             Text(text)
-                .font(Typo.jost(13, weight: .medium))
+                .font(Typo.labelLarge)
                 .foregroundStyle(color)
                 .lineLimit(1)
                 .padding(.vertical, 8)
@@ -82,12 +82,12 @@ struct WizardSteps: View {
                 let done = index <= currentIndex
                 VStack(alignment: .leading, spacing: 6) {
                     RoundedRectangle(cornerRadius: 2)
-                        .fill(done ? Color.oliveWood : Color.bone.opacity(0.16))
+                        .fill(done ? Color.oliveLight : Color.bone.opacity(0.16))
                         .frame(height: 3)
                     Text(label.uppercased())
-                        .font(Typo.jost(9, weight: .medium))
-                        .kerning(0.9)
-                        .foregroundStyle(done ? Color.oliveWood : Color.bone)
+                        .font(Typo.overline)
+                        .sectionTracking()
+                        .foregroundStyle(done ? Color.oliveLight : Color.onDarkMuted)
                         .lineLimit(1)
                 }
                 .frame(maxWidth: .infinity)
@@ -217,8 +217,8 @@ struct BrandSectionLabel: View {
 
     var body: some View {
         Text(text.uppercased())
-            .font(Typo.jost(11, weight: .medium))
-            .kerning(1.8)
+            .font(Typo.overline)
+            .sectionTracking()
             .foregroundStyle(color)
     }
 }
@@ -236,9 +236,9 @@ struct StatTile: View {
     var body: some View {
         VStack(spacing: 4) {
             Text(label.uppercased())
-                .font(Typo.jost(9, weight: .medium))
-                .kerning(1.3)
-                .foregroundStyle(contentColor.opacity(0.7))
+                .font(Typo.overline)
+                .sectionTracking()
+                .foregroundStyle(contentColor)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
                 .fixedSize(horizontal: false, vertical: true)
@@ -412,7 +412,7 @@ struct DarkContinueBar: View {
             Button(action: action) {
                 HStack {
                     Text(label)
-                        .font(Typo.jost(15, weight: .medium))
+                        .font(Typo.titleMedium)
                         .foregroundStyle(Color.bone)
                         .lineLimit(1)
                     Spacer()
@@ -450,9 +450,9 @@ struct DarkTotalBar: View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
                 Text(caption.uppercased())
-                    .font(Typo.jost(10, weight: .medium))
-                    .kerning(1.3)
-                    .foregroundStyle(Color.oliveWood)
+                    .font(Typo.overline)
+                    .sectionTracking()
+                    .foregroundStyle(Color.oliveLight)
                     .lineLimit(1)
                 Text(value)
                     .font(Typo.cormorant(26))
@@ -462,7 +462,7 @@ struct DarkTotalBar: View {
             Spacer()
             Button(action: action) {
                 HStack(spacing: 9) {
-                    Text(ctaLabel).font(Typo.jost(15, weight: .medium))
+                    Text(ctaLabel).font(Typo.titleMedium)
                     Image(systemName: "arrow.right").font(.system(size: 14, weight: .medium))
                 }
                 .foregroundStyle(Color.bone)
