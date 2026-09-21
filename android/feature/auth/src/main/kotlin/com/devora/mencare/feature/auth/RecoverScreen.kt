@@ -48,6 +48,7 @@ import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 
@@ -71,14 +72,15 @@ fun RecoverScreen(
                     modifier = Modifier
                         .size(54.dp)
                         .clip(RoundedCornerShape(16.dp))
-                        .background(OliveWood.copy(alpha = 0.22f))
-                        .border(1.dp, OliveWood.copy(alpha = 0.45f), RoundedCornerShape(16.dp)),
+                        .background(OliveLight.copy(alpha = 0.22f))
+                        .border(1.dp, OliveLight.copy(alpha = 0.45f), RoundedCornerShape(16.dp)),
                     contentAlignment = Alignment.Center,
                 ) {
                     Icon(
                         Icons.Outlined.Lock,
                         contentDescription = null,
-                        tint = OliveWood,
+                        // Sulla banda nera l'accento è l'oro, non l'oliva.
+                        tint = OliveLight,
                         modifier = Modifier.size(24.dp),
                     )
                 }

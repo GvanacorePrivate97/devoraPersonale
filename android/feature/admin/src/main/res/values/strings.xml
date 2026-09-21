@@ -7,7 +7,8 @@
     <string name="admin_tab_profile">Profilo</string>
 
     <!-- Dashboard -->
-    <string name="dash_title">Dashboard</string>
+    <string name="dash_overline">Titolare</string>
+    <string name="dash_title">Andamento</string>
     <string name="dash_revenue_label">Incassi del mese</string>
     <string name="dash_revenue_label_day">Incassi di oggi</string>
     <string name="dash_revenue_label_week">Incassi della settimana</string>

@@ -97,7 +97,7 @@ fun AppointmentDetailScreen(
                                 edited = true
                                 editOpen = true
                             },
-                            color = OliveWood,
+                            color = OliveLight,
                         )
                     }
                 },

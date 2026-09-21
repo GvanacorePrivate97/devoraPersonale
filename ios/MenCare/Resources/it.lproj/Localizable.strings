@@ -21,7 +21,8 @@
 "admin_tab_manage" = "Gestione";
 "admin_tab_clients" = "Clienti";
 "admin_tab_profile" = "Profilo";
-"dash_title" = "Dashboard";
+"dash_overline" = "Titolare";
+"dash_title" = "Andamento";
 "dash_revenue_label" = "Incassi del mese";
 "dash_revenue_label_day" = "Incassi di oggi";
 "dash_revenue_label_week" = "Incassi della settimana";

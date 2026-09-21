@@ -59,16 +59,17 @@ struct RecoverScreen: View {
                 BrandTopBar(title: L("auth_recover_topbar"), onBack: onBack)
                 VStack(alignment: .leading, spacing: 0) {
                     RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.oliveWood.opacity(0.22))
+                        .fill(Color.oliveLight.opacity(0.22))
                         .frame(width: 54, height: 54)
                         .overlay(
                             RoundedRectangle(cornerRadius: 16)
-                                .strokeBorder(Color.oliveWood.opacity(0.45), lineWidth: 1)
+                                .strokeBorder(Color.oliveLight.opacity(0.45), lineWidth: 1)
                         )
                         .overlay(
                             Image(systemName: "lock")
                                 .font(.system(size: 21))
-                                .foregroundStyle(Color.oliveWood)
+                                // Sulla banda nera l'accento è l'oro, non l'oliva.
+                                .foregroundStyle(Color.oliveLight)
                         )
                     Text(L("auth_recover_title"))
                         .font(Typo.cormorant(36))

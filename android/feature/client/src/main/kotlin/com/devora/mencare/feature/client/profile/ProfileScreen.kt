@@ -56,6 +56,7 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
@@ -119,7 +120,7 @@ fun ProfileScreen(
                 BarAction(
                     text = stringResource(if (editing) R.string.profile_save else R.string.profile_edit),
                     onClick = { if (editing) viewModel.save() else editing = true },
-                    color = OliveWood,
+                    color = OliveLight,
                 )
             }
         }
