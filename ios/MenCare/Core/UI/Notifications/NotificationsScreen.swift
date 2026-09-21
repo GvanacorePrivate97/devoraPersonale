@@ -76,28 +76,20 @@ struct NotificationsScreen: View {
             }
         } else {
             ScrollView {
-                VStack(spacing: 10) {
-                    ForEach(viewModel.notifications) { notification in
-                        OutlineCard {
-                            HStack(alignment: .center, spacing: 12) {
-                                // Oliva piena se nuova, oliva tenue se già letta.
-                                Circle()
-                                    .fill(viewModel.newIds.contains(notification.id) ? Color.oliveWood : Color.oliveWood.opacity(0.3))
-                                    .frame(width: 9, height: 9)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(notification.title)
-                                        .font(Typo.titleSmall)
-                                        .foregroundStyle(Color.ink)
-                                    Text(notification.body)
-                                        .font(Typo.bodyMedium)
-                                        .foregroundStyle(Color.ink)
-                                    Text(formatDateTime(notification.at))
-                                        .font(Typo.labelSmall)
-                                        .foregroundStyle(Color.textMuted)
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(alignment: .leading, spacing: 10) {
+                    // Le due letture della pagina — "da leggere" e "già viste"
+                    // — hanno due superfici, non due tonalità dello stesso
+                    // pallino, con la data a separarle come nel mockup.
+                    let today = LocalDate.today()
+                    let groups = Dictionary(grouping: viewModel.notifications) { $0.at.date == today }
+                    ForEach([true, false], id: \.self) { isToday in
+                        let rows = groups[isToday] ?? []
+                        if !rows.isEmpty {
+                            BrandSectionLabel(text: L(isToday ? "notifications_today" : "notifications_earlier"))
+                                .padding(.top, 4)
+                            ForEach(rows) { notification in
+                                row(notification)
                             }
-                            .padding(14)
                         }
                     }
                 }
@@ -105,5 +97,35 @@ struct NotificationsScreen: View {
                 .readableWidth()
             }
         }
+    }
+
+    /// Una riga della campanella. Non letta: card chiara col filo e il punto
+    /// d'accento. Già letta: fondo tenue, nessun filo e il punto spento — la
+    /// differenza si vede dalla superficie, non solo da un pallino più chiaro.
+    private func row(_ notification: AppNotification) -> some View {
+        let isNew = viewModel.newIds.contains(notification.id)
+        return HStack(alignment: .center, spacing: 12) {
+            Circle()
+                .fill(isNew ? Color.oliveWood : Color.stoneBorder)
+                .frame(width: 9, height: 9)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(notification.title)
+                    .font(isNew ? Typo.titleSmall : Typo.bodyLarge)
+                    .foregroundStyle(Color.ink)
+                Text(notification.body)
+                    .font(Typo.bodyMedium)
+                    .foregroundStyle(Color.textMuted)
+                Text(formatDateTime(notification.at))
+                    .font(Typo.labelSmall)
+                    .foregroundStyle(Color.textMuted)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(14)
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(isNew ? Color.bone : Color.stoneSoft))
+        .overlay(
+            RoundedRectangle(cornerRadius: Radii.md)
+                .strokeBorder(Color.stoneBorder, lineWidth: isNew ? 1.5 : 0)
+        )
     }
 }

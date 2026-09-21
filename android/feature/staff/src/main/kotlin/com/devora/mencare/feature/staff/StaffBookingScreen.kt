@@ -3,7 +3,6 @@ package com.devora.mencare.feature.staff
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -371,7 +370,7 @@ fun StaffBookingScreen(
     }
 }
 
-/** Stone field that reads as a picker: value plus a chevron, as in the manual-booking sheet. */
+/** Campo che si legge come un selettore: valore e chevron, come nel foglio di prenotazione manuale. */
 @Composable
 private fun DateField(value: String, onClick: () -> Unit) {
     Row(

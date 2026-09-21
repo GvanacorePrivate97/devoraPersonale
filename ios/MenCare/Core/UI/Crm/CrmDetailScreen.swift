@@ -99,13 +99,17 @@ struct CrmDetailScreen: View {
                     BarAction(text: L("crm_edit"), action: onBack, color: .oliveLight)
                 }
                 HStack(spacing: 13) {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.oliveWood)
-                        .frame(width: 54, height: 54)
+                    // Sulla banda scura l'iniziale è oro su un tondo appena
+                    // sollevato: il quadrato d'oliva era l'unico posto in cui
+                    // l'accento chiaro finiva sul nero.
+                    Circle()
+                        .fill(Color.inkRaised)
+                        .frame(width: 60, height: 60)
+                        .overlay(Circle().strokeBorder(Color.inkBorder, lineWidth: 1))
                         .overlay(
                             Text(client.initials)
-                                .font(Typo.cormorant(18, weight: .regular))
-                                .foregroundStyle(Color.bone)
+                                .font(Typo.cormorant(22, weight: .regular))
+                                .foregroundStyle(Color.oliveLight)
                         )
                     VStack(alignment: .leading, spacing: 0) {
                         Text(client.fullName)

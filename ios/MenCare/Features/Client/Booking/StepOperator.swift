@@ -42,35 +42,36 @@ struct StepOperator: View {
             viewModel.selectOperator(nil)
         } label: {
             HStack(spacing: 13) {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(selected ? Color.bone.opacity(0.18) : Color.bone)
-                    .frame(width: 46, height: 46)
+                Circle()
+                    .fill(Color.ink)
+                    .frame(width: 44, height: 44)
                     .overlay(
                         Image(systemName: "plus")
-                            .font(.system(size: 17))
-                            .foregroundStyle(selected ? Color.bone : Color.oliveWood)
+                            .font(.system(size: 18))
+                            .foregroundStyle(Color.oliveLight)
                     )
                 VStack(alignment: .leading, spacing: 0) {
                     Text(L("wizard_any_operator"))
-                        .font(Typo.jost(15, weight: .medium))
+                        .font(Typo.jost(16, weight: .medium))
+                        .foregroundStyle(Color.ink)
                     Text(L("wizard_any_operator_hint"))
                         .font(Typo.jost(12, weight: .medium))
+                        .foregroundStyle(Color.textMuted)
                 }
-                .foregroundStyle(selected ? Color.bone : Color.ink)
                 Spacer()
                 if selected {
-                    Circle()
-                        .fill(Color.bone)
-                        .frame(width: 24, height: 24)
-                        .overlay(
-                            Image(systemName: "checkmark")
-                                .font(.system(size: 11, weight: .semibold))
-                                .foregroundStyle(Color.oliveWood)
-                        )
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(Color.oliveWood)
                 }
             }
             .padding(15)
-            .background(RoundedRectangle(cornerRadius: 16).fill(selected ? Color.oliveWood : Color.stone))
+            // Scelta = OliveTint col filo d'accento, non un blocco d'oliva pieno.
+            .background(RoundedRectangle(cornerRadius: Radii.md).fill(selected ? Color.oliveTint : Color.bone))
+            .overlay(
+                RoundedRectangle(cornerRadius: Radii.md)
+                    .strokeBorder(selected ? Color.oliveWood : Color.stoneBorder, lineWidth: 1.5)
+            )
         }
         .buttonStyle(.plain)
     }
@@ -78,7 +79,7 @@ struct StepOperator: View {
     private func operatorRow(_ option: OperatorOption) -> some View {
         let selected = viewModel.selectedOperatorId == option.op.id
         let contentAlpha = option.availableSoon ? 1.0 : 0.45
-        let textColor = (selected ? Color.bone : Color.ink).opacity(contentAlpha)
+        let textColor = Color.ink.opacity(contentAlpha)
         return Button {
             viewModel.selectOperator(option.op.id)
         } label: {
@@ -91,35 +92,29 @@ struct StepOperator: View {
                         .foregroundStyle(textColor)
                     Text(option.op.title)
                         .font(Typo.jost(12))
-                        .foregroundStyle(textColor)
+                        .foregroundStyle(Color.textMuted.opacity(contentAlpha))
                 }
                 Spacer()
             }
             .padding(12)
-            .background(RoundedRectangle(cornerRadius: 16).fill(selected ? Color.oliveWood : Color.stone))
+            .background(RoundedRectangle(cornerRadius: Radii.md).fill(selected ? Color.oliveTint : Color.bone))
+            .overlay(
+                RoundedRectangle(cornerRadius: Radii.md)
+                    .strokeBorder(selected ? Color.oliveWood : Color.stoneBorder, lineWidth: 1.5)
+            )
         }
         .buttonStyle(.plain)
     }
 
-    /// Hatched square stands in for the operator photo, as in the mockup.
+    /// Tondo scuro con l'iniziale in oro: lo stesso avatar della scheda cliente.
     private func hatchedAvatar(_ initials: String) -> some View {
-        ZStack {
-            Canvas { context, size in
-                var x = -size.height
-                while x < size.width {
-                    var path = Path()
-                    path.move(to: CGPoint(x: x, y: size.height))
-                    path.addLine(to: CGPoint(x: x + size.height, y: 0))
-                    context.stroke(path, with: .color(.ink.opacity(0.06)), lineWidth: 1)
-                    x += 8
-                }
-            }
-            Text(initials)
-                .font(Typo.cormorant(17, weight: .regular))
-                .foregroundStyle(Color.ink)
-        }
-        .frame(width: 54, height: 54)
-        .background(Color.bone)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        Circle()
+            .fill(Color.ink)
+            .frame(width: 44, height: 44)
+            .overlay(
+                Text(initials)
+                    .font(Typo.cormorant(16, weight: .regular))
+                    .foregroundStyle(Color.oliveLight)
+            )
     }
 }

@@ -1,7 +1,5 @@
 package com.devora.mencare.feature.admin.agenda
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,7 +27,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,11 +39,11 @@ import com.devora.mencare.core.common.formatTime
 import com.devora.mencare.core.designsystem.component.AccentButton
 import com.devora.mencare.core.designsystem.component.BarAction
 import com.devora.mencare.core.designsystem.component.BrandChip
-import com.devora.mencare.core.designsystem.component.WarningCard
-import com.devora.mencare.core.designsystem.component.BrandSectionLabel
 import com.devora.mencare.core.designsystem.component.BrandDatePickerDialog
+import com.devora.mencare.core.designsystem.component.BrandSectionLabel
 import com.devora.mencare.core.designsystem.component.BrandTimePickerDialog
 import com.devora.mencare.core.designsystem.component.PickerTile
+import com.devora.mencare.core.designsystem.component.WarningCard
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink

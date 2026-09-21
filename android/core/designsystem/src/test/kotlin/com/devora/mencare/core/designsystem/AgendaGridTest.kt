@@ -1,6 +1,5 @@
 package com.devora.mencare.core.designsystem
 
-import androidx.compose.ui.unit.dp
 import com.devora.mencare.core.designsystem.component.AgendaGrid
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull

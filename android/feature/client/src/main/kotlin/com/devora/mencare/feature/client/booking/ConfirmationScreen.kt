@@ -44,6 +44,7 @@ import com.devora.mencare.core.designsystem.component.AccentButton
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.InkBorder
 import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
@@ -173,7 +174,7 @@ private fun ConfirmationContent(
                 .fillMaxWidth()
                 .height(56.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .border(1.dp, Bone.copy(alpha = 0.35f), RoundedCornerShape(16.dp))
+                .border(1.dp, InkBorder, Radii.Md)
                 .clickable {
                     viewModel.reset()
                     onDone()

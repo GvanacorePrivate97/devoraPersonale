@@ -1,6 +1,5 @@
 package com.devora.mencare.core.designsystem.component
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,8 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ErrorOutline
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,39 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Radii
-import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.WarnAmber
 import com.devora.mencare.core.designsystem.theme.WarnTint
-
-@Composable
-fun OutlineCard(
-    modifier: Modifier = Modifier,
-    onClick: (() -> Unit)? = null,
-    content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit,
-) {
-    val colors = CardDefaults.cardColors(containerColor = Bone)
-    val border = BorderStroke(1.5.dp, StoneBorder)
-    if (onClick != null) {
-        Card(
-            onClick = onClick,
-            modifier = modifier.fillMaxWidth(),
-            colors = colors,
-            border = border,
-            shape = Radii.Md,
-            content = content,
-        )
-    } else {
-        Card(
-            modifier = modifier.fillMaxWidth(),
-            colors = colors,
-            border = border,
-            shape = Radii.Md,
-            content = content,
-        )
-    }
-}
 
 /**
  * Avviso: qualcosa richiede una mossa prima di poter procedere (gli appuntamenti

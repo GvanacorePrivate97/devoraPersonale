@@ -45,6 +45,12 @@ extension Color {
 
     static let ink = Color(hex: 0x000006) // dark bands, primary text
     static let inkSoft = Color(hex: 0x000004)
+    /// Le due superfici che vivono DENTRO una banda scura: il riquadro appena
+    /// sollevato e il suo filo. Prima erano un Bone all'8% e un Bone al 35%,
+    /// cioè un bianco sbiadito che cambiava a seconda di cosa aveva sotto;
+    /// questi sono due tinte piatte, come nel mockup.
+    static let inkRaised = Color(hex: 0x1C1A16)
+    static let inkBorder = Color(hex: 0x4A4438)
     static let onDarkMuted = Color(hex: 0xB9B6AE) // secondary text on dark bands — 10.4:1 su Ink
     static let stoneBorder = Color(hex: 0xDBDAD6)
     /// Fasce non prenotabili dell'agenda: pieno, così due fasce sovrapposte non si scuriscono.

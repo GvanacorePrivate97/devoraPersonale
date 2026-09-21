@@ -467,9 +467,10 @@ Nome, Indirizzo (sola lettura); "Esci dall'account".
 - Una sola pagina, aperta dalla campanella (Home del cliente, Agenda dell'operatore,
   Agenda del titolare); ogni account vede solo le proprie notifiche, e scorrendo si
   caricano le più vecchie.
-- Righe: titolo, testo, data e ora, un pallino — Olive Wood pieno se non letta all'apertura
-  della pagina, sbiadito se già letta. Aprire la pagina segna tutto come letto e spegne il
-  pallino della campanella.
+- Le righe sono raggruppate sotto "Oggi" e "Più indietro". Quelle da leggere stanno su una
+  card col filo e il punto d'accento, quelle già viste sul fondo tenue, senza filo e col
+  punto spento — i due stati si distinguono dalla superficie, non solo da un pallino più
+  chiaro. Aprire la pagina segna tutto come letto e spegne il pallino della campanella.
 - Cosa produce davvero una notifica, e per chi:
 
   | Evento | Chi viene avvisato |
@@ -661,6 +662,10 @@ Le due app condividono un solo insieme di token (`core/designsystem` su Android,
   rosso ("Esci dall'account", "Non si è presentato").
 - **Avvisi.** Un conflitto da risolvere è ambra su `WarnTint` (`WarningCard`), non
   l'accento e non il rosso dell'errore: non è rotto niente, c'è qualcosa da spostare.
+- **Dentro una banda scura** il riquadro sollevato è `InkRaised` `#1C1A16` e il suo filo
+  `InkBorder` `#4A4438` — due tinte piatte al posto del Bone all'8% e al 35%, il cui
+  contrasto cambiava a seconda di cosa c'era sotto. Le iniziali su banda scura sono oro in
+  un tondo scuro (scheda cliente, wizard), mai l'accento chiaro.
 
 ## 8. Differenze di piattaforma
 - **Login social**: Android offre solo Google; iOS offre Accedi con Apple + Google (linea

@@ -48,6 +48,15 @@ val OliveSoft = Color(0xFFC4B69D)
 
 val Ink = Color(0xFF000006) // dark bands, primary text
 val InkSoft = Color(0xFF000004)
+
+/**
+ * Le due superfici che vivono DENTRO una banda scura: il riquadro appena
+ * sollevato e il suo filo. Prima erano un Bone all'8% e un Bone al 35%, cioè
+ * un bianco sbiadito che cambiava a seconda di cosa aveva sotto; questi sono
+ * due tinte piatte, come nel mockup.
+ */
+val InkRaised = Color(0xFF1C1A16)
+val InkBorder = Color(0xFF4A4438)
 val OnDarkMuted = Color(0xFFB9B6AE) // secondary text on dark bands — 10.4:1 su Ink
 val StoneBorder = Color(0xFFDBDAD6)
 

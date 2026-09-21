@@ -227,6 +227,8 @@
 "crm_new_booking" = "Nuova prenotazione";
 "crm_empty" = "Nessun cliente trovato";
 "notifications_title" = "Notifiche";
+"notifications_today" = "Oggi";
+"notifications_earlier" = "Più indietro";
 "notifications_empty" = "Nessuna notifica";
 "common_back" = "Indietro";
 "common_save" = "Salva";

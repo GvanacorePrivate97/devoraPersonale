@@ -36,13 +36,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.graphics.Color
 import com.devora.mencare.core.common.formatDuration
 import com.devora.mencare.core.common.formatPrice
 import com.devora.mencare.core.common.formatTime
@@ -52,9 +52,9 @@ import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.StoneSoft
-import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.core.designsystem.util.dialPhone
 import com.devora.mencare.core.model.AppointmentStatus

@@ -72,7 +72,7 @@ struct ConfirmationScreen: View {
                         .frame(height: 56)
                         .overlay(
                             RoundedRectangle(cornerRadius: 16)
-                                .strokeBorder(Color.bone.opacity(0.35), lineWidth: 1)
+                                .strokeBorder(Color.inkBorder, lineWidth: 1)
                         )
                 }
                 .buttonStyle(.plain)

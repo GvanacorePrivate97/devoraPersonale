@@ -3,7 +3,6 @@ package com.devora.mencare.feature.admin.manual
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -414,7 +413,7 @@ fun ManualBookingScreen(
     }
 }
 
-/** Stone field that reads as a picker: value plus a chevron, as in the mockup. */
+/** Campo che si legge come un selettore: valore e chevron, come nel mockup. */
 @Composable
 private fun DropdownField(value: String, onClick: () -> Unit) {
     Row(

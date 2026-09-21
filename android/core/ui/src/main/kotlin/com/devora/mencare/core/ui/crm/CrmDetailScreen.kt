@@ -50,6 +50,8 @@ import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.InkBorder
+import com.devora.mencare.core.designsystem.theme.InkRaised
 import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.OnDarkMuted
@@ -83,15 +85,22 @@ fun CrmDetailScreen(
                 modifier = Modifier.padding(horizontal = 20.dp).padding(top = 6.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
+                // Sulla banda scura l'iniziale è oro su un tondo appena
+                // sollevato: il quadrato d'oliva era l'unico posto in cui
+                // l'accento chiaro finiva sul nero.
                 Box(
-                    modifier = Modifier.size(54.dp).clip(RoundedCornerShape(16.dp)).background(OliveWood),
+                    modifier = Modifier
+                        .size(60.dp)
+                        .clip(CircleShape)
+                        .background(InkRaised)
+                        .border(1.dp, InkBorder, CircleShape),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         "${client.firstName.first()}${client.lastName.first()}",
                         fontFamily = Cormorant,
-                        fontSize = 18.sp,
-                        color = Bone,
+                        fontSize = 22.sp,
+                        color = OliveLight,
                     )
                 }
                 Column(Modifier.weight(1f).padding(start = 13.dp)) {

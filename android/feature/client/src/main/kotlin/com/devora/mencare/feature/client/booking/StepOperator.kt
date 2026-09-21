@@ -1,6 +1,7 @@
 package com.devora.mencare.feature.client.booking
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,7 +16,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.Check
@@ -26,8 +26,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,8 +36,12 @@ import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveTint
+import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.StoneBorder
+import com.devora.mencare.core.designsystem.theme.TextMuted
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.feature.client.R
 
 @Composable
@@ -102,50 +104,43 @@ private fun AnyOperatorCard(selected: Boolean, onClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(if (selected) OliveWood else Stone)
+            .clip(Radii.Md)
+            .background(if (selected) OliveTint else Bone)
+            .border(1.5.dp, if (selected) OliveWood else StoneBorder, Radii.Md)
             .clickable(onClick = onClick)
             .padding(15.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
-            modifier = Modifier
-                .size(46.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .background(if (selected) Bone.copy(alpha = 0.18f) else Bone),
+            modifier = Modifier.size(44.dp).clip(CircleShape).background(Ink),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
                 Icons.Outlined.Add,
                 contentDescription = null,
-                tint = if (selected) Bone else OliveWood,
-                modifier = Modifier.size(20.dp),
+                tint = OliveLight,
+                modifier = Modifier.size(21.dp),
             )
         }
         Column(Modifier.weight(1f).padding(horizontal = 13.dp)) {
             Text(
                 stringResource(R.string.wizard_any_operator),
-                style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp),
-                color = if (selected) Bone else Ink,
+                style = MaterialTheme.typography.titleMedium.copy(fontSize = 16.sp),
+                color = Ink,
             )
             Text(
                 stringResource(R.string.wizard_any_operator_hint),
                 style = MaterialTheme.typography.labelMedium.copy(fontSize = 12.sp, letterSpacing = 0.sp),
-                color = if (selected) Bone else Ink,
+                color = TextMuted,
             )
         }
         if (selected) {
-            Box(
-                modifier = Modifier.size(24.dp).clip(CircleShape).background(Bone),
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(
-                    Icons.Outlined.Check,
-                    contentDescription = null,
-                    tint = OliveWood,
-                    modifier = Modifier.size(15.dp),
-                )
-            }
+            Icon(
+                Icons.Outlined.Check,
+                contentDescription = null,
+                tint = OliveWood,
+                modifier = Modifier.size(20.dp),
+            )
         }
     }
 }
@@ -158,8 +153,9 @@ private fun OperatorRow(option: OperatorOption, selected: Boolean, onClick: () -
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(if (selected) OliveWood else Stone)
+            .clip(Radii.Md)
+            .background(if (selected) OliveTint else Bone)
+            .border(1.5.dp, if (selected) OliveWood else StoneBorder, Radii.Md)
             .clickable(onClick = onClick)
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -170,47 +166,33 @@ private fun OperatorRow(option: OperatorOption, selected: Boolean, onClick: () -
             Text(
                 operator.name,
                 style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp),
-                color = (if (selected) Bone else Ink).copy(alpha = contentAlpha),
+                color = Ink.copy(alpha = contentAlpha),
             )
             Spacer(Modifier.height(3.dp))
             Text(
                 operator.title,
                 style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp),
-                color = (if (selected) Bone else Ink).copy(alpha = contentAlpha),
+                color = TextMuted.copy(alpha = contentAlpha),
             )
         }
     }
 }
 
-/** Hatched square stands in for the operator photo, as in the mockup. */
+/** Tondo scuro con l'iniziale in oro: lo stesso avatar della scheda cliente. */
 @Composable
 private fun HatchedAvatar(initials: String, onAccent: Boolean) {
-    val hatch = Ink.copy(alpha = 0.06f)
     Box(
         modifier = Modifier
-            .size(54.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(Bone)
-            .drawBehind {
-                val step = 8.dp.toPx()
-                var x = -size.height
-                while (x < size.width) {
-                    drawLine(
-                        color = hatch,
-                        start = Offset(x, size.height),
-                        end = Offset(x + size.height, 0f),
-                        strokeWidth = 1.dp.toPx(),
-                    )
-                    x += step
-                }
-            },
+            .size(44.dp)
+            .clip(CircleShape)
+            .background(Ink),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             initials,
             fontFamily = Cormorant,
-            fontSize = 17.sp,
-            color = if (onAccent) Ink else Ink,
+            fontSize = 16.sp,
+            color = OliveLight,
         )
     }
 }

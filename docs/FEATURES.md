@@ -451,8 +451,10 @@ Indirizzo (read-only); "Esci dall'account".
 ## 5. Notifications (every role)
 - One page, opened from the bell (client Home, staff Agenda, owner Agenda); each account
   sees only its own notifications, oldest ones loaded as the page scrolls.
-- Rows: title, body, date and time, a dot — full Olive Wood if unread when the page opened,
-  faded if already read. Opening the page marks everything read and clears the bell's dot.
+- Rows are grouped under "Oggi" and "Più indietro". Unread sits on an outlined card with the
+  accent dot; read sits on the faded surface, with no outline and a grey dot — the two states
+  differ by surface, not only by a paler dot. Opening the page marks everything read and
+  clears the bell's dot.
 - What actually produces a notification, and for whom:
 
   | Event | Who is notified |
@@ -636,6 +638,10 @@ on iOS); a token changes in both, in the same commit.
   ("Esci dall'account", "Non si è presentato").
 - **Warnings.** A conflict to resolve is amber on `WarnTint` (`WarningCard`), not the
   accent and not the error red: nothing is broken, something has to be moved.
+- **Inside a dark band** the raised panel is `InkRaised` `#1C1A16` and its hairline
+  `InkBorder` `#4A4438` — two flat tints instead of Bone at 8% and 35%, whose contrast
+  changed with whatever sat underneath. Initials on a dark band are gold in a dark circle
+  (client sheet, booking wizard), never the light accent.
 
 ## 8. Platform differences
 - **Social login**: Android offers Google only; iOS offers Sign in with Apple + Google

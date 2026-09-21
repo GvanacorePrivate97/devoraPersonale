@@ -25,4 +25,6 @@
     <!-- Notifiche: stessa pagina per cliente, operatore e titolare -->
     <string name="notifications_title">Notifiche</string>
     <string name="notifications_empty">Nessuna notifica</string>
+    <string name="notifications_today">Oggi</string>
+    <string name="notifications_earlier">Più indietro</string>
 </resources>
