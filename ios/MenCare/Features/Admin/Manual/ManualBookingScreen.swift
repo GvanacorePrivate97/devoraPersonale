@@ -260,7 +260,7 @@ struct ManualBookingScreen: View {
                     .foregroundStyle(Color.ink)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity)
-                BarAction(text: L("manual_save"), action: viewModel.save, color: .oliveWood)
+                BarAction(text: L("manual_save"), action: viewModel.save, color: .oliveLight)
                     .frame(width: 72, alignment: .trailing)
             }
             .padding(.horizontal, 20)

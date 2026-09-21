@@ -239,7 +239,7 @@ struct StaffBookingScreen: View {
                     .foregroundStyle(Color.ink)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity)
-                BarAction(text: L("staff_booking_save"), action: viewModel.save, color: .oliveWood)
+                BarAction(text: L("staff_booking_save"), action: viewModel.save, color: .oliveLight)
                     .frame(width: 72, alignment: .trailing)
             }
             .padding(.horizontal, 20)

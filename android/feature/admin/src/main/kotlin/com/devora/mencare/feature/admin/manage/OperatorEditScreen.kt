@@ -49,8 +49,8 @@ import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
-import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.TextMuted
+import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.OnDarkMuted
 import com.devora.mencare.feature.admin.R
 import java.time.DayOfWeek
 import java.time.format.TextStyle
@@ -78,7 +78,7 @@ fun OperatorEditScreen(
                 onBack = onBack,
                 backLabel = stringResource(R.string.manage_tab_operators),
                 trailing = {
-                    BarAction(stringResource(R.string.svc_save_short), viewModel::save, color = OliveWood)
+                    BarAction(stringResource(R.string.svc_save_short), viewModel::save, color = OliveLight)
                 },
             )
         }
@@ -192,7 +192,8 @@ fun OperatorEditScreen(
                 Text(
                     stringResource(R.string.ops_account_note),
                     style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp, lineHeight = 18.sp),
-                    color = TextMuted,
+                    // Su fondo nero il grigio chiaro, non quello da fondo chiaro.
+                    color = OnDarkMuted,
                 )
             }
         }

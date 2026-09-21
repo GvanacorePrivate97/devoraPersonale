@@ -231,7 +231,8 @@ quello collegato), alto quanto il contenuto con il pulsante subito sotto.
   orari offerti ai clienti.
 
 ### 3.3 Dettaglio appuntamento
-- Banda scura: iniziali del cliente (Olive Wood su nero), nome, stato ("Confermato", "in
+- Banda scura: iniziali del cliente (l'oro `OliveLight` sul nero — l'oliva lì si ferma a
+  3,7:1), nome, stato ("Confermato", "in
   corso", "Completato ✓", "No-show"), visite totali.
 - **Modifica** (in alto, solo finché l'appuntamento è in programma): il foglio "Modifica
   appuntamento" (§3.5) precompilato con cliente, giorno, ora e servizi; salvando
@@ -351,7 +352,7 @@ senza lavoro mostra zeri.
   posa solo dove c'è posto (§6.3): se riesce compare "Appuntamento spostato" e il cliente
   riceve la notifica, altrimenti "Slot non disponibile" e la card torna al suo posto.
   Mentre si trascina, i pulsanti flottanti spariscono.
-- Tocco su una card → bottom sheet: cliente (iniziali Olive Wood su nero), ora · durata ·
+- Tocco su una card → bottom sheet: cliente (iniziali in oro sul nero), ora · durata ·
   operatore, prezzo, stato (Confermato · In corso · Completato · No-show), servizi,
   indicazione per spostarla trascinandola, "Chiama" in oro (apre il tastierino con il
   numero del cliente; compatto accanto a un **Modifica appuntamento** più largo, a tutta

@@ -138,7 +138,7 @@ struct OperatorEditScreen: View {
                     onBack: onBack,
                     backLabel: L("manage_tab_operators")
                 ) {
-                    BarAction(text: L("svc_save_short"), action: viewModel.save, color: .oliveWood)
+                    BarAction(text: L("svc_save_short"), action: viewModel.save, color: .oliveLight)
                 }
             }
 
@@ -196,7 +196,8 @@ struct OperatorEditScreen: View {
 
                     Text(L("ops_account_note"))
                         .font(Typo.jost(12))
-                        .foregroundStyle(Color.textMuted)
+                        // Su fondo nero il grigio chiaro, non quello da chiaro.
+                        .foregroundStyle(Color.onDarkMuted)
                         .padding(14)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(RoundedRectangle(cornerRadius: 16).fill(Color.ink))

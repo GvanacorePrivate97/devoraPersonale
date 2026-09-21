@@ -45,6 +45,7 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -153,7 +154,7 @@ private fun AppointmentRecapCard(state: BookingUiState) {
         Text(
             state.selectedDate?.let { formatDateLong(it).uppercase() }.orEmpty(),
             style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.16.em),
-            color = OliveWood,
+            color = OliveLight,
         )
         Spacer(Modifier.height(6.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {

@@ -227,7 +227,8 @@ signed-in operator), as tall as its content with the button right under it.
   offered to clients.
 
 ### 3.3 Appointment detail
-- Dark header: client initials (Olive Wood on black), name, status ("Confermato", "in
+- Dark header: client initials (the gold `OliveLight` on black — the olive stops at 3.7:1
+  there), name, status ("Confermato", "in
   corso", "Completato ✓", "No-show"), lifetime visits.
 - **Modifica** (top bar, only while the appointment is still to come): the "Modifica
   appuntamento" sheet (§3.5) prefilled with client, day, time and services; saving replaces
@@ -341,7 +342,7 @@ period with no work shows zeros.
   on success "Appuntamento spostato" and the client is notified, otherwise "Slot non
   disponibile" and the card goes back. The floating buttons disappear while a card is
   being dragged.
-- Tap a card → bottom sheet: client (initials in Olive Wood on black), time · duration ·
+- Tap a card → bottom sheet: client (initials in gold on black), time · duration ·
   operator, price, status (Confermato · In corso · Completato · No-show), services, hint to
   drag the card to move it, "Chiama" in gold (opens the phone dialer with the client's
   number; compact beside a wider **Modifica appuntamento**, full width on a completed

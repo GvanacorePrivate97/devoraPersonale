@@ -118,7 +118,7 @@ struct AppointmentDetailScreen: View {
                 ) {
                     // Si modifica solo ciò che è ancora in programma.
                     if apt.isActive {
-                        BarAction(text: L("apt_detail_edit"), action: { openEdit(apt) }, color: .oliveWood)
+                        BarAction(text: L("apt_detail_edit"), action: { openEdit(apt) }, color: .oliveLight)
                     }
                 }
                 HStack(spacing: 12) {
@@ -134,7 +134,7 @@ struct AppointmentDetailScreen: View {
                         .overlay(
                             Text(client?.initials ?? "")
                                 .font(Typo.cormorant(17, weight: .regular))
-                                .foregroundStyle(Color.oliveWood)
+                                .foregroundStyle(Color.oliveLight)
                         )
                     VStack(alignment: .leading, spacing: 6) {
                         Text(client?.fullName ?? "")

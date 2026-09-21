@@ -158,7 +158,7 @@ struct CampaignScreen: View {
         VStack(spacing: 0) {
             DarkHeader(contentPadding: EdgeInsets(top: 0, leading: 0, bottom: 18, trailing: 0)) {
                 BrandTopBar(title: L("camp_title"), onBack: onBack) {
-                    BarAction(text: L("camp_draft"), action: onBack, color: .oliveWood)
+                    BarAction(text: L("camp_draft"), action: onBack, color: .oliveLight)
                 }
                 HStack {
                     Text(viewModel.name.isEmpty ? L("camp_name") : viewModel.name)

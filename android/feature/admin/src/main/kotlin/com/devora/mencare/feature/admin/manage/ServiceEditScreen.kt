@@ -51,6 +51,7 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
@@ -77,7 +78,7 @@ fun ServiceEditScreen(
                 ),
                 onBack = onBack,
                 backLabel = stringResource(R.string.manage_tab_services),
-                trailing = { BarAction(stringResource(R.string.svc_save_short), viewModel::save, color = OliveWood) },
+                trailing = { BarAction(stringResource(R.string.svc_save_short), viewModel::save, color = OliveLight) },
             )
         }
 

@@ -67,6 +67,7 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -132,7 +133,7 @@ fun ManualBookingScreen(
                     modifier = Modifier.weight(1f),
                 )
                 Box(Modifier.width(72.dp), contentAlignment = Alignment.CenterEnd) {
-                    BarAction(stringResource(R.string.manual_save), viewModel::save, color = OliveWood)
+                    BarAction(stringResource(R.string.manual_save), viewModel::save, color = OliveLight)
                 }
             }
 

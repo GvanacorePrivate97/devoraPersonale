@@ -49,6 +49,7 @@ import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.OnDarkMuted
 import com.devora.mencare.core.designsystem.theme.Stone
@@ -75,7 +76,7 @@ fun CrmDetailScreen(
                 title = stringResource(R.string.crm_detail_title),
                 onBack = onBack,
                 backLabel = stringResource(R.string.crm_title),
-                trailing = { BarAction(stringResource(R.string.crm_edit), onBack, color = OliveWood) },
+                trailing = { BarAction(stringResource(R.string.crm_edit), onBack, color = OliveLight) },
             )
             Row(
                 modifier = Modifier.padding(horizontal = 20.dp).padding(top = 6.dp),

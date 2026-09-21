@@ -48,7 +48,7 @@ struct StepSummary: View {
             Text((viewModel.selectedDate.map(formatDateLong) ?? "").uppercased())
                 .font(Typo.jost(10, weight: .medium))
                 .kerning(1.6)
-                .foregroundStyle(Color.oliveWood)
+                .foregroundStyle(Color.oliveLight)
             HStack {
                 Text(viewModel.selectedSlot.map(formatTime) ?? "")
                     .font(Typo.cormorant(38, weight: .regular))

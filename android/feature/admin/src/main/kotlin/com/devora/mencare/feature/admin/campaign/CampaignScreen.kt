@@ -26,10 +26,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,9 +45,9 @@ import com.devora.mencare.core.designsystem.component.AccentButton
 import com.devora.mencare.core.designsystem.component.BarAction
 import com.devora.mencare.core.designsystem.component.BrandChip
 import com.devora.mencare.core.designsystem.component.BrandDatePickerDialog
-import com.devora.mencare.core.designsystem.component.BrandTimePickerDialog
 import com.devora.mencare.core.designsystem.component.BrandSectionLabel
 import com.devora.mencare.core.designsystem.component.BrandSwitch
+import com.devora.mencare.core.designsystem.component.BrandTimePickerDialog
 import com.devora.mencare.core.designsystem.component.BrandTopBar
 import com.devora.mencare.core.designsystem.component.DarkHeader
 import com.devora.mencare.core.designsystem.component.FieldMessage
@@ -59,6 +59,7 @@ import com.devora.mencare.core.designsystem.component.validationMessageOrNull
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -84,7 +85,7 @@ fun CampaignScreen(
             BrandTopBar(
                 title = stringResource(R.string.camp_title),
                 onBack = onBack,
-                trailing = { BarAction(stringResource(R.string.camp_draft), onBack, color = OliveWood) },
+                trailing = { BarAction(stringResource(R.string.camp_draft), onBack, color = OliveLight) },
             )
             Row(
                 modifier = Modifier.padding(horizontal = 22.dp).padding(top = 6.dp),

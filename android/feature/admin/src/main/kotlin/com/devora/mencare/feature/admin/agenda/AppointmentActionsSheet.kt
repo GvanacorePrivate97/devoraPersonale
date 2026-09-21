@@ -50,6 +50,7 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
@@ -103,7 +104,8 @@ internal fun AppointmentActionsSheet(
                             .joinToString(""),
                         fontFamily = Cormorant,
                         fontSize = 15.sp,
-                        color = OliveWood,
+                        // Oro, non oliva: sul nero l'oliva si ferma a 3.7:1.
+                        color = OliveLight,
                     )
                 }
                 Column(Modifier.weight(1f).padding(start = 12.dp)) {

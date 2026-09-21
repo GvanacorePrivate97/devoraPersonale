@@ -300,7 +300,8 @@ struct AppointmentActionsSheet: View {
                         .overlay(
                             Text(client?.initials ?? "")
                                 .font(Typo.cormorant(15, weight: .regular))
-                                .foregroundStyle(Color.oliveWood)
+                                // Oro, non oliva: sul nero l'oliva è a 3.7:1.
+                                .foregroundStyle(Color.oliveLight)
                         )
                     VStack(alignment: .leading, spacing: 0) {
                         Text(client?.fullName ?? "")

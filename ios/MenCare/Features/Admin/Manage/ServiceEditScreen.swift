@@ -124,7 +124,7 @@ struct ServiceEditScreen: View {
                     onBack: onBack,
                     backLabel: L("manage_tab_services")
                 ) {
-                    BarAction(text: L("svc_save_short"), action: viewModel.save, color: .oliveWood)
+                    BarAction(text: L("svc_save_short"), action: viewModel.save, color: .oliveLight)
                 }
             }
 

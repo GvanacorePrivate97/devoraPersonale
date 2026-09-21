@@ -92,7 +92,7 @@ struct CrmDetailScreen: View {
                     onBack: onBack,
                     backLabel: L("crm_title")
                 ) {
-                    BarAction(text: L("crm_edit"), action: onBack, color: .oliveWood)
+                    BarAction(text: L("crm_edit"), action: onBack, color: .oliveLight)
                 }
                 HStack(spacing: 13) {
                     RoundedRectangle(cornerRadius: 16)

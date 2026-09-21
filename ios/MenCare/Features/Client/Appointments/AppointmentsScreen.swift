@@ -181,20 +181,6 @@ struct AppointmentsScreen: View {
         .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
     }
 
-    private func statCell(_ value: String, _ label: String) -> some View {
-        VStack(spacing: 2) {
-            Text(value)
-                .font(Typo.cormorant(22, weight: .regular))
-                .foregroundStyle(Color.bone)
-            Text(label.uppercased())
-                .font(Typo.jost(9, weight: .medium))
-                .kerning(1.1)
-                .foregroundStyle(Color.bone)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
-    }
-
     private var emptyUpcoming: some View {
         ScrollView {
             VStack(spacing: 0) {
