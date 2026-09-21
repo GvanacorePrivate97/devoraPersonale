@@ -111,22 +111,30 @@ struct DashboardScreen: View {
                     Text(revenueLabel.uppercased())
                         .font(Typo.jost(11, weight: .medium))
                         .kerning(1.6)
-                        .foregroundStyle(Color.oliveWood)
+                        .foregroundStyle(Color.oliveLight)
                         .padding(.top, 16)
                     HStack {
                         Text(formatPriceCompact(stats.revenueCents))
                             .font(Typo.cormorant(44))
                             .foregroundStyle(Color.bone)
                         Spacer()
+                        // Il trend è un dato con un segno: verde se si sale,
+                        // rosso se si scende. Una pillola sempre oliva non
+                        // diceva niente.
+                        let up = stats.revenueTrendPercent >= 0
+                        let trendColor = up ? Color.trendUp : Color.trendDown
                         Text(L("dash_trend", stats.revenueTrendPercent))
                             .font(Typo.titleSmall)
-                            .foregroundStyle(Color.bone)
+                            .foregroundStyle(trendColor)
                             .padding(.horizontal, 12)
-                            .padding(.vertical, 7)
-                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.oliveWood))
+                            .padding(.vertical, 6)
+                            .background(
+                                ZStack {
+                                    Capsule().fill(trendColor.opacity(0.18))
+                                    Capsule().strokeBorder(trendColor.opacity(0.45), lineWidth: 1)
+                                }
+                            )
                     }
-                    revenueBars
-                        .padding(.top, 10)
                 }
 
                 VStack(alignment: .leading, spacing: 12) {
@@ -161,15 +169,17 @@ struct DashboardScreen: View {
                                     .font(Typo.bodyMedium)
                                     .foregroundStyle(Color.ink)
                                     .frame(width: 64, alignment: .leading)
+                                // Pieno sopra l'80%, scarico sotto: due toni
+                                // dello stesso accento, non oliva contro nero.
                                 GeometryReader { geo in
                                     ZStack(alignment: .leading) {
                                         Capsule().fill(Color.stone)
                                         Capsule()
-                                            .fill(row.percent >= 80 ? Color.oliveWood : Color.ink)
+                                            .fill(row.percent >= 80 ? Color.oliveWood : Color.oliveWood.opacity(0.45))
                                             .frame(width: geo.size.width * CGFloat(row.percent) / 100)
                                     }
                                 }
-                                .frame(height: 7)
+                                .frame(height: 12)
                                 Text("\(row.percent)%")
                                     .font(Typo.titleSmall)
                                     .foregroundStyle(Color.ink)
@@ -194,20 +204,6 @@ struct DashboardScreen: View {
         case .week: L("dash_revenue_label_week")
         case .month: L("dash_revenue_label")
         }
-    }
-
-    /// Period-over-period revenue sketch; the demo layer ships no per-day series yet.
-    private var revenueBars: some View {
-        let heights: [CGFloat] = [0.42, 0.55, 0.48, 0.72, 0.5, 1, 0.6, 0.38]
-        return HStack(alignment: .bottom, spacing: 7) {
-            ForEach(Array(heights.enumerated()), id: \.offset) { index, fraction in
-                RoundedRectangle(cornerRadius: 6)
-                    .fill(index == 5 ? Color.oliveWood : Color.bone.opacity(0.12))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 44 * fraction)
-            }
-        }
-        .frame(height: 44, alignment: .bottom)
     }
 
 /// Sotto questa soglia un giorno aperto è "vuoto": è lì che una campagna serve.
@@ -238,7 +234,9 @@ struct DashboardScreen: View {
                 action: onSendCampaign,
                 height: 52,
                 corner: 16,
-                leadingSystemImage: "bell"
+                leadingSystemImage: "bell",
+                container: .oliveLight,
+                contentColor: .ink
             )
             .padding(.top, 4)
         }
@@ -251,14 +249,14 @@ struct DashboardScreen: View {
             // Chi aspetta un posto quel giorno: la domanda che l'agenda non ha servito.
             Text(day.waitlistCount > 0 ? "\(day.waitlistCount)" : " ")
                 .font(Typo.jost(11, weight: .medium))
-                .foregroundStyle(Color.bone)
+                .foregroundStyle(Color.ink)
                 .frame(minWidth: 18, minHeight: 18)
-                .background(Circle().fill(day.waitlistCount > 0 ? Color.oliveWood : Color.clear))
+                .background(Circle().fill(day.waitlistCount > 0 ? Color.oliveLight : Color.clear))
             ZStack(alignment: .bottom) {
-                RoundedRectangle(cornerRadius: 6).fill(day.closed ? Color.stoneSoft : Color.stone)
+                RoundedRectangle(cornerRadius: Radii.xs).fill(day.closed ? Color.stoneSoft : Color.stone)
                 if !day.closed {
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(day.occupancyPercent >= 80 ? Color.oliveWood : Color.ink)
+                    RoundedRectangle(cornerRadius: Radii.xs)
+                        .fill(day.occupancyPercent >= 80 ? Color.oliveWood : Color.oliveWood.opacity(0.45))
                         .frame(height: barHeight * CGFloat(day.occupancyPercent) / 100)
                 }
             }

@@ -18,12 +18,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
+import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
@@ -40,13 +42,17 @@ fun AccentButton(
     height: Dp = 52.dp,
     shape: Shape = MaterialTheme.shapes.medium,
     leadingIcon: ImageVector? = null,
+    // L'accento ha due facce: oliva sul chiaro, oro sulle bande scure. Il
+    // bottone è lo stesso, cambia solo su cosa è appoggiato.
+    container: Color = OliveWood,
+    contentColor: Color = Bone,
 ) {
     Button(
         onClick = onClick,
         modifier = modifier.fillMaxWidth().height(height),
         enabled = enabled && !loading,
         shape = shape,
-        colors = ButtonDefaults.buttonColors(containerColor = OliveWood),
+        colors = ButtonDefaults.buttonColors(containerColor = container, contentColor = contentColor),
     ) {
         if (loading) {
             CircularProgressIndicator(

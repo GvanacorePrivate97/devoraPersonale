@@ -1,6 +1,7 @@
 package com.devora.mencare.feature.admin.dashboard
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -53,6 +54,8 @@ import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.StoneSoft
 import com.devora.mencare.core.designsystem.theme.TextMuted
+import com.devora.mencare.core.designsystem.theme.TrendDown
+import com.devora.mencare.core.designsystem.theme.TrendUp
 import com.devora.mencare.core.model.DashboardPeriod
 import com.devora.mencare.core.model.UpcomingDay
 import com.devora.mencare.feature.admin.R
@@ -103,7 +106,7 @@ fun DashboardScreen(
                     },
                 ).uppercase(),
                 style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.16.em),
-                color = OliveWood,
+                color = OliveLight,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
@@ -113,18 +116,21 @@ fun DashboardScreen(
                     color = Bone,
                     modifier = Modifier.weight(1f),
                 )
+                // Il trend è un dato con un segno: verde se si sale, rosso se si
+                // scende. Una pillola sempre oliva non diceva niente.
+                val trend = stats?.revenueTrendPercent ?: 0
+                val up = trend >= 0
                 Text(
-                    stringResource(R.string.dash_trend, stats?.revenueTrendPercent ?: 0),
+                    stringResource(R.string.dash_trend, trend),
                     style = MaterialTheme.typography.titleSmall,
-                    color = Bone,
+                    color = if (up) TrendUp else TrendDown,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(OliveWood)
-                        .padding(horizontal = 12.dp, vertical = 7.dp),
+                        .clip(RoundedCornerShape(999.dp))
+                        .background((if (up) TrendUp else TrendDown).copy(alpha = 0.18f))
+                        .border(1.dp, (if (up) TrendUp else TrendDown).copy(alpha = 0.45f), RoundedCornerShape(999.dp))
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
                 )
             }
-            Spacer(Modifier.height(10.dp))
-            RevenueBars()
         }
 
         Column(
@@ -173,19 +179,21 @@ fun DashboardScreen(
                             color = Ink,
                             modifier = Modifier.width(64.dp),
                         )
+                        // Pieno sopra l'80%, scarico sotto: due toni dello stesso
+                        // accento, non oliva contro nero.
                         Box(
                             modifier = Modifier
                                 .weight(1f)
-                                .height(7.dp)
-                                .clip(RoundedCornerShape(4.dp))
+                                .height(12.dp)
+                                .clip(RoundedCornerShape(999.dp))
                                 .background(Stone),
                         ) {
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth(row.percent / 100f)
-                                    .height(7.dp)
-                                    .clip(RoundedCornerShape(4.dp))
-                                    .background(if (row.percent >= 80) OliveWood else Ink),
+                                    .height(12.dp)
+                                    .clip(RoundedCornerShape(999.dp))
+                                    .background(if (row.percent >= 80) OliveWood else OliveWood.copy(alpha = 0.45f)),
                             )
                         }
                         Text(
@@ -199,27 +207,6 @@ fun DashboardScreen(
             }
 
             UpcomingSection(stats?.upcomingDays.orEmpty(), onSendCampaign)
-        }
-    }
-}
-
-/** Period-over-period revenue sketch; the demo layer ships no per-day series yet. */
-@Composable
-private fun RevenueBars() {
-    val heights = listOf(0.42f, 0.55f, 0.48f, 0.72f, 0.5f, 1f, 0.6f, 0.38f)
-    Row(
-        modifier = Modifier.fillMaxWidth().height(44.dp),
-        horizontalArrangement = Arrangement.spacedBy(7.dp),
-        verticalAlignment = Alignment.Bottom,
-    ) {
-        heights.forEachIndexed { index, fraction ->
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(fraction)
-                    .clip(RoundedCornerShape(6.dp))
-                    .background(if (index == 5) OliveWood else Bone.copy(alpha = 0.12f)),
-            )
         }
     }
 }
@@ -259,6 +246,8 @@ private fun UpcomingSection(days: List<UpcomingDay>, onSendCampaign: () -> Unit)
             height = 52.dp,
             shape = RoundedCornerShape(16.dp),
             leadingIcon = Icons.Outlined.NotificationsNone,
+            container = OliveLight,
+            contentColor = Ink,
             modifier = Modifier.padding(top = 4.dp),
         )
     }
@@ -274,14 +263,14 @@ private fun UpcomingColumn(day: UpcomingDay, modifier: Modifier) {
             modifier = Modifier
                 .size(18.dp)
                 .clip(CircleShape)
-                .background(if (day.waitlistCount > 0) OliveWood else Color.Transparent),
+                .background(if (day.waitlistCount > 0) OliveLight else Color.Transparent),
             contentAlignment = Alignment.Center,
         ) {
             if (day.waitlistCount > 0) {
                 Text(
                     "${day.waitlistCount}",
                     style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.sp),
-                    color = Bone,
+                    color = Ink,
                 )
             }
         }
@@ -290,7 +279,7 @@ private fun UpcomingColumn(day: UpcomingDay, modifier: Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(barHeight)
-                .clip(RoundedCornerShape(6.dp))
+                .clip(Radii.Xs)
                 .background(if (day.closed) StoneSoft else Stone),
             contentAlignment = Alignment.BottomCenter,
         ) {
@@ -299,8 +288,8 @@ private fun UpcomingColumn(day: UpcomingDay, modifier: Modifier) {
                     Modifier
                         .fillMaxWidth()
                         .height(barHeight * (day.occupancyPercent / 100f))
-                        .clip(RoundedCornerShape(6.dp))
-                        .background(if (day.occupancyPercent >= 80) OliveWood else Ink),
+                        .clip(Radii.Xs)
+                        .background(if (day.occupancyPercent >= 80) OliveWood else OliveWood.copy(alpha = 0.45f)),
                 )
             }
         }

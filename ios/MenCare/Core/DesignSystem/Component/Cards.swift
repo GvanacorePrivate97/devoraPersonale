@@ -16,8 +16,3 @@ struct OutlineCard<Content: View>: View {
         }
     }
 }
-
-s
-
-/// "label — value" row used in summaries.
-s

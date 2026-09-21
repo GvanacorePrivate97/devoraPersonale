@@ -48,6 +48,12 @@ extension Color {
     static let textMuted = Color(hex: 0x5F5B52)
 
     // Semantic — tarati su Stone.
+    /// Andamento sulle bande scure: verde se sale, rosso se scende. I semantici
+    /// da fondo chiaro sul nero non arrivano a 3:1, quindi il trend ha la sua
+    /// coppia schiarita — 9.9:1 e 8.4:1 su Ink.
+    static let trendUp = Color(hex: 0x9FD3B2)
+    static let trendDown = Color(hex: 0xE2A2A2)
+
     static let successGreen = Color(hex: 0x3E6B4C) // 5.16:1 su Stone
     static let warnAmber = Color(hex: 0x8A5F1B) // 4.72:1 su Stone
     static let errorRed = Color(hex: 0x8C2F2F) // 6.88:1 su Stone

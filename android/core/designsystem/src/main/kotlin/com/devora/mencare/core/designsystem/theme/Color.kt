@@ -49,6 +49,14 @@ val StoneSoft = Color(0xFFF3F3F2)
 /** Testo secondario su chiaro: 5.67:1 su Stone, 6.65:1 su Bone. */
 val TextMuted = Color(0xFF5F5B52)
 
+/**
+ * Andamento sulle bande scure: verde se sale, rosso se scende. I semantici da
+ * fondo chiaro (SuccessGreen, ErrorRed) sul nero si fermano sotto il 3:1, quindi
+ * il trend ha la sua coppia schiarita — 9.9:1 e 8.4:1 su Ink.
+ */
+val TrendUp = Color(0xFF9FD3B2)
+val TrendDown = Color(0xFFE2A2A2)
+
 // Semantic — tarati su Stone, la peggiore delle due superfici chiare.
 val SuccessGreen = Color(0xFF3E6B4C) // 5.16:1 su Stone
 val WarnAmber = Color(0xFF8A5F1B) // 4.72:1 su Stone

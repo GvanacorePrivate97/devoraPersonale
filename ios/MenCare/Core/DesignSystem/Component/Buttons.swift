@@ -1,7 +1,5 @@
 import SwiftUI
 
-s
-
 struct AccentButton: View {
     let text: String
     let action: () -> Void
@@ -10,12 +8,16 @@ struct AccentButton: View {
     var height: CGFloat = 52
     var corner: CGFloat = 14
     var leadingSystemImage: String?
+    /// L'accento ha due facce: oliva sul chiaro, oro sulle bande scure. Il
+    /// bottone è lo stesso, cambia solo su cosa è appoggiato.
+    var container: Color = .oliveWood
+    var contentColor: Color = .bone
 
     var body: some View {
         Button(action: action) {
             HStack(spacing: 9) {
                 if loading {
-                    ProgressView().tint(.bone)
+                    ProgressView().tint(contentColor)
                 } else {
                     if let leadingSystemImage {
                         Image(systemName: leadingSystemImage).font(.system(size: 15))
@@ -27,8 +29,8 @@ struct AccentButton: View {
             .frame(height: height)
         }
         .buttonStyle(.plain)
-        .foregroundStyle(Color.bone)
-        .background(RoundedRectangle(cornerRadius: corner).fill(Color.oliveWood))
+        .foregroundStyle(contentColor)
+        .background(RoundedRectangle(cornerRadius: corner).fill(container))
         .opacity(enabled && !loading ? 1 : 0.5)
         .disabled(!enabled || loading)
     }
@@ -54,7 +56,3 @@ struct SocialButton: View {
         .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
     }
 }
-
-s
-
-s

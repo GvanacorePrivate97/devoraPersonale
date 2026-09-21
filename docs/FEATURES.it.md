@@ -280,20 +280,23 @@ senza lavoro mostra zeri.
   = da lunedì a domenica della settimana corrente, Mese = il mese di calendario.
 - **Incassi**: totale degli appuntamenti **segnati come completati** che iniziano nel
   periodo, con l'andamento rispetto alla finestra precedente della stessa lunghezza
-  ("Incassi del mese € 9.840 · +12%"). Se nella finestra precedente non c'era niente,
+  ("Incassi del mese € 9.840 · +12%"). L'andamento porta il segno nel colore — verde se
+  sale, rosso se scende, nella coppia schiarita che la banda scura richiede — perché una
+  pillola sempre oliva non dice niente. Se nella finestra precedente non c'era niente,
   l'andamento non viene inventato: è 0.
 - **Appunt.**: tutti gli appuntamenti non annullati del periodo, di ogni operatore, no-show
   compresi.
 - **No-show %**: i no-show su quegli appuntamenti, con un decimale.
 - **Scontrino medio**: incassi divisi per il numero di appuntamenti completati.
-- "Occupazione per operatore" (barre): minuti prenotati sui minuti in cui l'operatore
+- "Occupazione per operatore" (barre a pillola, accento pieno dall'80%, lo stesso accento
+  scarico sotto): minuti prenotati sui minuti in cui l'operatore
   poteva davvero lavorare nel periodo — il suo orario intersecato con quello del salone,
   meno i blocchi, con le ferie non conteggiate affatto — con il tetto al 100%.
 - **"Prossimi 7 giorni"** (oggi compreso, qualunque sia il periodo): una colonna per giorno
   con l'occupazione del salone — minuti prenotati sui minuti in cui tutti gli operatori
-  possono lavorare quel giorno, esclusi annullati e no-show — oliva dall'80%, "chiuso" nei
-  giorni di chiusura; un bollino oliva con il numero di clienti in lista d'attesa per quel
-  giorno ("Avvisami") e una riga con il totale ("aspettano un operatore al completo": una
+  possono lavorare quel giorno, esclusi annullati e no-show — oliva pieno dall'80%, oliva
+  scarico sotto, "chiuso" nei giorni di chiusura; un bollino oro con testo scuro e il
+  numero di clienti in lista d'attesa per quel giorno ("Avvisami") e una riga con il totale ("aspettano un operatore al completo": una
   richiesta aspetta un operatore preciso — o qualsiasi — che è pieno, mentre la barra è
   tutto il salone, quindi un giorno con persone in attesa può avere ancora posto). Sotto,
   un pulsante oro a tutta larghezza apre la campagna push (§4.2): "Riempi i giorni vuoti
@@ -611,7 +614,10 @@ Le due app condividono un solo insieme di token (`core/designsystem` su Android,
   l'oro della scritta "MEN CARE" del logo, campionato da `design/logo-lockup.png`. Il testo
   secondario è `TextMuted` sul chiaro e `OnDarkMuted` sullo scuro, mai un Bone sbiadito. Le
   pill d'accento usano il tono pieno `OliveTint`, non l'accento con un'alpha, così il loro
-  contrasto non dipende da cosa c'è sotto.
+  contrasto non dipende da cosa c'è sotto. Un dato con un segno (l'andamento della
+  dashboard, §4.1) è l'unico punto in cui un colore semantico compare su una banda scura, e
+  usa la sua coppia schiarita — `TrendUp` `#9FD3B2` e `TrendDown` `#E2A2A2` — perché il
+  verde e il rosso da fondo chiaro sul near-black si fermano sotto il 3:1.
 - **Tipografia.** Jost ha le aste sottili e Cormorant è un serif ad alto contrasto, quindi
   niente è in Regular: corpo da Medium, titoli ed etichette da SemiBold, display serif in
   Bold. Nessuno stile scende sotto gli 11 sp, e sotto i 12 sp ci vanno solo etichette

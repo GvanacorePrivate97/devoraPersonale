@@ -177,7 +177,7 @@ struct ProfileScreen: View {
                                 editing = false
                             }
                         },
-                        color: .oliveWood
+                        color: .oliveLight
                     )
                 }
             }

@@ -274,19 +274,22 @@ period with no work shows zeros.
   Monday to Sunday of the current week, Mese = the calendar month.
 - **Incassi**: total of the appointments **marked completed** whose start falls in the
   period, with the trend against the immediately preceding window of the same length
-  ("Incassi del mese € 9.840 · +12%"). With nothing in the previous window the trend is not
+  ("Incassi del mese € 9.840 · +12%"). The trend carries its sign in colour — green going
+  up, red going down, in the lightened pair the dark band needs — because a pill that is
+  always olive says nothing. With nothing in the previous window the trend is not
   invented: it reads 0.
 - **Appunt.**: every non-cancelled appointment of the period, all operators, no-shows
   included.
 - **No-show %**: no-shows over those appointments, one decimal.
 - **Scontrino medio**: revenue divided by the number of completed appointments.
-- "Occupazione per operatore" (bars): booked minutes over the minutes the operator could
+- "Occupazione per operatore" (pill bars, full accent from 80%, the same accent faded
+  below): booked minutes over the minutes the operator could
   actually work in the period — their hours intersected with the salon's, minus blocks,
   with holidays not counted at all — capped at 100%.
 - **"Prossimi 7 giorni"** (today included, whatever the period): one column per day with
   the salon's occupancy — booked minutes over the minutes every operator can work that day,
-  cancellations and no-shows excluded — olive from 80%, "chiuso" on closing days; an olive
-  badge with the number of clients waiting on that day's waitlist ("Avvisami"), and a line
+  cancellations and no-shows excluded — full olive from 80%, faded olive below, "chiuso" on
+  closing days; a gold badge with dark text carrying the number of clients waiting on that day's waitlist ("Avvisami"), and a line
   with the total ("aspettano un operatore al completo": a request waits for a specific
   operator — or any — who is full, while the bar is the whole salon, so a day with
   people waiting can still show room). Below, a full-width gold button opens the push
@@ -589,7 +592,10 @@ on iOS); a token changes in both, in the same commit.
   text), `OliveLight` `#BFA277` on the near-black bands — the gold of the logo's "MEN
   CARE", sampled from `design/logo-lockup.png`. Secondary text is `TextMuted` on light and
   `OnDarkMuted` on dark, never a faded Bone. Accent pills use the flat `OliveTint`, not the
-  accent at an alpha, so their contrast does not depend on what is underneath.
+  accent at an alpha, so their contrast does not depend on what is underneath. A signed
+  figure (the dashboard's trend, §4.1) is the one place a semantic colour appears on a dark
+  band, and it uses its own lightened pair — `TrendUp` `#9FD3B2` and `TrendDown` `#E2A2A2`
+  — because the light-surface green and red fall under 3:1 on near-black.
 - **Type.** Jost is thin-stemmed and Cormorant is a high-contrast serif, so nothing is set
   Regular: body from Medium, titles and labels from SemiBold, display serif Bold. No style
   goes under 11 sp, and only short uppercase labels go under 12 sp. The one exception is

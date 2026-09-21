@@ -68,11 +68,6 @@ struct DarkHeaderTitle: View {
     }
 }
 
-/// Small uppercase section label in Olive Wood.
-s
-
-s
-
 /// Tendina ancorata al bordo inferiore, a tutta larghezza, alta quanto il suo
 /// contenuto. Da iOS 26 le sheet di sistema ad altezza ridotta galleggiano
 /// staccate dai bordi; questa si presenta con `anchoredBottomSheet(item:)`.
