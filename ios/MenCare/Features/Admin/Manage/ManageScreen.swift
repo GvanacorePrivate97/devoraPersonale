@@ -50,7 +50,7 @@ struct ManageScreen: View {
         VStack(spacing: 0) {
             DarkHeader(contentPadding: EdgeInsets(top: 10, leading: 20, bottom: 16, trailing: 20)) {
                 Text(L("manage_title").uppercased())
-                    .font(Typo.jost(10, weight: .medium))
+                    .font(Typo.jost(11, weight: .medium))
                     .kerning(0.8)
                     .foregroundStyle(Color.textMuted)
                 Text(titles[tab])
@@ -212,7 +212,7 @@ private struct OperatorsTab: View {
                     Spacer()
                     if op.isOwner {
                         Text(L("ops_owner_badge").uppercased())
-                            .font(Typo.jost(9, weight: .medium))
+                            .font(Typo.jost(11, weight: .medium))
                             .foregroundStyle(Color.bone)
                             .padding(.horizontal, 9)
                             .padding(.vertical, 6)

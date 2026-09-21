@@ -102,7 +102,7 @@ fun DashboardScreen(
                         DashboardPeriod.MONTH -> R.string.dash_revenue_label
                     },
                 ).uppercase(),
-                style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.16.em),
+                style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.16.em),
                 color = OliveWood,
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -280,7 +280,7 @@ private fun UpcomingColumn(day: UpcomingDay, modifier: Modifier) {
             if (day.waitlistCount > 0) {
                 Text(
                     "${day.waitlistCount}",
-                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.sp),
+                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.sp),
                     color = Bone,
                 )
             }
@@ -307,14 +307,14 @@ private fun UpcomingColumn(day: UpcomingDay, modifier: Modifier) {
         Spacer(Modifier.height(5.dp))
         Text(
             if (day.closed) stringResource(R.string.dash_upcoming_closed) else "${day.occupancyPercent}%",
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.sp),
+            style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.sp),
             color = if (day.closed) TextMuted else Ink,
             maxLines = 1,
         )
         Spacer(Modifier.height(5.dp))
         Text(
             parts.getOrElse(0) { "" }.uppercase(),
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.08.em),
+            style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.08.em),
             color = TextMuted,
         )
         Text(

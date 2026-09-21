@@ -179,7 +179,7 @@ struct PickerTile: View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 3) {
                 Text(label.uppercased())
-                    .font(Typo.jost(9, weight: .medium))
+                    .font(Typo.jost(11, weight: .medium))
                     .kerning(0.9)
                     .foregroundStyle(Color.textMuted)
                     .lineLimit(1)

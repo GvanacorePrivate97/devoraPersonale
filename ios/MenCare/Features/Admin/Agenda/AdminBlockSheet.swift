@@ -324,7 +324,7 @@ struct AppointmentActionsSheet: View {
                         .foregroundStyle(Color.ink)
                 }
                 Text(statusLabel(appointment.status).uppercased())
-                    .font(Typo.jost(9, weight: .medium))
+                    .font(Typo.jost(11, weight: .medium))
                     .kerning(1.2)
                     .foregroundStyle(appointment.status == .noShow ? Color.errorRed : Color.oliveWood)
                     .padding(.top, 12)

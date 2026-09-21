@@ -202,7 +202,7 @@ private fun NextAppointmentCard(state: HomeUiState, next: Appointment) {
             ) {
                 Text(
                     stringResource(R.string.client_home_next_title).uppercase(),
-                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.16.em),
+                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.16.em),
                     color = Bone,
                     modifier = Modifier
                         .clip(RoundedCornerShape(6.dp))
@@ -341,7 +341,7 @@ private fun QuickSlotChip(slot: QuickSlot, onClick: (QuickSlot) -> Unit) {
     ) {
         Text(
             quickDayLabel(slot.date).uppercase(),
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.12.em),
+            style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.12.em),
             color = TextMuted,
         )
         Spacer(Modifier.height(3.dp))

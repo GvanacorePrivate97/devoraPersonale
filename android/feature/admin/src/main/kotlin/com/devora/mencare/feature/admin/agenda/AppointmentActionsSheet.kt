@@ -135,7 +135,7 @@ internal fun AppointmentActionsSheet(
             Spacer(Modifier.height(12.dp))
             Text(
                 stringResource(statusLabel(appointment.status)).uppercase(),
-                style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.12.em),
+                style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.12.em),
                 color = if (appointment.status == AppointmentStatus.NO_SHOW) ErrorRed else OliveWood,
             )
             Spacer(Modifier.height(12.dp))

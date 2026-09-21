@@ -244,7 +244,7 @@ struct AppointmentsScreen: View {
 
     private func statusPill(_ text: String, accent: Bool) -> some View {
         Text(text.uppercased())
-            .font(Typo.jost(9, weight: .medium))
+            .font(Typo.jost(11, weight: .medium))
             .kerning(1.3)
             .foregroundStyle(accent ? Color.bone : Color.ink)
             .padding(.horizontal, 10)
@@ -279,7 +279,7 @@ private struct UpcomingCard: View {
                             .frame(width: 22, height: 22)
                             .overlay(
                                 Text(viewModel.operators[appointment.operatorId]?.initials ?? "")
-                                    .font(Typo.cormorant(9, weight: .regular))
+                                    .font(Typo.cormorant(11, weight: .regular))
                                     .foregroundStyle(Color.ink)
                             )
                         Text(
@@ -324,7 +324,7 @@ private struct UpcomingCard: View {
 
     private func statusPill(_ text: String, accent: Bool) -> some View {
         Text(text.uppercased())
-            .font(Typo.jost(9, weight: .medium))
+            .font(Typo.jost(11, weight: .medium))
             .kerning(1.3)
             .foregroundStyle(accent ? Color.bone : Color.ink)
             .padding(.horizontal, 10)
@@ -344,12 +344,12 @@ private struct AppointmentDateBlock: View {
         let parts = formatDateShort(date).split(separator: " ").map(String.init)
         VStack(spacing: 0) {
             Text((parts.first ?? "").uppercased())
-                .font(Typo.jost(9, weight: .medium))
+                .font(Typo.jost(11, weight: .medium))
                 .kerning(0.9)
             Text(parts.count > 1 ? parts[1] : "")
                 .font(Typo.cormorant(20, weight: .regular))
             Text((parts.count > 2 ? parts[2] : "").uppercased())
-                .font(Typo.jost(9, weight: .medium))
+                .font(Typo.jost(11, weight: .medium))
                 .kerning(0.9)
         }
         .foregroundStyle(style == .accent ? Color.bone : Color.textMuted)

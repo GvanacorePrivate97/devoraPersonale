@@ -176,7 +176,7 @@ fun PickerTile(
     ) {
         Text(
             label.uppercase(),
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.1.em),
+            style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.1.em),
             color = TextMuted,
         )
         Text(

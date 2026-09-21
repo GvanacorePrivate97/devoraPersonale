@@ -615,7 +615,9 @@ Le due app condividono un solo insieme di token (`core/designsystem` su Android,
 - **Tipografia.** Jost ha le aste sottili e Cormorant è un serif ad alto contrasto, quindi
   niente è in Regular: corpo da Medium, titoli ed etichette da SemiBold, display serif in
   Bold. Nessuno stile scende sotto gli 11 sp, e sotto i 12 sp ci vanno solo etichette
-  maiuscole brevi. Le schermate prendono un ruolo dalla scala — `Overline` per le etichette
+  maiuscole brevi. L'unica eccezione è la riga dei servizi dentro le card dell'agenda
+  (§3.1, §4.3), ancora a 10: la sua misura è legata all'altezza che la card calcola, e
+  alzarla è una modifica a quel calcolo, non a uno stile. Le schermate prendono un ruolo dalla scala — `Overline` per le etichette
   maiuscole di sezione, `Meta` per didascalie e ore della griglia — invece di
   ridimensionare un ruolo sulla riga.
 - **Barra dei giorni.** La navigazione del giorno in agenda è un componente solo

@@ -592,7 +592,9 @@ on iOS); a token changes in both, in the same commit.
   accent at an alpha, so their contrast does not depend on what is underneath.
 - **Type.** Jost is thin-stemmed and Cormorant is a high-contrast serif, so nothing is set
   Regular: body from Medium, titles and labels from SemiBold, display serif Bold. No style
-  goes under 11 sp, and only short uppercase labels go under 12 sp. Screens take a role
+  goes under 11 sp, and only short uppercase labels go under 12 sp. The one exception is
+  the services line inside an agenda card (§3.1, §4.3), still 10: its size is tied to the
+  height the card computes, and raising it is a change to that maths, not to a style. Screens take a role
   from the scale — `Overline` for uppercase section labels, `Meta` for captions and grid
   hours — rather than resizing a role at the call site.
 - **Day bar.** The agendas' day navigation is one component (`AgendaDayBar`), used by the

@@ -245,7 +245,7 @@ private fun UpcomingCard(
                         Text(
                             state.operators[appointment.operatorId]?.initials.orEmpty(),
                             fontFamily = Cormorant,
-                            fontSize = 9.sp,
+                            fontSize = 11.sp,
                             color = Ink,
                         )
                     }
@@ -297,7 +297,7 @@ private fun DateBlock(date: LocalDate, muted: Boolean) {
     ) {
         Text(
             parts.getOrElse(0) { "" }.uppercase(),
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.1.em),
+            style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.1.em),
             color = content,
         )
         Text(
@@ -308,7 +308,7 @@ private fun DateBlock(date: LocalDate, muted: Boolean) {
         )
         Text(
             parts.getOrElse(2) { "" }.uppercase(),
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.1.em),
+            style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.1.em),
             color = content,
         )
     }
@@ -318,7 +318,7 @@ private fun DateBlock(date: LocalDate, muted: Boolean) {
 private fun StatusPill(text: String, accent: Boolean) {
     Text(
         text.uppercase(),
-        style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.14.em),
+        style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.14.em),
         color = if (accent) Bone else Ink,
         modifier = Modifier
             .clip(RoundedCornerShape(6.dp))
@@ -435,7 +435,7 @@ private fun StatCell(value: String, label: String, modifier: Modifier) {
         Spacer(Modifier.height(2.dp))
         Text(
             label.uppercase(),
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.12.em),
+            style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.12.em),
             color = Bone,
             textAlign = TextAlign.Center,
         )

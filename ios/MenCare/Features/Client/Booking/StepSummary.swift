@@ -46,7 +46,7 @@ struct StepSummary: View {
     private var recapCard: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text((viewModel.selectedDate.map(formatDateLong) ?? "").uppercased())
-                .font(Typo.jost(10, weight: .medium))
+                .font(Typo.jost(11, weight: .medium))
                 .kerning(1.6)
                 .foregroundStyle(Color.oliveLight)
             HStack {

@@ -68,7 +68,7 @@ struct StepDatetime: View {
     private func legendDot(_ color: Color, _ label: String) -> some View {
         HStack(spacing: 5) {
             Circle().fill(color).frame(width: 7, height: 7)
-            Text(label).font(Typo.jost(10)).foregroundStyle(Color.textMuted)
+            Text(label).font(Typo.jost(11)).foregroundStyle(Color.textMuted)
         }
     }
 
@@ -200,7 +200,7 @@ private struct MonthCalendar: View {
             HStack {
                 ForEach(Array(["L", "M", "M", "G", "V", "S", "D"].enumerated()), id: \.offset) { _, day in
                     Text(day)
-                        .font(Typo.jost(10, weight: .medium))
+                        .font(Typo.jost(11, weight: .medium))
                         .kerning(1)
                         .foregroundStyle(Color.textMuted)
                         .frame(maxWidth: .infinity)

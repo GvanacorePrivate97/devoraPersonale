@@ -107,7 +107,7 @@ struct ClientHomeScreen: View {
                         } label: {
                             VStack(spacing: 3) {
                                 Text(quickDayLabel(slot.date).uppercased())
-                                    .font(Typo.jost(9, weight: .medium))
+                                    .font(Typo.jost(11, weight: .medium))
                                     .kerning(1.1)
                                     .foregroundStyle(Color.textMuted)
                                 Text(formatTime(slot.time))
@@ -200,7 +200,7 @@ private struct NextAppointmentCard: View {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     Text(L("client_home_next_title").uppercased())
-                        .font(Typo.jost(9, weight: .medium))
+                        .font(Typo.jost(11, weight: .medium))
                         .kerning(1.4)
                         .foregroundStyle(Color.bone)
                         .padding(.horizontal, 10)

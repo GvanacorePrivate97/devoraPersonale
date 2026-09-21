@@ -109,7 +109,7 @@ struct DashboardScreen: View {
                         onSelect: { viewModel.select(DashboardPeriod.allCases[$0]) }
                     )
                     Text(revenueLabel.uppercased())
-                        .font(Typo.jost(10, weight: .medium))
+                        .font(Typo.jost(11, weight: .medium))
                         .kerning(1.6)
                         .foregroundStyle(Color.oliveWood)
                         .padding(.top, 16)
@@ -250,7 +250,7 @@ struct DashboardScreen: View {
         return VStack(spacing: 5) {
             // Chi aspetta un posto quel giorno: la domanda che l'agenda non ha servito.
             Text(day.waitlistCount > 0 ? "\(day.waitlistCount)" : " ")
-                .font(Typo.jost(10, weight: .medium))
+                .font(Typo.jost(11, weight: .medium))
                 .foregroundStyle(Color.bone)
                 .frame(minWidth: 18, minHeight: 18)
                 .background(Circle().fill(day.waitlistCount > 0 ? Color.oliveWood : Color.clear))
@@ -264,13 +264,13 @@ struct DashboardScreen: View {
             }
             .frame(height: barHeight)
             Text(day.closed ? L("dash_upcoming_closed") : "\(day.occupancyPercent)%")
-                .font(Typo.jost(10, weight: .medium))
+                .font(Typo.jost(11, weight: .medium))
                 .foregroundStyle(day.closed ? Color.textMuted : Color.ink)
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
             VStack(spacing: 0) {
                 Text(parts.first.map { String($0).uppercased() } ?? "")
-                    .font(Typo.jost(9, weight: .medium))
+                    .font(Typo.jost(11, weight: .medium))
                     .kerning(0.8)
                     .foregroundStyle(Color.textMuted)
                 Text(parts.count > 1 ? String(parts[1]) : "")

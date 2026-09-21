@@ -153,7 +153,7 @@ private fun AppointmentRecapCard(state: BookingUiState) {
     ) {
         Text(
             state.selectedDate?.let { formatDateLong(it).uppercase() }.orEmpty(),
-            style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.16.em),
+            style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.16.em),
             color = OliveLight,
         )
         Spacer(Modifier.height(6.dp))

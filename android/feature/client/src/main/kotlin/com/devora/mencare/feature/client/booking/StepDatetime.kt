@@ -139,7 +139,7 @@ private fun LegendDot(color: Color, label: String) {
         Spacer(Modifier.width(5.dp))
         Text(
             label,
-            style = MaterialTheme.typography.bodySmall.copy(fontSize = 10.sp),
+            style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
             color = TextMuted,
         )
     }
@@ -320,7 +320,7 @@ private fun MonthCalendar(state: BookingUiState, viewModel: BookingViewModel) {
             listOf("L", "M", "M", "G", "V", "S", "D").forEach { day ->
                 Text(
                     day,
-                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.1.em),
+                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.1.em),
                     color = TextMuted,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(1f),

@@ -89,7 +89,7 @@ fun ManageScreen(
         ) {
             Text(
                 stringResource(R.string.manage_title).uppercase(),
-                style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
+                style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp),
                 color = TextMuted,
             )
             Spacer(Modifier.height(2.dp))
@@ -271,7 +271,7 @@ private fun OperatorList(state: ManageUiState, modifier: Modifier = Modifier) {
                     when {
                         operator.isOwner -> Text(
                             stringResource(R.string.ops_owner_badge).uppercase(),
-                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
+                            style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp),
                             color = Bone,
                             modifier = Modifier
                                 .clip(RoundedCornerShape(6.dp))

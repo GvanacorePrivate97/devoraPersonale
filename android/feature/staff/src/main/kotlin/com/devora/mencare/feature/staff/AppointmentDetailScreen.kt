@@ -365,7 +365,7 @@ fun AppointmentDetailScreen(
 private fun HeaderPill(text: String, accent: Boolean) {
     Text(
         text.uppercase(),
-        style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp, letterSpacing = 0.14.em),
+        style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.14.em),
         color = Bone,
         modifier = Modifier
             .clip(RoundedCornerShape(6.dp))

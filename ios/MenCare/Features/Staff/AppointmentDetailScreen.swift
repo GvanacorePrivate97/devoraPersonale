@@ -327,7 +327,7 @@ struct AppointmentDetailScreen: View {
 
     private func headerPill(_ text: String, accent: Bool) -> some View {
         Text(text.uppercased())
-            .font(Typo.jost(9, weight: .medium))
+            .font(Typo.jost(11, weight: .medium))
             .kerning(1.3)
             .foregroundStyle(Color.bone)
             .padding(.horizontal, 10)
