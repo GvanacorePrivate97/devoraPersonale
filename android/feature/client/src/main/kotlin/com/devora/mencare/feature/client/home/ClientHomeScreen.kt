@@ -1,6 +1,7 @@
 package com.devora.mencare.feature.client.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -54,6 +55,8 @@ import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveTint
+import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -321,20 +324,23 @@ private fun QuickSlotsSection(state: HomeUiState, onQuickSlot: (QuickSlot) -> Un
             horizontalArrangement = Arrangement.spacedBy(9.dp),
         ) {
             state.quickSlots.forEach { slot ->
-                QuickSlotChip(slot, onQuickSlot)
+                QuickSlotChip(slot, first = slot == state.quickSlots.first(), onClick = onQuickSlot)
             }
         }
     }
 }
 
 @Composable
-private fun QuickSlotChip(slot: QuickSlot, onClick: (QuickSlot) -> Unit) {
+private fun QuickSlotChip(slot: QuickSlot, first: Boolean, onClick: (QuickSlot) -> Unit) {
     Column(
         modifier = Modifier
             // Larghezza fissa: i chip restano tutti uguali qualunque sia l'etichetta.
             .width(92.dp)
             .clip(TileShape)
-            .background(Stone)
+            // Il primo slot è quello che il cliente prenderà nove volte su
+            // dieci: porta il filo d'accento, gli altri quello grigio.
+            .background(if (first) OliveTint else Bone)
+            .border(1.5.dp, if (first) OliveWood else StoneBorder, TileShape)
             .clickable { onClick(slot) }
             .padding(vertical = 11.dp),
         horizontalAlignment = Alignment.CenterHorizontally,

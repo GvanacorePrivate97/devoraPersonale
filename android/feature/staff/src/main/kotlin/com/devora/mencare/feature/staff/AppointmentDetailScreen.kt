@@ -53,6 +53,7 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveTint
 import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Radii
@@ -203,6 +204,8 @@ fun AppointmentDetailScreen(
                 Column {
                     BrandSectionLabel(stringResource(R.string.apt_detail_client_note))
                     Spacer(Modifier.height(8.dp))
+                    // Le parole del cliente stanno sul tono d'accento: è
+                    // l'unico riquadro della schermata che non è dell'agenda.
                     Text(
                         note,
                         style = MaterialTheme.typography.bodyMedium,
@@ -210,8 +213,7 @@ fun AppointmentDetailScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(Radii.Md)
-                            .background(Bone)
-                            .border(1.5.dp, StoneBorder, Radii.Md)
+                            .background(OliveTint)
                             .padding(horizontal = 15.dp, vertical = 14.dp),
                     )
                 }

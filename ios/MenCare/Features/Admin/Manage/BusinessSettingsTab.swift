@@ -189,7 +189,10 @@ struct BusinessSettingsTab: View {
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
-        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+        // Il giorno chiuso si spegne: fondo tenue invece di bianco, come nel
+        // mockup. Prima aperto e chiuso avevano la stessa card e cambiava solo
+        // la parolina a destra.
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(range == nil ? Color.stoneSoft : Color.bone))
         .overlay(
             RoundedRectangle(cornerRadius: Radii.md)
                 .strokeBorder(Color.stoneBorder, lineWidth: 1.5)

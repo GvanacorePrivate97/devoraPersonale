@@ -40,6 +40,7 @@ import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.StoneBorder
+import com.devora.mencare.core.designsystem.theme.StoneSoft
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.feature.admin.R
 import java.time.DayOfWeek
@@ -75,11 +76,14 @@ internal fun BusinessSettingsTab(viewModel: BusinessSettingsViewModel = hiltView
             )
             DayOfWeek.entries.forEach { day ->
                 val range = state.hours[day]
+                // Il giorno chiuso si spegne: fondo tenue invece di bianco,
+                // come nel mockup. Prima aperto e chiuso avevano la stessa card
+                // e cambiava solo la parolina a destra.
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(Radii.Md)
-                        .background(Bone)
+                        .background(if (range == null) StoneSoft else Bone)
                         .border(1.5.dp, StoneBorder, Radii.Md)
                         .padding(horizontal = 14.dp, vertical = 12.dp),
                 ) {

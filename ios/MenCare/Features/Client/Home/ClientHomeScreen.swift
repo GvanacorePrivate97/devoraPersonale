@@ -102,6 +102,10 @@ struct ClientHomeScreen: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 9) {
                     ForEach(viewModel.quickSlots, id: \.self) { slot in
+                        // Il primo slot è quello che il cliente prenderà nove
+                        // volte su dieci: porta il filo d'accento, gli altri
+                        // quello grigio.
+                        let first = slot == viewModel.quickSlots.first
                         Button {
                             onQuickSlot(slot)
                         } label: {
@@ -117,7 +121,11 @@ struct ClientHomeScreen: View {
                             // Larghezza fissa: i chip restano tutti uguali qualunque sia l'etichetta.
                             .frame(width: 92)
                             .padding(.vertical, 11)
-                            .background(RoundedRectangle(cornerRadius: tileCorner).fill(Color.stone))
+                            .background(RoundedRectangle(cornerRadius: tileCorner).fill(first ? Color.oliveTint : Color.bone))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: tileCorner)
+                                    .strokeBorder(first ? Color.oliveWood : Color.stoneBorder, lineWidth: 1.5)
+                            )
                         }
                         .buttonStyle(.plain)
                     }

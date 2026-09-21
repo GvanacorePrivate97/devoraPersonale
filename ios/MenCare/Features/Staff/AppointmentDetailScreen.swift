@@ -186,11 +186,10 @@ struct AppointmentDetailScreen: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 15)
                                 .padding(.vertical, 14)
-                                .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: Radii.md)
-                                        .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
-                                )
+                                // Le parole del cliente stanno sul tono
+                                // d'accento: è l'unico riquadro della schermata
+                                // che non è dell'agenda.
+                                .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.oliveTint))
                         }
                     }
 
