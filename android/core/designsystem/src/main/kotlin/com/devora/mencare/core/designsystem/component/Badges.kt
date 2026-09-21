@@ -14,9 +14,6 @@ import androidx.compose.ui.unit.dp
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.Stone
 
-/** Circle with serif initials — stands in for people photos across the app. */
-@Composable
-
 /** Small rounded status/category pill. */
 @Composable
 fun Pill(
