@@ -35,9 +35,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.devora.mencare.core.common.formatDateShort
-import com.devora.mencare.core.designsystem.component.BrandChip
 import com.devora.mencare.core.designsystem.component.DarkHeader
 import com.devora.mencare.core.designsystem.component.FilledTextField
+import com.devora.mencare.core.designsystem.component.SegmentedTabs
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
@@ -74,21 +74,17 @@ fun CrmListScreen(
                 leadingIcon = Icons.Outlined.Search,
             )
             Spacer(Modifier.height(12.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                listOf(
-                    ClientSegment.TUTTI to R.string.crm_seg_all,
-                    ClientSegment.INATTIVI_60 to R.string.crm_seg_inactive,
-                ).forEach { (segment, label) ->
-                    BrandChip(
-                        text = stringResource(label),
-                        selected = state.segment == segment,
-                        onClick = { viewModel.setSegment(segment) },
-                        modifier = Modifier.weight(1f),
-                        onDark = true,
-                        fill = true,
-                    )
-                }
-            }
+            // Due filtri che si escludono sono tab, non chip: stesso controllo
+            // degli appuntamenti, della dashboard e di Gestione.
+            val segments = listOf(ClientSegment.TUTTI, ClientSegment.INATTIVI_60)
+            SegmentedTabs(
+                options = listOf(
+                    stringResource(R.string.crm_seg_all),
+                    stringResource(R.string.crm_seg_inactive),
+                ),
+                selectedIndex = segments.indexOf(state.segment).coerceAtLeast(0),
+                onSelect = { viewModel.setSegment(segments[it]) },
+            )
         }
 
         if (state.clients.isEmpty()) {

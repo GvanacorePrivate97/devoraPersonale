@@ -59,10 +59,13 @@ struct CrmListScreen: View {
                     leadingSystemImage: "magnifyingglass"
                 )
                 .padding(.top, 14)
-                HStack(spacing: 8) {
-                    segmentChip(.tutti, L("crm_seg_all"))
-                    segmentChip(.inattivi60, L("crm_seg_inactive"))
-                }
+                // Due filtri che si escludono sono tab, non chip: stesso
+                // controllo degli appuntamenti, della dashboard e di Gestione.
+                SegmentedTabs(
+                    options: [L("crm_seg_all"), L("crm_seg_inactive")],
+                    selectedIndex: viewModel.segment == .tutti ? 0 : 1,
+                    onSelect: { viewModel.segment = $0 == 0 ? .tutti : .inattivi60 }
+                )
                 .padding(.top, 12)
             }
 
@@ -107,16 +110,6 @@ struct CrmListScreen: View {
                 }
             }
         }
-    }
-
-    private func segmentChip(_ segment: ClientSegment, _ label: String) -> some View {
-        BrandChip(
-            text: label,
-            selected: viewModel.segment == segment,
-            action: { viewModel.segment = segment },
-            onDark: true,
-            fill: true
-        )
     }
 
     private func clientRow(_ client: ClientRecord) -> some View {

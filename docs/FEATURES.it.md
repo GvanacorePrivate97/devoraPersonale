@@ -444,7 +444,8 @@ fascia al giorno). Gli orari del salone delimitano gli orari prenotabili di ogni
 operatore. "Salva orari".
 
 ### 4.9 Clienti (CRM)
-- Ricerca per nome, telefono o email; filtri Tutti · Inattivi 60+; sezioni alfabetiche per
+- Ricerca per nome, telefono o email; il filtro Tutti · Inattivi 60+ è lo stesso controllo
+  a tab di vetro del resto dell'app (§7b), non una coppia di chip; sezioni alfabetiche per
   cognome; le righe mostrano visite e ultima visita.
 - Scheda cliente: iniziali, nome, telefono, "cliente dal <anno>"; riquadri Visite, Spesa
   totale, No-show; **"Abitudini"** — "Operatore preferito" (chi ha più visite completate,

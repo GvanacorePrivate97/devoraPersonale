@@ -429,7 +429,8 @@ One card per weekday: Aperto/Chiuso switch, Dalle ore / Alle ore (one range per 
 salon's hours bound every operator's bookable time. "Salva orari".
 
 ### 4.9 Clienti (CRM)
-- Search by name, phone or email; filters Tutti · Inattivi 60+; alphabetical sections by
+- Search by name, phone or email; the Tutti · Inattivi 60+ filter is the same glass tab
+  control as everywhere else (§7b), not a pair of chips; alphabetical sections by
   surname; rows show visits and last visit.
 - Client sheet: initials, name, phone, "cliente dal <anno>"; tiles Visite, Spesa totale,
   No-show; **"Abitudini"** — "Operatore preferito" (the operator with the most completed
