@@ -183,9 +183,14 @@ struct AgendaScreen: View {
                         .foregroundStyle(Color.bone)
                         .frame(maxWidth: .infinity)
                         .frame(height: 52)
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.oliveWood))
+                        // Nero, non oliva: i due pulsanti galleggiano sopra le
+                        // card dell'agenda, che sono oliva — un'azione dello
+                        // stesso colore di ciò che copre sparisce.
+                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.ink))
+                        .shadow(color: Color.ink.opacity(0.22), radius: 10, y: 4)
                     }
                     .buttonStyle(.plain)
+                    .layoutPriority(1)
                 }
                 .padding(20)
                 .readableWidth()

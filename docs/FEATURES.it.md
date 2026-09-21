@@ -213,7 +213,9 @@ prossimo mentre è in corso.
 - Tocco su una card → dettaglio appuntamento (§3.3). Tocco su uno spazio libero → foglio
   "Nuovo appuntamento" con quel giorno e quel quarto d'ora già impostati (§3.5); i tocchi
   sui blocchi e sulle fasce fuori turno non fanno nulla.
-- Pulsanti "Ferie e permessi" (§3.2) e "Nuovo appuntamento" (§3.5).
+- Pulsanti flottanti "Ferie e permessi" (§3.2) e "Nuovo appuntamento" (§3.5). Galleggiano
+  sopra la griglia del giorno, quindi il principale è **nero** e il secondario chiaro con
+  filo: l'oliva sopra le card oliva sparirebbe.
 
 ### 3.2 Ferie e permessi
 Bottom sheet, uguale a quello del titolare (§4.3) senza la scelta dell'operatore (è sempre

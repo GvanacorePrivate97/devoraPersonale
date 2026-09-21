@@ -48,6 +48,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
@@ -292,23 +293,29 @@ fun WeeklyAgendaScreen(
                         modifier = Modifier
                             .size(56.dp)
                             .clip(CircleShape)
-                            .background(Ink)
+                            .background(Bone)
+                            .border(1.5.dp, StoneBorder, CircleShape)
                             .clickable { blockSheetOpen = true },
                         contentAlignment = Alignment.Center,
                     ) {
                         Icon(
                             Icons.Outlined.EventBusy,
                             contentDescription = stringResource(R.string.week_new_block),
-                            tint = Bone,
+                            tint = Ink,
                             modifier = Modifier.size(24.dp),
                         )
                     }
                     Spacer(Modifier.height(12.dp))
+                    // Nero, non oliva: i tondi galleggiano sopra le card
+                    // dell'agenda, che sono oliva — un'azione dello stesso
+                    // colore di ciò che copre sparisce. Nero pieno per la
+                    // principale, chiaro con contorno per l'altra.
                     Box(
                         modifier = Modifier
                             .size(56.dp)
+                            .shadow(10.dp, CircleShape)
                             .clip(CircleShape)
-                            .background(OliveWood)
+                            .background(Ink)
                             .clickable { openBooking(null, null) },
                         contentAlignment = Alignment.Center,
                     ) {

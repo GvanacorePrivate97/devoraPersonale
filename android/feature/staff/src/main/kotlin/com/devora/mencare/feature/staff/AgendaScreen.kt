@@ -36,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
@@ -186,12 +187,17 @@ fun AgendaScreen(
                         modifier = Modifier.padding(start = 6.dp),
                     )
                 }
+                // Nero, non oliva: i due pulsanti galleggiano sopra le card
+                // dell'agenda, che sono oliva — un'azione dello stesso colore
+                // di ciò che copre sparisce. Il nero stacca su oliva, su stone
+                // e sul fondo chiaro, e resta il colore dell'azione principale.
                 Row(
                     modifier = Modifier
-                        .weight(1f)
+                        .weight(1.35f)
                         .height(52.dp)
+                        .shadow(10.dp, RoundedCornerShape(16.dp))
                         .clip(RoundedCornerShape(16.dp))
-                        .background(OliveWood)
+                        .background(Ink)
                         .clickable { openBooking(null) }
                         .padding(horizontal = 14.dp),
                     horizontalArrangement = Arrangement.Center,

@@ -593,21 +593,27 @@ struct WeeklyAgendaScreen: View {
                 blockSheetOpen = true
             } label: {
                 Circle()
-                    .fill(Color.ink)
+                    .fill(Color.bone)
                     .frame(width: 56, height: 56)
+                    .overlay(Circle().strokeBorder(Color.stoneBorder, lineWidth: 1.5))
                     .overlay(
                         Image(systemName: "calendar.badge.minus")
                             .font(.system(size: 20))
-                            .foregroundStyle(Color.bone)
+                            .foregroundStyle(Color.ink)
                     )
             }
             .buttonStyle(.plain)
             Button {
                 openBooking(operatorId: nil, time: nil)
             } label: {
+                // Nero, non oliva: i tondi galleggiano sopra le card
+                // dell'agenda, che sono oliva — un'azione dello stesso colore
+                // di ciò che copre sparisce. Nero pieno per la principale,
+                // chiaro con contorno per l'altra.
                 Circle()
-                    .fill(Color.oliveWood)
+                    .fill(Color.ink)
                     .frame(width: 56, height: 56)
+                    .shadow(color: Color.ink.opacity(0.22), radius: 10, y: 4)
                     .overlay(
                         Image(systemName: "plus")
                             .font(.system(size: 22))

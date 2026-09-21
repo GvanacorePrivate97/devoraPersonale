@@ -209,7 +209,9 @@ is running.
 - Tap on a card → appointment detail (§3.3). Tap on a free spot → "Nuovo appuntamento"
   sheet with that day and quarter hour set (§3.5); taps on blocks and on off-shift
   stretches do nothing.
-- Buttons "Ferie e permessi" (§3.2) and "Nuovo appuntamento" (§3.5).
+- Floating buttons "Ferie e permessi" (§3.2) and "Nuovo appuntamento" (§3.5). They sit over
+  the day grid, so the primary one is **black** and the secondary light with a hairline:
+  olive on olive cards would disappear.
 
 ### 3.2 Ferie e permessi
 Bottom sheet, the same as the owner's (§4.3) without the operator picker (always the
