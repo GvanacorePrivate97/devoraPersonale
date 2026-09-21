@@ -104,7 +104,11 @@ struct AdminProfileScreen: View {
                         Rectangle().fill(Color.stoneBorder).frame(height: 1)
                         StoneKeyValueRow(label: L("admin_profile_phone"), value: viewModel.user?.phone ?? "")
                     }
-                    .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                    .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: Radii.md)
+                            .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                    )
                     .clipShape(RoundedRectangle(cornerRadius: 16))
 
                     BrandSectionLabel(text: L("admin_profile_salon"))
@@ -114,7 +118,11 @@ struct AdminProfileScreen: View {
                         Rectangle().fill(Color.stoneBorder).frame(height: 1)
                         StoneKeyValueRow(label: L("admin_profile_salon_address"), value: viewModel.salon.address)
                     }
-                    .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                    .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: Radii.md)
+                            .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                    )
                     .clipShape(RoundedRectangle(cornerRadius: 16))
 
                     Button {
@@ -126,11 +134,11 @@ struct AdminProfileScreen: View {
                                 .foregroundStyle(Color.errorRed)
                             Text(L("admin_logout"))
                                 .font(Typo.titleMedium)
-                                .foregroundStyle(Color.ink)
+                                .foregroundStyle(Color.errorRed)
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 56)
-                        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.stoneBorder, lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: Radii.md).strokeBorder(Color.errorRed, lineWidth: 1.5))
                     }
                     .buttonStyle(.plain)
                     .padding(.top, 6)

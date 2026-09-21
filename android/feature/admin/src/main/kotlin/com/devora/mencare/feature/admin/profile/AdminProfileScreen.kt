@@ -42,9 +42,8 @@ import com.devora.mencare.core.designsystem.component.StoneKeyValueRow
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.ErrorRed
-import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.feature.admin.R
 
@@ -112,8 +111,9 @@ fun AdminProfileScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(Stone),
+                    .clip(Radii.Md)
+                    .background(Bone)
+                    .border(1.5.dp, StoneBorder, Radii.Md),
             ) {
                 StoneKeyValueRow(stringResource(R.string.admin_profile_email), state.user?.email.orEmpty())
                 HorizontalDivider(color = StoneBorder)
@@ -125,8 +125,9 @@ fun AdminProfileScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(Stone),
+                    .clip(Radii.Md)
+                    .background(Bone)
+                    .border(1.5.dp, StoneBorder, Radii.Md),
             ) {
                 StoneKeyValueRow(stringResource(R.string.admin_profile_salon_name), state.salon?.name.orEmpty())
                 HorizontalDivider(color = StoneBorder)
@@ -138,8 +139,8 @@ fun AdminProfileScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .border(1.dp, StoneBorder, RoundedCornerShape(16.dp))
+                    .clip(Radii.Md)
+                    .border(1.5.dp, ErrorRed, Radii.Md)
                     .clickable { viewModel.logout(onLoggedOut) },
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
@@ -153,7 +154,7 @@ fun AdminProfileScreen(
                 Text(
                     stringResource(R.string.admin_logout),
                     style = MaterialTheme.typography.titleMedium,
-                    color = Ink,
+                    color = ErrorRed,
                     modifier = Modifier.padding(start = 10.dp),
                 )
             }

@@ -643,6 +643,24 @@ Le due app condividono un solo insieme di token (`core/designsystem` su Android,
 - **Tab.** `SegmentedTabs` sulla banda scura: pista traslucida con filo chiaro, voce attiva
   in una pillola d'oro. La usano tutte le schermate con tab — Prossimi/Passati del cliente,
   Giorno/Settimana/Mese del titolare, le quattro sotto-schede di Gestione.
+- **Campi.** Un solo campo di testo in tutta l'app: fondo Bone, raggio di serie e un filo
+  da 1.5 in `OliveSoft` `#C4B69D` — l'accento schiarito. L'accento pieno a riposo faceva
+  sembrare ogni campo selezionato e il grigio li faceva sparire, quindi l'accento pieno
+  resta per l'errore e per ciò che è davvero scelto. Non esiste una seconda variante
+  "piena".
+- **Chip.** Il `BrandChip` scelto è `OliveTint` pieno con filo e testo d'accento; quello
+  non scelto è Bone con filo grigio e testo secondario — mai un blocco d'accento pieno,
+  che in una fila di quattro si leggeva come un quarto pulsante di conferma.
+- **Card.** Liste e pannelli sono Bone con un filo da 1.5 `StoneBorder` e divisori da 1 px
+  fra le righe, non blocchi grigi; lo Stone resta per il singolo riquadro dentro una card
+  (l'anteprima della campagna, il suggerimento sul trascinamento).
+- **Pulsanti.** Tre ruoli e non uno di più: `AccentButton` (pieno) per ciò che conclude —
+  oliva sul chiaro, oro con testo scuro sulle bande near-black; `SecondaryButton` (solo
+  filo, quasi nero) per ciò che apre — "Nuovo servizio", "Ferie e permessi"; e un pulsante
+  di solo testo per ciò che si limita ad andarsene. Le azioni distruttive portano il filo
+  rosso ("Esci dall'account", "Non si è presentato").
+- **Avvisi.** Un conflitto da risolvere è ambra su `WarnTint` (`WarningCard`), non
+  l'accento e non il rosso dell'errore: non è rotto niente, c'è qualcosa da spostare.
 
 ## 8. Differenze di piattaforma
 - **Login social**: Android offre solo Google; iOS offre Accedi con Apple + Google (linea

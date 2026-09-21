@@ -50,11 +50,15 @@ struct ConfirmationScreen: View {
                     .padding(.top, 26)
 
                 AccentButton(
+                    // Oro con testo scuro: la schermata è tutta nera, l'oliva
+                    // ci sparisce.
                     text: L("client_confirm_add_calendar"),
                     action: {},
                     height: 56,
-                    corner: 16,
-                    leadingSystemImage: "calendar"
+                    corner: Radii.md,
+                    leadingSystemImage: "calendar",
+                    container: .oliveLight,
+                    contentColor: .ink
                 )
                 .padding(.top, 28)
                 Button {

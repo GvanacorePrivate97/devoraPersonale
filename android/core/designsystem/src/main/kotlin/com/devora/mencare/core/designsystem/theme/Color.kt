@@ -38,6 +38,14 @@ val OliveWoodDark = Color(0xFF6A5A43)
 /** Fondo piatto delle pill d'accento: niente alpha, così è uguale su Bone e su Stone. */
 val OliveTint = Color(0xFFEFECE9)
 
+/**
+ * Il filo dei campi a riposo. L'oliva pieno faceva sembrare ogni campo
+ * selezionato, il grigio li faceva sparire: questo è l'oliva schiarito del
+ * mockup, che dice "campo" senza dire "attivo". L'accento pieno resta per
+ * l'errore e per ciò che è davvero scelto.
+ */
+val OliveSoft = Color(0xFFC4B69D)
+
 val Ink = Color(0xFF000006) // dark bands, primary text
 val InkSoft = Color(0xFF000004)
 val OnDarkMuted = Color(0xFFB9B6AE) // secondary text on dark bands — 10.4:1 su Ink
@@ -60,4 +68,7 @@ val TrendDown = Color(0xFFE2A2A2)
 // Semantic — tarati su Stone, la peggiore delle due superfici chiare.
 val SuccessGreen = Color(0xFF3E6B4C) // 5.16:1 su Stone
 val WarnAmber = Color(0xFF8A5F1B) // 4.72:1 su Stone
+
+/** Fondo dell'avviso: l'ambra ha il suo colore di superficie, non l'accento. */
+val WarnTint = Color(0xFFFBF5EA)
 val ErrorRed = Color(0xFF8C2F2F) // 6.88:1 su Stone

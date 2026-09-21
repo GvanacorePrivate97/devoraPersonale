@@ -58,6 +58,7 @@ import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -177,8 +178,9 @@ fun ProfileScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(Stone),
+                        .clip(Radii.Md)
+                        .background(Bone)
+                        .border(1.5.dp, StoneBorder, Radii.Md),
                 ) {
                     StoneKeyValueRow(
                         stringResource(R.string.profile_first_name),
@@ -235,8 +237,9 @@ fun ProfileScreen(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(Stone),
+                    .clip(Radii.Md)
+                    .background(Bone)
+                    .border(1.5.dp, StoneBorder, Radii.Md),
             ) {
                 StoneKeyValueRow(
                     label = stringResource(R.string.profile_change_password),
@@ -272,8 +275,8 @@ fun ProfileScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .border(1.dp, StoneBorder, RoundedCornerShape(16.dp))
+                    .clip(Radii.Md)
+                    .border(1.5.dp, ErrorRed, Radii.Md)
                     .clickable(onClick = viewModel::logout),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
@@ -287,7 +290,7 @@ fun ProfileScreen(
                 Text(
                     stringResource(R.string.profile_logout),
                     style = MaterialTheme.typography.titleMedium,
-                    color = Ink,
+                    color = ErrorRed,
                     modifier = Modifier.padding(start = 10.dp),
                 )
             }
@@ -319,8 +322,9 @@ private fun PrefRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(Stone)
+            .clip(Radii.Md)
+            .background(Bone)
+            .border(1.5.dp, StoneBorder, Radii.Md)
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {

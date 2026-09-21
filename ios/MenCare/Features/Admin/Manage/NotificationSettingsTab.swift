@@ -95,13 +95,13 @@ struct NotificationSettingsTab: View {
         VStack(spacing: 0) {
             ForEach(Array(settings.reminders.enumerated()), id: \.element.id) { index, rule in
                 if index > 0 {
-                    Rectangle().fill(Color.bone.opacity(0.1)).frame(height: 1)
+                    Rectangle().fill(Color.stoneBorder).frame(height: 1)
                 }
                 VStack(spacing: 10) {
                     HStack {
                         Text(L("ntf_nth_reminder", index + 1))
                             .font(Typo.bodyLarge)
-                            .foregroundStyle(Color.bone)
+                            .foregroundStyle(Color.ink)
                         Spacer()
                         Button {
                             update { settings in
@@ -129,7 +129,8 @@ struct NotificationSettingsTab: View {
                                     return updated
                                 }
                             }
-                        }
+                        },
+                        onDark: false
                     )
                 }
                 .padding(.vertical, 12)
@@ -148,17 +149,21 @@ struct NotificationSettingsTab: View {
                     Image(systemName: "plus").font(.system(size: 13))
                     Text(L("ntf_add_reminder")).font(Typo.titleSmall)
                 }
-                .foregroundStyle(Color.bone)
+                .foregroundStyle(Color.ink)
                 .frame(maxWidth: .infinity)
                 .frame(height: 48)
-                .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.bone.opacity(0.25), lineWidth: 1))
+                .overlay(RoundedRectangle(cornerRadius: Radii.md).strokeBorder(Color.ink, lineWidth: 1.5))
             }
             .buttonStyle(.plain)
             .padding(.vertical, 10)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 6)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.ink))
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+        .overlay(
+            RoundedRectangle(cornerRadius: Radii.md)
+                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+        )
     }
 
     private func typesPanel(_ settings: NotificationSettings) -> some View {
@@ -179,7 +184,11 @@ struct NotificationSettingsTab: View {
                 update { $0.emptyDayPromos = on }
             }
         }
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+        .overlay(
+            RoundedRectangle(cornerRadius: Radii.md)
+                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+        )
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 

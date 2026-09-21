@@ -42,6 +42,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.graphics.Color
 import com.devora.mencare.core.common.formatDuration
 import com.devora.mencare.core.common.formatPrice
 import com.devora.mencare.core.common.formatTime
@@ -51,9 +52,9 @@ import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.Radii
+import com.devora.mencare.core.designsystem.theme.StoneSoft
 import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.Stone
-import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.core.designsystem.util.dialPhone
 import com.devora.mencare.core.model.AppointmentStatus
@@ -133,10 +134,17 @@ internal fun AppointmentActionsSheet(
             }
 
             Spacer(Modifier.height(12.dp))
+            // Lo stato è una pillola scura come nell'agenda, non una riga di
+            // testo: si legge prima, e il no-show si vede da lontano.
+            val noShow = appointment.status == AppointmentStatus.NO_SHOW
             Text(
                 stringResource(statusLabel(appointment.status)).uppercase(),
                 style = MaterialTheme.typography.labelSmall.copy(fontSize = 11.sp, letterSpacing = 0.12.em),
-                color = if (appointment.status == AppointmentStatus.NO_SHOW) ErrorRed else OliveWood,
+                color = if (noShow) Bone else OliveLight,
+                modifier = Modifier
+                    .clip(Radii.Pill)
+                    .background(if (noShow) ErrorRed else Ink)
+                    .padding(horizontal = 12.dp, vertical = 6.dp),
             )
             Spacer(Modifier.height(12.dp))
             BrandSectionLabel(stringResource(R.string.manual_services))
@@ -159,11 +167,29 @@ internal fun AppointmentActionsSheet(
             }
 
             Spacer(Modifier.height(20.dp))
-            Text(
-                stringResource(R.string.week_move_hint),
-                style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp),
-                color = TextMuted,
-            )
+            // Il suggerimento sul trascinamento è un riquadro, non una riga persa
+            // fra i pulsanti: nel mockup ha il suo fondo e la sua icona.
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(Radii.Md)
+                    .background(StoneSoft)
+                    .padding(horizontal = 12.dp, vertical = 10.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Icon(
+                    Icons.Outlined.Edit,
+                    contentDescription = null,
+                    tint = OliveWood,
+                    modifier = Modifier.size(18.dp),
+                )
+                Text(
+                    stringResource(R.string.week_move_hint),
+                    style = MaterialTheme.typography.bodySmall.copy(fontSize = 13.sp),
+                    color = TextMuted,
+                    modifier = Modifier.padding(start = 10.dp),
+                )
+            }
 
             // "Chiama" sempre, in oro; un appuntamento concluso invece non si
             // modifica né si annulla.
@@ -174,8 +200,8 @@ internal fun AppointmentActionsSheet(
                     modifier = Modifier
                         .then(if (appointment.isActive) Modifier.width(124.dp) else Modifier.weight(1f))
                         .height(54.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(OliveWood)
+                        .clip(Radii.Md)
+                        .border(1.5.dp, OliveWood, Radii.Md)
                         .clickable(enabled = client?.phone?.isNotBlank() == true) { context.dialPhone(client?.phone) },
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
@@ -183,13 +209,13 @@ internal fun AppointmentActionsSheet(
                     Icon(
                         Icons.Outlined.Call,
                         contentDescription = null,
-                        tint = Bone,
+                        tint = OliveWood,
                         modifier = Modifier.size(18.dp),
                     )
                     Text(
                         stringResource(R.string.week_call),
                         style = MaterialTheme.typography.titleMedium,
-                        color = Bone,
+                        color = OliveWood,
                         maxLines = 1,
                         modifier = Modifier.padding(start = 8.dp),
                     )
@@ -228,8 +254,8 @@ internal fun AppointmentActionsSheet(
                         .fillMaxWidth()
                         .height(54.dp)
                         .clip(RoundedCornerShape(16.dp))
-                        .background(if (confirmingNoShow) Ink else Bone)
-                        .border(1.dp, StoneBorder, RoundedCornerShape(16.dp))
+                        .background(if (confirmingNoShow) ErrorRed else Bone)
+                        .border(1.5.dp, ErrorRed, Radii.Md)
                         .clickable {
                             if (confirmingNoShow) {
                                 confirmingNoShow = false
@@ -244,7 +270,7 @@ internal fun AppointmentActionsSheet(
                     Icon(
                         Icons.Outlined.EventBusy,
                         contentDescription = null,
-                        tint = if (confirmingNoShow) Bone else Ink,
+                        tint = if (confirmingNoShow) Bone else ErrorRed,
                         modifier = Modifier.size(18.dp),
                     )
                     Text(
@@ -252,7 +278,7 @@ internal fun AppointmentActionsSheet(
                             if (confirmingNoShow) R.string.week_no_show_confirm else R.string.week_mark_no_show,
                         ),
                         style = MaterialTheme.typography.titleMedium,
-                        color = if (confirmingNoShow) Bone else Ink,
+                        color = if (confirmingNoShow) Bone else ErrorRed,
                         modifier = Modifier.padding(start = 10.dp),
                     )
                 }
@@ -290,7 +316,7 @@ internal fun AppointmentActionsSheet(
                         .fillMaxWidth()
                         .height(54.dp)
                         .clip(RoundedCornerShape(16.dp))
-                        .background(if (confirming) ErrorRed else Stone)
+                        .background(if (confirming) ErrorRed else Color.Transparent)
                         .clickable {
                             if (confirming) onCancelAppointment() else confirming = true
                         },
@@ -300,7 +326,7 @@ internal fun AppointmentActionsSheet(
                     Icon(
                         Icons.Outlined.Delete,
                         contentDescription = null,
-                        tint = if (confirming) Bone else ErrorRed,
+                        tint = if (confirming) Bone else TextMuted,
                         modifier = Modifier.size(18.dp),
                     )
                     Text(
@@ -308,7 +334,7 @@ internal fun AppointmentActionsSheet(
                             if (confirming) R.string.week_cancel_confirm else R.string.week_cancel,
                         ),
                         style = MaterialTheme.typography.titleMedium,
-                        color = if (confirming) Bone else ErrorRed,
+                        color = if (confirming) Bone else TextMuted,
                         modifier = Modifier.padding(start = 10.dp),
                     )
                 }

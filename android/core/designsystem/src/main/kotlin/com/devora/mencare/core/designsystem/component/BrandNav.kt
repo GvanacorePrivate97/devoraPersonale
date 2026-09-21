@@ -45,9 +45,11 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.GoldSoft
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.OliveTint
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.OnDarkMuted
 import com.devora.mencare.core.designsystem.theme.Overline
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -220,7 +222,12 @@ fun SegmentedTabs(
 }
 
 /**
- * Standalone selectable chip used for filters, categories and quick choices.
+ * Chip selezionabile: filtri, categorie e scelte rapide.
+ *
+ * Scelto = fondo OliveTint con il filo d'accento e il testo d'accento; non
+ * scelto = fondo Bone con il filo grigio e il testo secondario. Prima lo scelto
+ * era un blocco d'oliva pieno: pesava come un pulsante di conferma e, in una
+ * fila di quattro, la schermata sembrava avere quattro azioni primarie.
  *
  * `fill` is for rows of equal chips (give each `Modifier.weight(1f)`): the chip
  * gets a fixed height and the label shrinks (and, with `maxLines = 2`, wraps)
@@ -237,15 +244,29 @@ fun BrandChip(
     maxLines: Int = 1,
 ) {
     val container = when {
-        selected -> OliveWood
+        selected && onDark -> OliveLight.copy(alpha = 0.22f)
+        selected -> OliveTint
         onDark -> Bone.copy(alpha = 0.1f)
-        else -> Stone
+        else -> Bone
+    }
+    val border = when {
+        selected && onDark -> OliveLight.copy(alpha = 0.45f)
+        selected -> OliveWood
+        onDark -> Bone.copy(alpha = 0.14f)
+        else -> StoneBorder
+    }
+    val content = when {
+        selected && onDark -> GoldSoft
+        selected -> OliveWood
+        onDark -> OnDarkMuted
+        else -> TextMuted
     }
     Box(
         modifier = modifier
             .then(if (fill) Modifier.height(if (maxLines > 1) 58.dp else 42.dp) else Modifier)
-            .clip(RoundedCornerShape(10.dp))
+            .clip(Radii.Pill)
             .background(container)
+            .border(1.5.dp, border, Radii.Pill)
             .clickable(onClick = onClick)
             .padding(horizontal = if (fill) 6.dp else 16.dp, vertical = if (fill) 0.dp else 11.dp),
         contentAlignment = Alignment.Center,
@@ -254,7 +275,7 @@ fun BrandChip(
         Text(
             text,
             style = style,
-            color = if (selected || onDark) Bone else Ink,
+            color = content,
             textAlign = TextAlign.Center,
             maxLines = maxLines,
             overflow = if (fill) TextOverflow.Clip else TextOverflow.Ellipsis,
@@ -278,22 +299,6 @@ fun StoneCard(
         .background(container)
     Column(
         modifier = if (onClick != null) base.clickable(onClick = onClick) else base,
-        content = content,
-    )
-}
-
-/** Outlined variant used for highlighted panels (staff notes, conflict warnings). */
-@Composable
-fun AccentOutlinedCard(
-    modifier: Modifier = Modifier,
-    content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit,
-) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(Bone)
-            .border(1.5.dp, OliveWood, RoundedCornerShape(16.dp)),
         content = content,
     )
 }
@@ -572,7 +577,11 @@ fun DarkContinueBar(
     }
 }
 
-/** Dark running-total footer with an olive call to action (booking steps 2 and 3). */
+/**
+ * Barra scura col totale e l'azione che porta avanti (passi 2 e 3 del wizard).
+ * L'azione è oro, non oliva: sul nero l'oliva si ferma sotto il 4.5:1 ed è la
+ * regola della banda scura in tutta l'app.
+ */
 @Composable
 fun DarkTotalBar(
     caption: String,
@@ -612,8 +621,8 @@ fun DarkTotalBar(
             Row(
                 modifier = Modifier
                     .height(50.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(OliveWood)
+                    .clip(Radii.Md)
+                    .background(OliveLight)
                     .clickable(onClick = onClick)
                     .padding(horizontal = 22.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -621,13 +630,13 @@ fun DarkTotalBar(
                 Text(
                     ctaLabel,
                     style = MaterialTheme.typography.titleMedium,
-                    color = Bone,
+                    color = Ink,
                 )
                 Spacer(Modifier.width(9.dp))
                 Icon(
                     Icons.AutoMirrored.Outlined.ArrowForward,
                     contentDescription = null,
-                    tint = Bone,
+                    tint = Ink,
                     modifier = Modifier.size(16.dp),
                 )
             }

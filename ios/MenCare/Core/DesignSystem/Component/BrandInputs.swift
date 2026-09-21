@@ -1,6 +1,6 @@
 import SwiftUI
 
-private let fieldCorner: CGFloat = 14
+private let fieldCorner: CGFloat = Radii.md
 private let fieldHeight: CGFloat = 52
 private let fieldTextSize: CGFloat = 15
 
@@ -16,7 +16,9 @@ struct FieldLabel: View {
     }
 }
 
-/// Filled input on the Stone surface — the resting state of every text field in the app.
+/// L'unico campo di testo dell'app: fondo Bone, raggio di serie e un filo
+/// d'oliva tenue. Prima ce n'erano due — uno grigio pieno e uno col bordo oliva
+/// — e la stessa schermata li mescolava; il mockup ne disegna uno solo.
 struct FilledTextField<Trailing: View>: View {
     let label: String
     @Binding var text: String
@@ -30,7 +32,6 @@ struct FilledTextField<Trailing: View>: View {
     var helper: String?
     var enabled: Bool = true
     var height: CGFloat = fieldHeight
-    var outlined: Bool = false
     /// Passata dai campi condivisi che devono normalizzare il valore al blur
     /// (il telefono): `.focused` funziona solo sulla TextField vera.
     var focus: FocusState<Bool>.Binding?
@@ -48,7 +49,6 @@ struct FilledTextField<Trailing: View>: View {
         helper: String? = nil,
         enabled: Bool = true,
         height: CGFloat = fieldHeight,
-        outlined: Bool = false,
         focus: FocusState<Bool>.Binding? = nil,
         @ViewBuilder trailing: () -> Trailing = { EmptyView() }
     ) {
@@ -63,7 +63,6 @@ struct FilledTextField<Trailing: View>: View {
         self.helper = helper
         self.enabled = enabled
         self.height = height
-        self.outlined = outlined
         self.focus = focus
         self.trailing = trailing()
     }
@@ -97,14 +96,13 @@ struct FilledTextField<Trailing: View>: View {
             }
             .padding(.horizontal, 15)
             .frame(height: height)
-            .background(RoundedRectangle(cornerRadius: fieldCorner).fill(outlined ? Color.bone : Color.stone))
+            .background(RoundedRectangle(cornerRadius: fieldCorner).fill(Color.bone))
             .overlay(
                 RoundedRectangle(cornerRadius: fieldCorner)
                     .strokeBorder(
-                        error != nil ? Color.errorRed : Color.oliveWood,
+                        error != nil ? Color.errorRed : Color.oliveSoft,
                         lineWidth: 1.5
                     )
-                    .opacity(outlined || error != nil ? 1 : 0)
             )
             FieldMessageRow(error: error, helper: helper)
         }
@@ -120,7 +118,7 @@ struct FilledTextField<Trailing: View>: View {
     }
 }
 
-/// Password input: outlined in Olive Wood with an inline show/hide toggle.
+/// Password: stesso telaio degli altri campi, con mostra/nascondi dentro.
 struct BorderedPasswordField: View {
     let label: String
     @Binding var text: String
@@ -161,7 +159,7 @@ struct BorderedPasswordField: View {
             .background(RoundedRectangle(cornerRadius: fieldCorner).fill(Color.bone))
             .overlay(
                 RoundedRectangle(cornerRadius: fieldCorner)
-                    .strokeBorder(error != nil ? Color.errorRed : Color.oliveWood, lineWidth: 1.5)
+                    .strokeBorder(error != nil ? Color.errorRed : Color.oliveSoft, lineWidth: 1.5)
             )
             FieldMessageRow(error: error, helper: helper)
         }

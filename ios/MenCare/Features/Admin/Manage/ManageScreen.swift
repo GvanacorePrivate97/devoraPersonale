@@ -106,11 +106,12 @@ private struct ServicesTab: View {
                 .padding(.bottom, 16)
                 .readableWidth()
             }
-            AccentButton(
+            // Affianca la navigazione, non conclude niente: filo nero, non
+            // riempimento d'accento.
+            SecondaryButton(
                 text: L("manage_new_service"),
                 action: { onEditService(nil) },
                 height: 54,
-                corner: 16,
                 leadingSystemImage: "plus"
             )
             .padding(.horizontal, 20)
@@ -145,7 +146,11 @@ private struct ServicesTab: View {
             }
             .padding(.horizontal, 15)
             .padding(.vertical, 13)
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+            .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+            .overlay(
+                RoundedRectangle(cornerRadius: Radii.md)
+                    .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+            )
         }
         .buttonStyle(.plain)
         .padding(.bottom, 9)
@@ -172,11 +177,10 @@ private struct OperatorsTab: View {
                 .readableWidth()
             }
             // Stesso pulsante in fondo della tab Servizi.
-            AccentButton(
+            SecondaryButton(
                 text: L("ops_new"),
                 action: onNewOperator,
                 height: 54,
-                corner: 16,
                 leadingSystemImage: "plus"
             )
             .padding(.horizontal, 20)

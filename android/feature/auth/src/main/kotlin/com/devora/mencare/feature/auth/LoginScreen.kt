@@ -111,7 +111,6 @@ fun LoginScreen(
                 label = stringResource(R.string.auth_email),
                 leadingIcon = Icons.Outlined.MailOutline,
                 error = state.emailError,
-                outlined = true,
             )
             Spacer(Modifier.height(12.dp))
             PasswordField(

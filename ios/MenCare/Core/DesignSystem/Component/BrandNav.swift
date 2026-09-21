@@ -166,11 +166,26 @@ struct BrandChip: View {
     var fill: Bool = false
     var maxLines: Int = 1
 
+    private var container: Color {
+        if selected { return onDark ? Color.oliveLight.opacity(0.22) : .oliveTint }
+        return onDark ? Color.bone.opacity(0.1) : .bone
+    }
+
+    private var border: Color {
+        if selected { return onDark ? Color.oliveLight.opacity(0.45) : .oliveWood }
+        return onDark ? Color.bone.opacity(0.14) : .stoneBorder
+    }
+
+    private var content: Color {
+        if selected { return onDark ? .goldSoft : .oliveWood }
+        return onDark ? .onDarkMuted : .textMuted
+    }
+
     var body: some View {
         Button(action: action) {
             Text(text)
                 .font(Typo.titleSmall)
-                .foregroundStyle(selected || onDark ? Color.bone : Color.ink)
+                .foregroundStyle(content)
                 .lineLimit(maxLines)
                 .multilineTextAlignment(.center)
                 .minimumScaleFactor(fill ? 0.7 : 1)
@@ -179,8 +194,10 @@ struct BrandChip: View {
                 .padding(.vertical, fill ? 0 : 11)
                 .contentShape(Rectangle())
                 .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(selected ? Color.oliveWood : (onDark ? Color.bone.opacity(0.1) : Color.stone))
+                    ZStack {
+                        Capsule().fill(container)
+                        Capsule().strokeBorder(border, lineWidth: 1.5)
+                    }
                 )
         }
         .buttonStyle(.plain)
@@ -190,13 +207,13 @@ struct BrandChip: View {
 /// Rounded Stone container that most list rows and panels sit in.
 struct StoneCard<Content: View>: View {
     var onTap: (() -> Void)?
-    var corner: CGFloat = 18
+    var corner: CGFloat = Radii.md
     var container: Color = .stone
     @ViewBuilder let content: Content
 
     init(
         onTap: (() -> Void)? = nil,
-        corner: CGFloat = 18,
+        corner: CGFloat = Radii.md,
         container: Color = .stone,
         @ViewBuilder content: () -> Content
     ) {
@@ -215,18 +232,6 @@ struct StoneCard<Content: View>: View {
         } else {
             card
         }
-    }
-}
-
-/// Outlined variant used for highlighted panels (staff notes, conflict warnings).
-struct AccentOutlinedCard<Content: View>: View {
-    @ViewBuilder let content: Content
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) { content }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color.bone))
-            .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.oliveWood, lineWidth: 1.5))
     }
 }
 
@@ -459,7 +464,9 @@ struct DarkContinueBar: View {
     }
 }
 
-/// Dark running-total footer with an olive call to action (booking steps 2 and 3).
+/// Barra scura col totale e l'azione che porta avanti (passi 2 e 3 del wizard).
+/// L'azione è oro, non oliva: sul nero l'oliva si ferma sotto il 4.5:1 ed è la
+/// regola della banda scura in tutta l'app.
 struct DarkTotalBar: View {
     let caption: String
     let value: String
@@ -485,10 +492,10 @@ struct DarkTotalBar: View {
                     Text(ctaLabel).font(Typo.titleMedium)
                     Image(systemName: "arrow.right").font(.system(size: 14, weight: .medium))
                 }
-                .foregroundStyle(Color.bone)
+                .foregroundStyle(Color.ink)
                 .padding(.horizontal, 22)
                 .frame(height: 50)
-                .background(RoundedRectangle(cornerRadius: 16).fill(Color.oliveWood))
+                .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.oliveLight))
             }
             .buttonStyle(.plain)
         }

@@ -1,6 +1,7 @@
 package com.devora.mencare.feature.staff
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -64,8 +65,11 @@ import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.OliveTint
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.core.ui.crm.FixedClientRow
 import java.time.LocalDate
@@ -156,14 +160,14 @@ fun StaffBookingScreen(
                     leadingIcon = Icons.Outlined.Search,
                 )
                 Column(
-                    modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Stone),
+                    modifier = Modifier.fillMaxWidth().clip(Radii.Md).background(Bone).border(1.5.dp, StoneBorder, Radii.Md),
                 ) {
                     state.results.take(3).forEach { client ->
                         val selected = state.selectedClient?.id == client.id
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .background(if (selected) OliveWood.copy(alpha = 0.18f) else Stone)
+                                .background(if (selected) OliveTint else Bone)
                                 .clickable { viewModel.selectClient(client) }
                                 .padding(horizontal = 14.dp, vertical = 12.dp),
                             verticalAlignment = Alignment.CenterVertically,
@@ -307,8 +311,9 @@ fun StaffBookingScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(Stone)
+                        .clip(Radii.Md)
+                        .background(Bone)
+                        .border(1.5.dp, StoneBorder, Radii.Md)
                         .padding(horizontal = 16.dp, vertical = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
@@ -373,8 +378,9 @@ private fun DateField(value: String, onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(Stone)
+            .clip(Radii.Md)
+            .background(Bone)
+            .border(1.5.dp, StoneBorder, Radii.Md)
             .clickable(onClick = onClick)
             .padding(horizontal = 14.dp),
         verticalAlignment = Alignment.CenterVertically,

@@ -587,42 +587,44 @@ struct WeeklyAgendaScreen: View {
         )
     }
 
+    /// Le stesse due azioni dell'agenda operatore, con le stesse parole: due
+    /// tondi senza etichetta lasciavano indovinare quale fosse quale, e le due
+    /// agende non si somigliavano più.
     private var fabs: some View {
-        VStack(alignment: .trailing, spacing: 12) {
+        HStack(spacing: 10) {
             Button {
                 blockSheetOpen = true
             } label: {
-                Circle()
-                    .fill(Color.bone)
-                    .frame(width: 56, height: 56)
-                    .overlay(Circle().strokeBorder(Color.stoneBorder, lineWidth: 1.5))
-                    .overlay(
-                        Image(systemName: "calendar.badge.minus")
-                            .font(.system(size: 20))
-                            .foregroundStyle(Color.ink)
-                    )
+                HStack(spacing: 6) {
+                    Image(systemName: "calendar.badge.minus").font(.system(size: 16))
+                    Text(L("week_new_block")).font(Typo.jost(14, weight: .medium)).lineLimit(1)
+                }
+                .foregroundStyle(Color.ink)
+                .frame(maxWidth: .infinity)
+                .frame(height: 52)
+                .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                .overlay(RoundedRectangle(cornerRadius: Radii.md).strokeBorder(Color.ink, lineWidth: 1.5))
             }
             .buttonStyle(.plain)
             Button {
                 openBooking(operatorId: nil, time: nil)
             } label: {
-                // Nero, non oliva: i tondi galleggiano sopra le card
+                // Nero, non oliva: i pulsanti galleggiano sopra le card
                 // dell'agenda, che sono oliva — un'azione dello stesso colore
-                // di ciò che copre sparisce. Nero pieno per la principale,
-                // chiaro con contorno per l'altra.
-                Circle()
-                    .fill(Color.ink)
-                    .frame(width: 56, height: 56)
-                    .shadow(color: Color.ink.opacity(0.22), radius: 10, y: 4)
-                    .overlay(
-                        Image(systemName: "plus")
-                            .font(.system(size: 22))
-                            .foregroundStyle(Color.bone)
-                    )
+                // di ciò che copre sparisce.
+                HStack(spacing: 6) {
+                    Image(systemName: "plus").font(.system(size: 16))
+                    Text(L("week_new_booking")).font(Typo.jost(14, weight: .medium)).lineLimit(1)
+                }
+                .foregroundStyle(Color.bone)
+                .frame(maxWidth: .infinity)
+                .frame(height: 52)
+                .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.ink))
+                .shadow(color: Color.ink.opacity(0.22), radius: 10, y: 4)
             }
             .buttonStyle(.plain)
+            .layoutPriority(1)
         }
-        .frame(maxWidth: .infinity, alignment: .trailing)
         .padding(20)
     }
 

@@ -56,3 +56,38 @@ struct SocialButton: View {
         .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
     }
 }
+
+/// L'azione che affianca la principale — "Nuovo servizio", "Ferie e permessi":
+/// solo il filo, niente riempimento, così sulla stessa riga si vede subito qual
+/// è delle due quella che conclude.
+struct SecondaryButton: View {
+    let text: String
+    let action: () -> Void
+    var enabled: Bool = true
+    var onDark: Bool = false
+    var height: CGFloat = 52
+    var leadingSystemImage: String?
+
+    private var content: Color { onDark ? .bone : .ink }
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 9) {
+                if let leadingSystemImage {
+                    Image(systemName: leadingSystemImage).font(.system(size: 15))
+                }
+                Text(text).font(Typo.titleMedium).kerning(0.8)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: height)
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(content)
+        .overlay(
+            RoundedRectangle(cornerRadius: Radii.md)
+                .strokeBorder(onDark ? Color.bone.opacity(0.4) : content, lineWidth: 1.5)
+        )
+        .opacity(enabled ? 1 : 0.5)
+        .disabled(!enabled)
+    }
+}

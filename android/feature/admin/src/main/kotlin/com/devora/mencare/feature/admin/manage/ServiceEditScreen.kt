@@ -1,6 +1,7 @@
 package com.devora.mencare.feature.admin.manage
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -53,7 +54,7 @@ import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.feature.admin.R
 
@@ -96,7 +97,6 @@ fun ServiceEditScreen(
                 value = state.name,
                 onValueChange = viewModel::setName,
                 label = stringResource(R.string.svc_name),
-                outlined = true,
                 error = validationMessageOrNull(state.nameError),
             )
 
@@ -135,7 +135,7 @@ fun ServiceEditScreen(
                 BrandSectionLabel(stringResource(R.string.svc_operators))
                 Spacer(Modifier.height(8.dp))
                 Column(
-                    modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Stone),
+                    modifier = Modifier.fillMaxWidth().clip(Radii.Md).background(Bone).border(1.5.dp, StoneBorder, Radii.Md),
                 ) {
                     state.operators.forEachIndexed { index, operator ->
                         if (index > 0) HorizontalDivider(color = StoneBorder)

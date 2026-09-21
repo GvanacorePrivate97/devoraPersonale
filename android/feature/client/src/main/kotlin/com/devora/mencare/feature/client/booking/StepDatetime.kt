@@ -53,14 +53,15 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
+import com.devora.mencare.feature.client.R
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.YearMonth
-import com.devora.mencare.feature.client.R
 
 @Composable
 internal fun StepDatetime(state: BookingUiState, viewModel: BookingViewModel) {
@@ -259,8 +260,9 @@ private fun WaitlistPrompt(state: BookingUiState, viewModel: BookingViewModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(Stone)
+            .clip(Radii.Md)
+            .background(Bone)
+            .border(1.5.dp, StoneBorder, Radii.Md)
             .padding(horizontal = 15.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {

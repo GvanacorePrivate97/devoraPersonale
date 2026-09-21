@@ -194,23 +194,18 @@ struct AdminBlockSheet: View {
 
                     FormErrorBanner(message: viewModel.saveError)
                     if !viewModel.conflicts.isEmpty {
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(L("block_conflicts_admin", viewModel.conflicts.count))
-                                .font(Typo.jost(15, weight: .medium))
-                                .foregroundStyle(Color.errorRed)
-                            ForEach(viewModel.conflicts) { conflict in
-                                Text("\(formatTime(conflict.time)) · \(formatDurationLong(conflict.durationMinutes))")
+                        WarningCard(title: L("block_conflicts_admin", viewModel.conflicts.count)) {
+                            VStack(alignment: .leading, spacing: 6) {
+                                ForEach(viewModel.conflicts) { conflict in
+                                    Text("\(formatTime(conflict.time)) · \(formatDurationLong(conflict.durationMinutes))")
+                                        .font(Typo.jost(12))
+                                        .foregroundStyle(Color.textMuted)
+                                }
+                                Text(L("block_conflicts_admin_hint"))
                                     .font(Typo.jost(12))
                                     .foregroundStyle(Color.textMuted)
                             }
-                            Text(L("block_conflicts_admin_hint"))
-                                .font(Typo.jost(12))
-                                .foregroundStyle(Color.textMuted)
                         }
-                        .padding(14)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.bone))
-                        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.errorRed, lineWidth: 1.5))
                     }
                 }
                 .padding(.horizontal, 20)
@@ -323,10 +318,15 @@ struct AppointmentActionsSheet: View {
                         .font(Typo.titleMedium)
                         .foregroundStyle(Color.ink)
                 }
+                // Lo stato è una pillola scura come nell'agenda, non una riga di
+                // testo: si legge prima, e il no-show si vede da lontano.
                 Text(statusLabel(appointment.status).uppercased())
                     .font(Typo.jost(11, weight: .medium))
                     .kerning(1.2)
-                    .foregroundStyle(appointment.status == .noShow ? Color.errorRed : Color.oliveWood)
+                    .foregroundStyle(appointment.status == .noShow ? Color.bone : Color.oliveLight)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Capsule().fill(appointment.status == .noShow ? Color.errorRed : Color.ink))
                     .padding(.top, 12)
                 BrandSectionLabel(text: L("manual_services"))
                     .padding(.top, 12)
@@ -342,10 +342,22 @@ struct AppointmentActionsSheet: View {
                     }
                 }
                 .padding(.top, 8)
-                Text(L("week_move_hint"))
-                    .font(Typo.jost(12))
-                    .foregroundStyle(Color.textMuted)
-                    .padding(.top, 20)
+                // Il suggerimento sul trascinamento è un riquadro, non una riga
+                // persa fra i pulsanti: nel mockup ha il suo fondo e la sua icona.
+                HStack(spacing: 10) {
+                    Image(systemName: "pencil")
+                        .font(.system(size: 15))
+                        .foregroundStyle(Color.oliveWood)
+                    Text(L("week_move_hint"))
+                        .font(Typo.jost(13))
+                        .foregroundStyle(Color.textMuted)
+                    Spacer(minLength: 0)
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity)
+                .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.stoneSoft))
+                .padding(.top, 20)
                 // "Chiama" sempre, in oro; un appuntamento concluso invece non si
                 // modifica né si annulla.
                 HStack(spacing: 10) {
@@ -360,10 +372,13 @@ struct AppointmentActionsSheet: View {
                                 .lineLimit(1)
                                 .fixedSize()
                         }
-                        .foregroundStyle(Color.bone)
+                        .foregroundStyle(Color.oliveWood)
                         .frame(maxWidth: appointment.isActive ? nil : .infinity)
                         .frame(width: appointment.isActive ? 124 : nil, height: 54)
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.oliveWood))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .strokeBorder(Color.oliveWood, lineWidth: 1.5)
+                        )
                     }
                     .buttonStyle(.plain)
                     if appointment.isActive {
@@ -399,14 +414,17 @@ struct AppointmentActionsSheet: View {
                             Text(L(confirmingNoShow ? "week_no_show_confirm" : "week_mark_no_show"))
                                 .font(Typo.titleMedium)
                         }
-                        .foregroundStyle(confirmingNoShow ? Color.bone : Color.ink)
+                        .foregroundStyle(confirmingNoShow ? Color.bone : Color.errorRed)
                         .frame(maxWidth: .infinity)
                         .frame(height: 54)
                         .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(confirmingNoShow ? Color.ink : Color.bone)
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .fill(confirmingNoShow ? Color.errorRed : Color.bone)
                         )
-                        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.stoneBorder, lineWidth: 1))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .strokeBorder(Color.errorRed, lineWidth: 1.5)
+                        )
                     }
                     .buttonStyle(.plain)
                     .padding(.top, 10)
@@ -437,12 +455,12 @@ struct AppointmentActionsSheet: View {
                             Text(L(confirming ? "week_cancel_confirm" : "week_cancel"))
                                 .font(Typo.titleMedium)
                         }
-                        .foregroundStyle(confirming ? Color.bone : Color.errorRed)
+                        .foregroundStyle(confirming ? Color.bone : Color.textMuted)
                         .frame(maxWidth: .infinity)
                         .frame(height: 54)
                         .background(
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(confirming ? Color.errorRed : Color.stone)
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .fill(confirming ? Color.errorRed : Color.clear)
                         )
                     }
                     .buttonStyle(.plain)

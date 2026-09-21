@@ -381,7 +381,11 @@ struct ManualBookingScreen: View {
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
-                    .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                    .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: Radii.md)
+                            .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                    )
 
                 }
                 .padding(.horizontal, 20)
@@ -459,7 +463,7 @@ struct ManualBookingScreen: View {
                     }
                     .padding(.horizontal, 14)
                     .padding(.vertical, 12)
-                    .background(selected ? Color.oliveWood.opacity(0.18) : Color.stone)
+                    .background(selected ? Color.oliveTint : Color.bone)
                 }
                 .buttonStyle(.plain)
             }
@@ -483,7 +487,11 @@ struct ManualBookingScreen: View {
             }
             .buttonStyle(.plain)
         }
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+        .overlay(
+            RoundedRectangle(cornerRadius: Radii.md)
+                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+        )
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 
@@ -509,7 +517,11 @@ struct ManualBookingScreen: View {
         }
         .padding(.horizontal, 14)
         .frame(height: 56)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+        .overlay(
+            RoundedRectangle(cornerRadius: Radii.md)
+                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+        )
         .contentShape(Rectangle())
     }
 }

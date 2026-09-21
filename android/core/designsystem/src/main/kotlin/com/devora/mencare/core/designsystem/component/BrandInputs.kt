@@ -41,8 +41,8 @@ import com.devora.mencare.core.designsystem.R
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.OliveSoft
 import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.TextMuted
 
 internal val FieldShape = RoundedCornerShape(16.dp)
@@ -61,7 +61,11 @@ fun FieldLabel(text: String, modifier: Modifier = Modifier) {
 
 private val FieldTextSize = 15.sp
 
-/** Filled input on the Stone surface — the resting state of every text field in the app. */
+/**
+ * L'unico campo di testo dell'app: fondo Bone, raggio di serie e un filo
+ * d'oliva tenue. Prima ce n'erano due — uno grigio pieno e uno col bordo oliva
+ * — e la stessa schermata li mescolava; il mockup ne disegna uno solo.
+ */
 @Composable
 fun FilledTextField(
     value: String,
@@ -75,7 +79,6 @@ fun FilledTextField(
     error: String? = null,
     enabled: Boolean = true,
     height: Dp = FieldHeight,
-    outlined: Boolean = false,
     trailing: @Composable (() -> Unit)? = null,
 ) {
     Column(modifier.fillMaxWidth()) {
@@ -97,10 +100,8 @@ fun FilledTextField(
                 modifier = Modifier
                     .fillMaxSize()
                     .clip(FieldShape)
-                    .background(if (outlined) Bone else Stone)
-                    .then(
-                        if (outlined) Modifier.border(1.5.dp, OliveWood, FieldShape) else Modifier,
-                    )
+                    .background(Bone)
+                    .border(1.5.dp, if (error != null) ErrorRed else OliveSoft, FieldShape)
                     .padding(horizontal = 15.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -148,7 +149,7 @@ fun FilledTextField(
     }
 }
 
-/** Password input: outlined in Olive Wood with an inline show/hide toggle. */
+/** Password: stesso telaio degli altri campi, con mostra/nascondi dentro. */
 @Composable
 fun BorderedPasswordField(
     value: String,
@@ -181,7 +182,7 @@ fun BorderedPasswordField(
                     .fillMaxSize()
                     .clip(FieldShape)
                     .background(Bone)
-                    .border(1.5.dp, if (error != null) ErrorRed else OliveWood, FieldShape)
+                    .border(1.5.dp, if (error != null) ErrorRed else OliveSoft, FieldShape)
                     .padding(horizontal = 15.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {

@@ -79,7 +79,11 @@ struct CrmDetailScreen: View {
                     StoneKeyValueRow(label: L("crm_cadence"), value: L("crm_cadence_value", days))
                 }
             }
-            .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+            .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+            .overlay(
+                RoundedRectangle(cornerRadius: Radii.md)
+                    .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+            )
             .padding(.bottom, 8)
         }
     }
@@ -185,7 +189,11 @@ struct CrmDetailScreen: View {
                         .foregroundStyle(Color.ink)
                         .frame(maxWidth: .infinity)
                         .frame(height: 54)
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                        )
                 }
                 .buttonStyle(.plain)
                 .frame(maxWidth: .infinity)

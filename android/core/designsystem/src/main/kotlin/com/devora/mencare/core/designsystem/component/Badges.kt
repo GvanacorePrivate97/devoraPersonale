@@ -12,7 +12,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.Stone
 
@@ -36,12 +35,3 @@ fun Pill(
         Text(text, style = MaterialTheme.typography.labelMedium, color = content)
     }
 }
-
-/**
- * Pill d'accento. Il fondo è un tono pieno, non l'oliva al 14%: con l'alpha il
- * contrasto del testo cambiava a seconda di cosa c'era sotto (4.5:1 su Bone,
- * 3.3:1 su Stone). Così è 4.76:1 ovunque.
- */
-@Composable
-
-@Composable

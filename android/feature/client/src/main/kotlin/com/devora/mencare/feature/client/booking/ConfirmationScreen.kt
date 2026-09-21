@@ -44,6 +44,8 @@ import com.devora.mencare.core.designsystem.component.AccentButton
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Ink
+import com.devora.mencare.core.designsystem.theme.Radii
+import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.feature.client.R
 
@@ -155,12 +157,15 @@ private fun ConfirmationContent(
         }
 
         Spacer(Modifier.height(28.dp))
+        // Oro con testo scuro: la schermata è tutta nera, l'oliva ci sparisce.
         AccentButton(
             text = stringResource(R.string.client_confirm_add_calendar),
             onClick = {},
             height = 56.dp,
-            shape = RoundedCornerShape(16.dp),
+            shape = Radii.Md,
             leadingIcon = Icons.Outlined.CalendarMonth,
+            container = OliveLight,
+            contentColor = Ink,
         )
         Spacer(Modifier.height(10.dp))
         Box(

@@ -40,9 +40,9 @@ import com.devora.mencare.core.common.formatDateShort
 import com.devora.mencare.core.common.formatDurationLong
 import com.devora.mencare.core.common.formatTime
 import com.devora.mencare.core.designsystem.component.AccentButton
-import com.devora.mencare.core.designsystem.component.AccentOutlinedCard
 import com.devora.mencare.core.designsystem.component.BarAction
 import com.devora.mencare.core.designsystem.component.BrandChip
+import com.devora.mencare.core.designsystem.component.WarningCard
 import com.devora.mencare.core.designsystem.component.BrandDatePickerDialog
 import com.devora.mencare.core.designsystem.component.BrandSectionLabel
 import com.devora.mencare.core.designsystem.component.BrandTimePickerDialog
@@ -50,8 +50,7 @@ import com.devora.mencare.core.designsystem.component.PickerTile
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
-import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.core.model.BlockReason
 
@@ -219,25 +218,8 @@ internal fun BlockSheet(
 @Composable
 private fun ConflictsCard(state: BlockUiState, viewModel: BlockViewModel) {
     val conflicts = state.unresolvedConflicts
-    AccentOutlinedCard {
-        Column(Modifier.padding(14.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(
-                    modifier = Modifier
-                        .size(26.dp)
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(OliveWood),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Text("!", style = MaterialTheme.typography.titleSmall, color = Bone)
-                }
-                Text(
-                    stringResource(R.string.block_conflicts_count, conflicts.size),
-                    style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp),
-                    color = Ink,
-                    modifier = Modifier.padding(start = 10.dp),
-                )
-            }
+    WarningCard(title = stringResource(R.string.block_conflicts_count, conflicts.size)) {
+        Column {
             conflicts.forEach { conflict ->
                 Spacer(Modifier.height(8.dp))
                 Text(
@@ -259,7 +241,7 @@ private fun ConflictsCard(state: BlockUiState, viewModel: BlockViewModel) {
                             style = MaterialTheme.typography.titleSmall,
                             color = Bone,
                             modifier = Modifier
-                                .clip(RoundedCornerShape(10.dp))
+                                .clip(Radii.Sm)
                                 .background(Ink)
                                 .clickable { viewModel.reassign(conflict.id, colleague.id) }
                                 .padding(horizontal = 14.dp, vertical = 11.dp),
@@ -270,8 +252,8 @@ private fun ConflictsCard(state: BlockUiState, viewModel: BlockViewModel) {
                         style = MaterialTheme.typography.titleSmall,
                         color = Ink,
                         modifier = Modifier
-                            .clip(RoundedCornerShape(10.dp))
-                            .background(Stone)
+                            .clip(Radii.Sm)
+                            .background(Bone)
                             .clickable { viewModel.proposeNewTime(conflict.id) }
                             .padding(horizontal = 14.dp, vertical = 11.dp),
                     )

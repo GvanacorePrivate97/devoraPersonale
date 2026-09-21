@@ -93,8 +93,3 @@ fun DarkHeaderTitle(
         }
     }
 }
-
-/** Small uppercase section label in Olive Wood. */
-@Composable
-
-@Composable

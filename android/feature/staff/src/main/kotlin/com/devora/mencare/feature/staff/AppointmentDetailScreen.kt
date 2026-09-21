@@ -55,7 +55,8 @@ import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.Radii
+import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.util.dialPhone
 import com.devora.mencare.core.model.AppointmentStatus
 
@@ -208,8 +209,9 @@ fun AppointmentDetailScreen(
                         color = Ink,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(Stone)
+                            .clip(Radii.Md)
+                            .background(Bone)
+                            .border(1.5.dp, StoneBorder, Radii.Md)
                             .padding(horizontal = 15.dp, vertical = 14.dp),
                     )
                 }
@@ -224,8 +226,9 @@ fun AppointmentDetailScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 8.dp)
-                                .clip(RoundedCornerShape(16.dp))
-                                .background(Stone)
+                                .clip(Radii.Md)
+                                .background(Bone)
+                                .border(1.5.dp, StoneBorder, Radii.Md)
                                 .padding(horizontal = 15.dp, vertical = 14.dp),
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
@@ -279,8 +282,9 @@ fun AppointmentDetailScreen(
                 modifier = Modifier
                     .weight(1f)
                     .height(54.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(Stone)
+                    .clip(Radii.Md)
+                    .background(Bone)
+                    .border(1.5.dp, StoneBorder, Radii.Md)
                     .clickable(enabled = client?.phone?.isNotBlank() == true) { context.dialPhone(client?.phone) },
                 contentAlignment = Alignment.Center,
             ) {

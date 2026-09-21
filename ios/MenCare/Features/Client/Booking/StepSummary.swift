@@ -30,16 +30,28 @@ struct StepSummary: View {
                 .padding(.bottom, 16)
                 .readableWidth()
             }
+            // Ultimo passo: la conferma chiude il wizard dentro la stessa banda
+            // scura dei passi 2 e 3, con l'azione in oro. Su fondo chiaro era
+            // l'unico passo che cambiava aspetto proprio sul gesto che conta.
             AccentButton(
                 text: L("wizard_confirm_cta"),
                 action: viewModel.confirm,
                 loading: viewModel.submitting,
                 height: 56,
-                corner: 16
+                corner: Radii.md,
+                container: .oliveLight,
+                contentColor: .ink
             )
             .padding(.horizontal, 20)
-            .padding(.bottom, 14)
+            .padding(.top, 16)
+            .padding(.bottom, 16)
             .readableWidth()
+            .frame(maxWidth: .infinity)
+            .background(
+                Color.ink
+                    .clipShape(.rect(topLeadingRadius: 26, topTrailingRadius: 26))
+                    .ignoresSafeArea(edges: .bottom)
+            )
         }
     }
 
@@ -97,7 +109,11 @@ struct StepSummary: View {
                 }
                 .padding(.horizontal, 15)
                 .padding(.vertical, 14)
-                .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                .overlay(
+                    RoundedRectangle(cornerRadius: Radii.md)
+                        .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                )
             }
             HStack {
                 Text(L("wizard_summary_total"))

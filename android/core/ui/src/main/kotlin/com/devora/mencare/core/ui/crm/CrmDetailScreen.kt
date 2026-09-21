@@ -1,6 +1,7 @@
 package com.devora.mencare.core.ui.crm
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -52,7 +53,7 @@ import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.OnDarkMuted
-import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.util.dialPhone
 import com.devora.mencare.core.ui.R
@@ -157,8 +158,9 @@ fun CrmDetailScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(Stone),
+                        .clip(Radii.Md)
+                        .background(Bone)
+                        .border(1.5.dp, StoneBorder, Radii.Md),
                 ) {
                     if (favorite != null) {
                         StoneKeyValueRow(stringResource(R.string.crm_favorite_operator), favorite)
@@ -239,8 +241,9 @@ fun CrmDetailScreen(
                     modifier = Modifier
                         .weight(1f)
                         .height(54.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(Stone)
+                        .clip(Radii.Md)
+                        .background(Bone)
+                        .border(1.5.dp, StoneBorder, Radii.Md)
                         .clickable(enabled = client.phone.isNotBlank()) { context.dialPhone(client.phone) },
                     contentAlignment = Alignment.Center,
                 ) {

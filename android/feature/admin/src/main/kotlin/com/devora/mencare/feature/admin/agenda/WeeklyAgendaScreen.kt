@@ -76,6 +76,7 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.OnDarkMuted
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
@@ -285,45 +286,71 @@ fun WeeklyAgendaScreen(
             // Durante il trascinamento i bottoni si tolgono di mezzo: la card
             // deve poter atterrare anche nell'angolo che occupano.
             if (drag == null) {
-                Column(
-                    modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp),
-                    horizontalAlignment = Alignment.End,
+                // Le stesse due azioni dell'agenda operatore, con le stesse
+                // parole: due tondi senza etichetta lasciavano indovinare quale
+                // fosse quale, e le due agende non si somigliavano più.
+                Row(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .padding(20.dp),
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    Box(
+                    Row(
                         modifier = Modifier
-                            .size(56.dp)
-                            .clip(CircleShape)
+                            .weight(1f)
+                            .height(52.dp)
+                            .clip(Radii.Md)
                             .background(Bone)
-                            .border(1.5.dp, StoneBorder, CircleShape)
-                            .clickable { blockSheetOpen = true },
-                        contentAlignment = Alignment.Center,
+                            .border(1.5.dp, Ink, Radii.Md)
+                            .clickable { blockSheetOpen = true }
+                            .padding(horizontal = 14.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(
                             Icons.Outlined.EventBusy,
-                            contentDescription = stringResource(R.string.week_new_block),
+                            contentDescription = null,
                             tint = Ink,
-                            modifier = Modifier.size(24.dp),
+                            modifier = Modifier.size(18.dp),
+                        )
+                        Text(
+                            stringResource(R.string.week_new_block),
+                            style = MaterialTheme.typography.titleMedium.copy(fontSize = 14.sp),
+                            color = Ink,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(start = 6.dp),
                         )
                     }
-                    Spacer(Modifier.height(12.dp))
-                    // Nero, non oliva: i tondi galleggiano sopra le card
+                    // Nero, non oliva: i pulsanti galleggiano sopra le card
                     // dell'agenda, che sono oliva — un'azione dello stesso
-                    // colore di ciò che copre sparisce. Nero pieno per la
-                    // principale, chiaro con contorno per l'altra.
-                    Box(
+                    // colore di ciò che copre sparisce.
+                    Row(
                         modifier = Modifier
-                            .size(56.dp)
-                            .shadow(10.dp, CircleShape)
-                            .clip(CircleShape)
+                            .weight(1.35f)
+                            .height(52.dp)
+                            .shadow(10.dp, Radii.Md)
+                            .clip(Radii.Md)
                             .background(Ink)
-                            .clickable { openBooking(null, null) },
-                        contentAlignment = Alignment.Center,
+                            .clickable { openBooking(null, null) }
+                            .padding(horizontal = 14.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(
                             Icons.Outlined.Add,
-                            contentDescription = stringResource(R.string.week_new_booking),
+                            contentDescription = null,
                             tint = Bone,
-                            modifier = Modifier.size(24.dp),
+                            modifier = Modifier.size(18.dp),
+                        )
+                        Text(
+                            stringResource(R.string.week_new_booking),
+                            style = MaterialTheme.typography.titleMedium.copy(fontSize = 14.sp),
+                            color = Bone,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(start = 6.dp),
                         )
                     }
                 }

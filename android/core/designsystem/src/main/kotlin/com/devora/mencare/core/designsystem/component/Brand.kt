@@ -36,9 +36,3 @@ fun LogoBadge(
         )
     }
 }
-
-/**
- * Hatched stand-in for a service photo — the mockup ships no imagery yet, and a
- * labelled placeholder reads as deliberate where a grey box reads as broken.
- */
-@Composable

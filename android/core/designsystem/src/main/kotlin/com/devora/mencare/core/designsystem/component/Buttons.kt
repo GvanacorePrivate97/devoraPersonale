@@ -1,5 +1,6 @@
 package com.devora.mencare.core.designsystem.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -28,9 +29,8 @@ import androidx.compose.ui.unit.em
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.Stone
-
-@Composable
 
 @Composable
 fun AccentButton(
@@ -102,21 +102,23 @@ fun SecondaryButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     onDark: Boolean = false,
+    height: Dp = 52.dp,
+    leadingIcon: ImageVector? = null,
 ) {
+    val content = if (onDark) Bone else Ink
     OutlinedButton(
         onClick = onClick,
-        modifier = modifier.fillMaxWidth().height(52.dp),
+        modifier = modifier.fillMaxWidth().height(height),
         enabled = enabled,
-        shape = MaterialTheme.shapes.medium,
-        colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = if (onDark) com.devora.mencare.core.designsystem.theme.Bone else Ink,
-        ),
-        border = androidx.compose.foundation.BorderStroke(
-            1.dp,
-            if (onDark) com.devora.mencare.core.designsystem.theme.Bone.copy(alpha = 0.4f) else MaterialTheme.colorScheme.outline,
-        ),
+        shape = Radii.Md,
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = content),
+        border = BorderStroke(1.5.dp, if (onDark) Bone.copy(alpha = 0.4f) else content),
     ) {
-        Text(text, style = MaterialTheme.typography.titleMedium)
+        if (leadingIcon != null) {
+            Icon(leadingIcon, contentDescription = null, modifier = Modifier.size(17.dp))
+            Spacer(Modifier.width(9.dp))
+        }
+        Text(text, style = MaterialTheme.typography.titleMedium.copy(letterSpacing = 0.05.em))
     }
 }
 

@@ -619,6 +619,23 @@ on iOS); a token changes in both, in the same commit.
 - **Tabs.** `SegmentedTabs` on a dark band: translucent track with a light hairline, the
   active option in a gold pill. Every tabbed surface uses it — the client's
   Prossimi/Passati, the owner's Giorno/Settimana/Mese, the four Gestione sub-tabs.
+- **Fields.** One text field for the whole app: Bone fill, the default radius, and a
+  1.5 hairline in `OliveSoft` `#C4B69D` — the accent lightened. Full accent at rest made
+  every field look focused and grey made them disappear, so the strong accent is kept for
+  the error state and for what is actually chosen. There is no second "filled" variant.
+- **Chips.** A selected `BrandChip` is flat `OliveTint` with an accent hairline and accent
+  label; an unselected one is Bone with the grey hairline and secondary label — never a
+  solid accent block, which read as a fourth confirm button in a row of four.
+- **Cards.** Lists and panels are Bone with a 1.5 `StoneBorder` hairline and 1 px dividers
+  between rows, not grey blocks; Stone stays for the single inset panel inside a card
+  (the campaign preview, the drag hint).
+- **Buttons.** Three roles and no more: `AccentButton` (filled) for what completes a task —
+  olive on light, gold with dark text on the near-black bands; `SecondaryButton` (hairline
+  only, near-black) for what opens one — "Nuovo servizio", "Ferie e permessi"; and a plain
+  text button for what merely leaves. Destructive actions carry the red hairline
+  ("Esci dall'account", "Non si è presentato").
+- **Warnings.** A conflict to resolve is amber on `WarnTint` (`WarningCard`), not the
+  accent and not the error red: nothing is broken, something has to be moved.
 
 ## 8. Platform differences
 - **Social login**: Android offers Google only; iOS offers Sign in with Apple + Google

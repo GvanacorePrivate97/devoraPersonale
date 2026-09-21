@@ -42,13 +42,13 @@ import com.devora.mencare.core.common.formatTime
 import com.devora.mencare.core.designsystem.component.AccentButton
 import com.devora.mencare.core.designsystem.component.BarAction
 import com.devora.mencare.core.designsystem.component.BrandChip
+import com.devora.mencare.core.designsystem.component.WarningCard
 import com.devora.mencare.core.designsystem.component.BrandSectionLabel
 import com.devora.mencare.core.designsystem.component.BrandDatePickerDialog
 import com.devora.mencare.core.designsystem.component.BrandTimePickerDialog
 import com.devora.mencare.core.designsystem.component.PickerTile
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
-import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.core.model.BlockReason
@@ -176,20 +176,9 @@ internal fun AdminBlockSheet(
                 }
 
                 if (state.conflicts.isNotEmpty()) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(Bone)
-                            .border(1.5.dp, ErrorRed, RoundedCornerShape(16.dp))
-                            .padding(14.dp),
+                    WarningCard(
+                        title = stringResource(R.string.block_conflicts_admin, state.conflicts.size),
                     ) {
-                        Text(
-                            stringResource(R.string.block_conflicts_admin, state.conflicts.size),
-                            style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp),
-                            color = ErrorRed,
-                        )
-                        Spacer(Modifier.height(6.dp))
                         state.conflicts.forEach { conflict ->
                             Text(
                                 "${formatTime(conflict.time)} · ${formatDurationLong(conflict.durationMinutes)}",

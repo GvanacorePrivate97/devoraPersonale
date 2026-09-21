@@ -35,8 +35,7 @@ struct LoginScreen: View {
                         label: L("auth_email"),
                         text: $viewModel.email,
                         leadingSystemImage: "envelope",
-                        error: viewModel.emailError,
-                        outlined: true
+                        error: viewModel.emailError
                     )
                     .onChange(of: viewModel.email) { viewModel.clearError() }
                     .padding(.bottom, 12)

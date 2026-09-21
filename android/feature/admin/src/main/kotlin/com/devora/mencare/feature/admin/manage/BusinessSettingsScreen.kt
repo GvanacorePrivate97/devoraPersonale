@@ -1,6 +1,7 @@
 package com.devora.mencare.feature.admin.manage
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,7 +38,8 @@ import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
-import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.Radii
+import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.feature.admin.R
 import java.time.DayOfWeek
@@ -76,8 +78,9 @@ internal fun BusinessSettingsTab(viewModel: BusinessSettingsViewModel = hiltView
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(Stone)
+                        .clip(Radii.Md)
+                        .background(Bone)
+                        .border(1.5.dp, StoneBorder, Radii.Md)
                         .padding(horizontal = 14.dp, vertical = 12.dp),
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {

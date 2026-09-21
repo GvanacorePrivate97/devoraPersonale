@@ -189,6 +189,10 @@ struct BusinessSettingsTab: View {
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+        .overlay(
+            RoundedRectangle(cornerRadius: Radii.md)
+                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+        )
     }
 }

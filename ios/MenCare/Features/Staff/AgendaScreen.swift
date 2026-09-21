@@ -169,8 +169,8 @@ struct AgendaScreen: View {
                         .foregroundStyle(Color.ink)
                         .frame(maxWidth: .infinity)
                         .frame(height: 52)
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.bone))
-                        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.stoneBorder, lineWidth: 1))
+                        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                        .overlay(RoundedRectangle(cornerRadius: Radii.md).strokeBorder(Color.ink, lineWidth: 1.5))
                     }
                     .buttonStyle(.plain)
                     Button {

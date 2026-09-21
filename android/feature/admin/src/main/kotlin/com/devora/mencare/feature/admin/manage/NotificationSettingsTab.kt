@@ -42,7 +42,7 @@ import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.feature.admin.R
@@ -64,18 +64,19 @@ internal fun NotificationSettingsTab(viewModel: NotificationSettingsViewModel = 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(16.dp))
-                .background(Ink)
+                .clip(Radii.Md)
+                .background(Bone)
+                .border(1.5.dp, StoneBorder, Radii.Md)
                 .padding(horizontal = 16.dp, vertical = 6.dp),
         ) {
             settings.reminders.forEachIndexed { index, rule ->
-                if (index > 0) HorizontalDivider(color = Bone.copy(alpha = 0.1f))
+                if (index > 0) HorizontalDivider(color = StoneBorder)
                 Column(modifier = Modifier.fillMaxWidth().padding(vertical = 12.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
                             stringResource(R.string.ntf_nth_reminder, index + 1),
                             style = MaterialTheme.typography.bodyLarge,
-                            color = Bone,
+                            color = Ink,
                             modifier = Modifier.weight(1f),
                         )
                         IconButton(onClick = { viewModel.removeReminder(rule.id) }) {
@@ -92,6 +93,7 @@ internal fun NotificationSettingsTab(viewModel: NotificationSettingsViewModel = 
                         options = options.map { hours -> reminderLabel(hours) },
                         selectedIndex = options.indexOf(rule.hoursBefore),
                         onSelect = { viewModel.setReminderHours(rule.id, options[it]) },
+                        onDark = false,
                     )
                 }
             }
@@ -100,17 +102,17 @@ internal fun NotificationSettingsTab(viewModel: NotificationSettingsViewModel = 
                     .fillMaxWidth()
                     .padding(vertical = 10.dp)
                     .height(48.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .border(1.dp, Bone.copy(alpha = 0.25f), RoundedCornerShape(16.dp))
+                    .clip(Radii.Md)
+                    .border(1.5.dp, Ink, Radii.Md)
                     .clickable(onClick = viewModel::addReminder),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Icon(Icons.Outlined.Add, contentDescription = null, tint = Bone, modifier = Modifier.size(16.dp))
+                Icon(Icons.Outlined.Add, contentDescription = null, tint = Ink, modifier = Modifier.size(16.dp))
                 Text(
                     stringResource(R.string.ntf_add_reminder),
                     style = MaterialTheme.typography.titleSmall,
-                    color = Bone,
+                    color = Ink,
                     modifier = Modifier.padding(start = 8.dp),
                 )
             }
@@ -119,7 +121,7 @@ internal fun NotificationSettingsTab(viewModel: NotificationSettingsViewModel = 
         Spacer(Modifier.height(4.dp))
         BrandSectionLabel(stringResource(R.string.ntf_types))
         Column(
-            modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Stone),
+            modifier = Modifier.fillMaxWidth().clip(Radii.Md).background(Bone).border(1.5.dp, StoneBorder, Radii.Md),
         ) {
             ToggleRow(
                 title = stringResource(R.string.ntf_confirmation),

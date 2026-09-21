@@ -133,7 +133,7 @@ struct ServiceEditScreen: View {
                     FilledTextField(
                         label: L("svc_name"), text: $viewModel.name,
                         autocapitalization: .sentences,
-                        error: viewModel.fieldErrors["name"], outlined: true
+                        error: viewModel.fieldErrors["name"]
                     )
                     .onChange(of: viewModel.name) { viewModel.fieldChanged() }
 
@@ -197,7 +197,11 @@ struct ServiceEditScreen: View {
                                 .buttonStyle(.plain)
                             }
                         }
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                        )
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
                 }

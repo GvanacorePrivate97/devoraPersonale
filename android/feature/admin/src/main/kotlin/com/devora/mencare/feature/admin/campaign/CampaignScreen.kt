@@ -60,8 +60,12 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.OliveSoft
+import com.devora.mencare.core.designsystem.theme.OliveTint
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.core.model.CampaignSegment
 import com.devora.mencare.feature.admin.R
@@ -123,7 +127,6 @@ fun CampaignScreen(
                 value = state.name,
                 onValueChange = viewModel::setName,
                 label = stringResource(R.string.camp_name),
-                outlined = true,
                 error = validationMessageOrNull(state.nameError),
             )
 
@@ -161,7 +164,7 @@ fun CampaignScreen(
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(16.dp))
                         .background(Bone)
-                        .border(1.5.dp, OliveWood, RoundedCornerShape(16.dp))
+                        .border(1.5.dp, OliveSoft, RoundedCornerShape(16.dp))
                         .padding(14.dp),
                 ) {
                     BasicTextField(
@@ -188,32 +191,35 @@ fun CampaignScreen(
             }
 
             BrandSectionLabel(stringResource(R.string.camp_preview))
+            // L'anteprima è la notifica come la vede il cliente: sul telefono
+            // arriva su fondo chiaro, non su una banda scura. L'icona scura è
+            // il posto del marchio, come nel mockup.
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(Ink)
+                    .clip(Radii.Md)
+                    .background(Stone)
                     .padding(14.dp),
             ) {
                 Box(
-                    modifier = Modifier.size(34.dp).clip(RoundedCornerShape(10.dp)).background(Bone.copy(alpha = 0.14f)),
+                    modifier = Modifier.size(38.dp).clip(Radii.Sm).background(Ink),
                 )
                 Column(Modifier.weight(1f).padding(start = 11.dp)) {
                     Text(
                         state.title.ifBlank { stringResource(R.string.camp_msg_title) },
                         style = MaterialTheme.typography.titleSmall,
-                        color = Bone,
+                        color = Ink,
                     )
                     Text(
                         state.previewBody,
-                        style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp, lineHeight = 18.sp),
-                        color = Bone,
+                        style = MaterialTheme.typography.bodySmall.copy(fontSize = 13.sp, lineHeight = 18.sp),
+                        color = TextMuted,
                     )
                 }
                 Text(
                     stringResource(R.string.camp_now),
-                    style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
-                    color = Bone.copy(alpha = 0.6f),
+                    style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp),
+                    color = TextMuted,
                 )
             }
 
@@ -245,8 +251,9 @@ fun CampaignScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(Stone)
+                        .clip(Radii.Md)
+                        .background(Bone)
+                        .border(1.5.dp, StoneBorder, Radii.Md)
                         .padding(horizontal = 16.dp, vertical = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
@@ -315,13 +322,14 @@ private enum class Picking { DATE, TIME }
 
 @Composable
 private fun TokenChip(text: String, onClick: () -> Unit) {
+    // Pill d'accento come le altre: fondo OliveTint pieno, testo oliva.
     Text(
         text,
-        style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp),
-        color = Ink,
+        style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp),
+        color = OliveWood,
         modifier = Modifier
-            .clip(RoundedCornerShape(10.dp))
-            .background(Stone)
+            .clip(Radii.Pill)
+            .background(OliveTint)
             .clickable(onClick = onClick)
             .padding(horizontal = 11.dp, vertical = 8.dp),
     )

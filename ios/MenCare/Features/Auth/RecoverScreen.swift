@@ -90,8 +90,7 @@ struct RecoverScreen: View {
                         label: L("auth_email_account"),
                         text: $viewModel.email,
                         leadingSystemImage: "envelope",
-                        error: viewModel.emailError,
-                        outlined: true
+                        error: viewModel.emailError
                     )
                     .onChange(of: viewModel.email) { viewModel.emailChanged() }
                     AccentButton(
@@ -104,7 +103,7 @@ struct RecoverScreen: View {
                     )
                     FormErrorBanner(message: viewModel.genericError)
                     if viewModel.sent {
-                        StoneCard(corner: 16, container: .oliveWood.opacity(0.14)) {
+                        StoneCard(container: .oliveTint) {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(L("auth_recover_sent_title"))
                                     .font(Typo.titleSmall)

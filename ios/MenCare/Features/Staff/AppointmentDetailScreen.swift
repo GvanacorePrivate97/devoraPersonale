@@ -186,7 +186,11 @@ struct AppointmentDetailScreen: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 15)
                                 .padding(.vertical, 14)
-                                .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                                .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: Radii.md)
+                                        .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                                )
                         }
                     }
 
@@ -206,7 +210,11 @@ struct AppointmentDetailScreen: View {
                                 }
                                 .padding(.horizontal, 15)
                                 .padding(.vertical, 14)
-                                .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                                .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: Radii.md)
+                                        .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                                )
                             }
                         }
                     }
@@ -259,7 +267,11 @@ struct AppointmentDetailScreen: View {
                         .foregroundStyle(Color.ink)
                         .frame(maxWidth: .infinity)
                         .frame(height: 54)
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                        )
                 }
                 .buttonStyle(.plain)
                 // Lo stato si chiude da solo a fine servizio (§6.2): il

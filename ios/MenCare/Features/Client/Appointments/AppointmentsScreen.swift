@@ -178,7 +178,11 @@ struct AppointmentsScreen: View {
             }
         }
         .padding(12)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+        .overlay(
+            RoundedRectangle(cornerRadius: Radii.md)
+                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+        )
     }
 
     private var emptyUpcoming: some View {
@@ -231,7 +235,11 @@ struct AppointmentsScreen: View {
                         }
                         .padding(.horizontal, 15)
                         .padding(.vertical, 14)
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                        )
                     }
                     .buttonStyle(.plain)
                     .padding(.top, 10)

@@ -169,9 +169,9 @@ fun AgendaScreen(
                     modifier = Modifier
                         .weight(1f)
                         .height(52.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                        .border(1.dp, StoneBorder, RoundedCornerShape(16.dp))
+                        .clip(Radii.Md)
                         .background(Bone)
+                        .border(1.5.dp, Ink, Radii.Md)
                         .clickable { blockSheetOpen = true }
                         .padding(horizontal = 14.dp),
                     horizontalArrangement = Arrangement.Center,

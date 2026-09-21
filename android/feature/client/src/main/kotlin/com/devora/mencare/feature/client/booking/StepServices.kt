@@ -32,7 +32,6 @@ import com.devora.mencare.core.common.formatDuration
 import com.devora.mencare.core.common.formatPrice
 import com.devora.mencare.core.common.formatPriceCompact
 import com.devora.mencare.core.designsystem.component.BottomBarReveal
-import com.devora.mencare.core.designsystem.component.BrandSectionLabel
 import com.devora.mencare.core.designsystem.component.DarkTotalBar
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone

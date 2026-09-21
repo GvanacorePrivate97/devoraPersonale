@@ -146,7 +146,7 @@ struct OperatorEditScreen: View {
                 VStack(alignment: .leading, spacing: 12) {
                     NameField(
                         label: L("ops_field_name"), text: $viewModel.name,
-                        error: viewModel.fieldErrors["name"], outlined: true
+                        error: viewModel.fieldErrors["name"]
                     )
                     .onChange(of: viewModel.name) { viewModel.fieldChanged() }
                     FilledTextField(

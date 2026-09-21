@@ -40,7 +40,6 @@ struct NameField: View {
     var placeholder: String?
     var error: String?
     var height: CGFloat = 52
-    var outlined: Bool = false
 
     var body: some View {
         FilledTextField(
@@ -49,8 +48,7 @@ struct NameField: View {
             placeholder: placeholder,
             autocapitalization: .words,
             error: error,
-            height: height,
-            outlined: outlined
+            height: height
         )
     }
 }
@@ -66,7 +64,6 @@ struct EmailField: View {
     var leadingSystemImage: String?
     var error: String?
     var height: CGFloat = 52
-    var outlined: Bool = false
 
     var body: some View {
         FilledTextField(
@@ -77,8 +74,7 @@ struct EmailField: View {
             keyboard: .emailAddress,
             autocapitalization: .never,
             error: error,
-            height: height,
-            outlined: outlined
+            height: height
         )
     }
 }
@@ -95,7 +91,6 @@ struct PhoneField: View {
     var placeholder: String?
     var error: String?
     var height: CGFloat = 52
-    var outlined: Bool = false
 
     @FocusState private var focused: Bool
 
@@ -116,7 +111,6 @@ struct PhoneField: View {
             autocapitalization: .never,
             error: error,
             height: height,
-            outlined: outlined,
             focus: $focused
         )
         .onChange(of: focused) { _, isFocused in
@@ -289,7 +283,7 @@ struct CounterTextField<Accessory: View>: View {
             .background(RoundedRectangle(cornerRadius: 16).fill(Color.bone))
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .strokeBorder(error != nil ? Color.errorRed : Color.oliveWood, lineWidth: 1.5)
+                    .strokeBorder(error != nil ? Color.errorRed : Color.oliveSoft, lineWidth: 1.5)
             )
             FieldMessageRow(error: error, helper: nil)
         }

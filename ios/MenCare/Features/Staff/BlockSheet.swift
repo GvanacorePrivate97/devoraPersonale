@@ -264,17 +264,8 @@ struct BlockSheet: View {
     }
 
     private var conflictsCard: some View {
-        AccentOutlinedCard {
+        WarningCard(title: L("block_conflicts_count", viewModel.unresolvedConflicts.count)) {
             VStack(alignment: .leading, spacing: 0) {
-                HStack(spacing: 10) {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.oliveWood)
-                        .frame(width: 26, height: 26)
-                        .overlay(Text("!").font(Typo.titleSmall).foregroundStyle(Color.bone))
-                    Text(L("block_conflicts_count", viewModel.unresolvedConflicts.count))
-                        .font(Typo.jost(15, weight: .medium))
-                        .foregroundStyle(Color.ink)
-                }
                 ForEach(viewModel.unresolvedConflicts) { conflict in
                     Text(L(
                         "block_conflict_desc",
@@ -295,7 +286,7 @@ struct BlockSheet: View {
                                     .foregroundStyle(Color.bone)
                                     .padding(.horizontal, 14)
                                     .padding(.vertical, 11)
-                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.ink))
+                                    .background(RoundedRectangle(cornerRadius: Radii.sm).fill(Color.ink))
                             }
                             .buttonStyle(.plain)
                         }
@@ -307,7 +298,7 @@ struct BlockSheet: View {
                                 .foregroundStyle(Color.ink)
                                 .padding(.horizontal, 14)
                                 .padding(.vertical, 11)
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color.stone))
+                                .background(RoundedRectangle(cornerRadius: Radii.sm).fill(Color.bone))
                         }
                         .buttonStyle(.plain)
                     }

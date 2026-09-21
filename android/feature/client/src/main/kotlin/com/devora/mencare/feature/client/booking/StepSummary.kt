@@ -46,8 +46,10 @@ import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.OliveSoft
 import com.devora.mencare.core.designsystem.theme.OliveWood
-import com.devora.mencare.core.designsystem.theme.Stone
+import com.devora.mencare.core.designsystem.theme.Radii
+import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
 import com.devora.mencare.feature.client.R
 
@@ -72,8 +74,9 @@ internal fun StepSummary(state: BookingUiState, viewModel: BookingViewModel) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(Stone)
+                            .clip(Radii.Md)
+                            .background(Bone)
+                            .border(1.5.dp, StoneBorder, Radii.Md)
                             .padding(horizontal = 15.dp, vertical = 14.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
@@ -124,20 +127,32 @@ internal fun StepSummary(state: BookingUiState, viewModel: BookingViewModel) {
                 )
             }
         }
-        Column(
+        // Ultimo passo: la conferma chiude il wizard dentro la stessa banda
+        // scura dei passi 2 e 3, con l'azione in oro. Su fondo chiaro era
+        // l'unico passo che cambiava aspetto proprio sul gesto che conta.
+        Box(
             modifier = Modifier
-                .navigationBarsPadding()
-                .readableWidth()
-                .padding(horizontal = 20.dp)
-                .padding(bottom = 14.dp),
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(topStart = 26.dp, topEnd = 26.dp))
+                .background(Ink),
         ) {
-            AccentButton(
-                text = stringResource(R.string.wizard_confirm_cta),
-                onClick = viewModel::confirm,
-                loading = state.submitting,
-                height = 56.dp,
-                shape = RoundedCornerShape(16.dp),
-            )
+            Column(
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .readableWidth()
+                    .padding(horizontal = 20.dp)
+                    .padding(top = 16.dp, bottom = 16.dp),
+            ) {
+                AccentButton(
+                    text = stringResource(R.string.wizard_confirm_cta),
+                    onClick = viewModel::confirm,
+                    loading = state.submitting,
+                    height = 56.dp,
+                    shape = Radii.Md,
+                    container = OliveLight,
+                    contentColor = Ink,
+                )
+            }
         }
     }
 }
@@ -217,7 +232,7 @@ private fun NoteBlock(state: BookingUiState, viewModel: BookingViewModel) {
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(16.dp))
                 .background(Bone)
-                .border(1.5.dp, OliveWood, RoundedCornerShape(16.dp))
+                .border(1.5.dp, OliveSoft, Radii.Md)
                 .padding(14.dp),
         ) {
             BasicTextField(

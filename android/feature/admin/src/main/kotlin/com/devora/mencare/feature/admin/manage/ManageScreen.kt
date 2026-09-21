@@ -44,7 +44,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.devora.mencare.core.common.formatDayGroup
 import com.devora.mencare.core.common.formatPriceCompact
 import com.devora.mencare.core.common.formatTime
-import com.devora.mencare.core.designsystem.component.AccentButton
+import com.devora.mencare.core.designsystem.component.SecondaryButton
 import com.devora.mencare.core.designsystem.component.BrandSectionLabel
 import com.devora.mencare.core.designsystem.component.DarkHeader
 import com.devora.mencare.core.designsystem.component.SegmentedTabs
@@ -54,6 +54,7 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -143,11 +144,12 @@ private fun ServicesTab(state: ManageUiState, onEditService: (String?) -> Unit) 
         Column(
             modifier = Modifier.readableWidth().padding(horizontal = 20.dp).padding(bottom = 14.dp),
         ) {
-            AccentButton(
+            // Affianca la navigazione, non conclude niente: filo nero, non
+            // riempimento d'accento.
+            SecondaryButton(
                 text = stringResource(R.string.manage_new_service),
                 onClick = { onEditService(null) },
                 height = 54.dp,
-                shape = RoundedCornerShape(16.dp),
                 leadingIcon = Icons.Outlined.Add,
             )
         }
@@ -161,8 +163,9 @@ private fun ServiceRow(service: Service, operators: List<Operator>, onClick: () 
         modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 9.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(Stone)
+            .clip(Radii.Md)
+            .background(Bone)
+            .border(1.5.dp, StoneBorder, Radii.Md)
             .clickable(onClick = onClick)
             .padding(horizontal = 15.dp, vertical = 13.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -204,11 +207,10 @@ private fun OperatorsTab(state: ManageUiState, onNewOperator: () -> Unit) {
         Column(
             modifier = Modifier.readableWidth().padding(horizontal = 20.dp).padding(bottom = 14.dp),
         ) {
-            AccentButton(
+            SecondaryButton(
                 text = stringResource(R.string.ops_new),
                 onClick = onNewOperator,
                 height = 54.dp,
-                shape = RoundedCornerShape(16.dp),
                 leadingIcon = Icons.Outlined.Add,
             )
         }

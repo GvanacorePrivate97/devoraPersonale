@@ -181,7 +181,7 @@ struct CampaignScreen: View {
                     FilledTextField(
                         label: L("camp_name"), text: $viewModel.name,
                         autocapitalization: .sentences,
-                        error: viewModel.fieldErrors["name"], outlined: true
+                        error: viewModel.fieldErrors["name"]
                     )
                     .onChange(of: viewModel.name) { viewModel.fieldChanged() }
 
@@ -236,7 +236,11 @@ struct CampaignScreen: View {
                         }
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                        )
                     }
                 }
                 .padding(.horizontal, 20)
@@ -314,35 +318,39 @@ struct CampaignScreen: View {
         Button {
             viewModel.appendToken(token)
         } label: {
+            // Pill d'accento come le altre: fondo OliveTint pieno, testo oliva.
             Text(label)
-                .font(Typo.jost(12))
-                .foregroundStyle(Color.ink)
+                .font(Typo.jost(11, weight: .medium))
+                .foregroundStyle(Color.oliveWood)
                 .padding(.horizontal, 11)
                 .padding(.vertical, 8)
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color.stone))
+                .background(Capsule().fill(Color.oliveTint))
         }
         .buttonStyle(.plain)
     }
 
+    /// L'anteprima è la notifica come la vede il cliente: sul telefono arriva su
+    /// fondo chiaro, non su una banda scura. L'icona scura è il posto del
+    /// marchio, come nel mockup.
     private var preview: some View {
         HStack(alignment: .top, spacing: 11) {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.bone.opacity(0.14))
-                .frame(width: 34, height: 34)
+            RoundedRectangle(cornerRadius: Radii.sm)
+                .fill(Color.ink)
+                .frame(width: 38, height: 38)
             VStack(alignment: .leading, spacing: 2) {
                 Text(viewModel.title.isEmpty ? L("camp_msg_title") : viewModel.title)
                     .font(Typo.titleSmall)
-                    .foregroundStyle(Color.bone)
+                    .foregroundStyle(Color.ink)
                 Text(viewModel.previewBody)
-                    .font(Typo.jost(12))
-                    .foregroundStyle(Color.bone)
+                    .font(Typo.jost(13))
+                    .foregroundStyle(Color.textMuted)
             }
             Spacer()
             Text(L("camp_now"))
-                .font(Typo.jost(11))
-                .foregroundStyle(Color.bone.opacity(0.6))
+                .font(Typo.jost(11, weight: .medium))
+                .foregroundStyle(Color.textMuted)
         }
         .padding(14)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.ink))
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.stone))
     }
 }

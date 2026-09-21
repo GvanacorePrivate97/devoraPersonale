@@ -221,7 +221,11 @@ struct ProfileScreen: View {
                             Rectangle().fill(Color.stoneBorder).frame(height: 1)
                             StoneKeyValueRow(label: L("profile_phone"), value: viewModel.phone)
                         }
-                        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: Radii.md)
+                                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                        )
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
 
@@ -236,7 +240,11 @@ struct ProfileScreen: View {
                         valueColor: .oliveWood,
                         onTap: { changingPassword = true }
                     )
-                    .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+                    .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: Radii.md)
+                            .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+                    )
 
                     BrandSectionLabel(text: L("profile_notifications"))
                         .padding(.top, 6)
@@ -254,11 +262,11 @@ struct ProfileScreen: View {
                                 .foregroundStyle(Color.errorRed)
                             Text(L("profile_logout"))
                                 .font(Typo.titleMedium)
-                                .foregroundStyle(Color.ink)
+                                .foregroundStyle(Color.errorRed)
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 56)
-                        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.stoneBorder, lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: Radii.md).strokeBorder(Color.errorRed, lineWidth: 1.5))
                     }
                     .buttonStyle(.plain)
                     .padding(.top, 10)
@@ -347,6 +355,10 @@ struct ProfileScreen: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.stone))
+        .background(RoundedRectangle(cornerRadius: Radii.md).fill(Color.bone))
+        .overlay(
+            RoundedRectangle(cornerRadius: Radii.md)
+                .strokeBorder(Color.stoneBorder, lineWidth: 1.5)
+        )
     }
 }

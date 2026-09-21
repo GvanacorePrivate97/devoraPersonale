@@ -97,7 +97,6 @@ fun OperatorEditScreen(
                 value = state.name,
                 onValueChange = { viewModel.onFieldChange(OperatorField.NAME, it) },
                 label = stringResource(R.string.ops_field_name),
-                outlined = true,
                 error = state.errors[OperatorField.NAME],
             )
             FilledTextField(

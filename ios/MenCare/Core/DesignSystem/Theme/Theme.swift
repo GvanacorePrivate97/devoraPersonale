@@ -37,6 +37,11 @@ extension Color {
 
     /// Fondo piatto delle pill d'accento: niente opacity, così è uguale su Bone e su Stone.
     static let oliveTint = Color(hex: 0xEFECE9)
+    /// Il filo dei campi a riposo. L'oliva pieno faceva sembrare ogni campo
+    /// selezionato, il grigio li faceva sparire: questo è l'oliva schiarito del
+    /// mockup, che dice "campo" senza dire "attivo". L'accento pieno resta per
+    /// l'errore e per ciò che è davvero scelto.
+    static let oliveSoft = Color(hex: 0xC4B69D)
 
     static let ink = Color(hex: 0x000006) // dark bands, primary text
     static let inkSoft = Color(hex: 0x000004)
@@ -56,6 +61,8 @@ extension Color {
 
     static let successGreen = Color(hex: 0x3E6B4C) // 5.16:1 su Stone
     static let warnAmber = Color(hex: 0x8A5F1B) // 4.72:1 su Stone
+    /// Fondo dell'avviso: l'ambra ha il suo colore di superficie, non l'accento.
+    static let warnTint = Color(hex: 0xFBF5EA)
     static let errorRed = Color(hex: 0x8C2F2F) // 6.88:1 su Stone
 }
 

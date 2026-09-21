@@ -51,15 +51,16 @@ import com.devora.mencare.core.common.formatTime
 import com.devora.mencare.core.designsystem.component.AccentButton
 import com.devora.mencare.core.designsystem.component.BrandSectionLabel
 import com.devora.mencare.core.designsystem.component.DarkHeader
-import com.devora.mencare.core.designsystem.component.SegmentedTabs
 import com.devora.mencare.core.designsystem.component.ErrorState
 import com.devora.mencare.core.designsystem.component.InlineErrorBanner
 import com.devora.mencare.core.designsystem.component.LoadingState
+import com.devora.mencare.core.designsystem.component.SegmentedTabs
 import com.devora.mencare.core.designsystem.component.readableWidth
 import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.Cormorant
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveWood
+import com.devora.mencare.core.designsystem.theme.Radii
 import com.devora.mencare.core.designsystem.theme.Stone
 import com.devora.mencare.core.designsystem.theme.StoneBorder
 import com.devora.mencare.core.designsystem.theme.TextMuted
@@ -377,8 +378,9 @@ private fun PastRow(appointment: Appointment, state: AppointmentsUiState, onRebo
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(Stone)
+            .clip(Radii.Md)
+            .background(Bone)
+            .border(1.5.dp, StoneBorder, Radii.Md)
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -494,8 +496,9 @@ private fun EmptyUpcoming(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(Stone)
+                    .clip(Radii.Md)
+                    .background(Bone)
+                    .border(1.5.dp, StoneBorder, Radii.Md)
                     .clickable { onRebook(last.id) }
                     .padding(horizontal = 15.dp, vertical = 14.dp),
                 verticalAlignment = Alignment.CenterVertically,

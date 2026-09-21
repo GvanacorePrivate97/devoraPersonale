@@ -78,7 +78,6 @@ fun NameField(
     placeholder: String? = null,
     enabled: Boolean = true,
     height: Dp = FieldHeight,
-    outlined: Boolean = false,
 ) {
     FilledTextField(
         value = value,
@@ -93,7 +92,6 @@ fun NameField(
         error = errorText ?: validationMessageOrNull(error),
         enabled = enabled,
         height = height,
-        outlined = outlined,
     )
 }
 
@@ -110,7 +108,6 @@ fun EmailField(
     leadingIcon: ImageVector? = null,
     enabled: Boolean = true,
     height: Dp = FieldHeight,
-    outlined: Boolean = false,
     trailing: @Composable (() -> Unit)? = null,
 ) {
     FilledTextField(
@@ -130,7 +127,6 @@ fun EmailField(
         error = errorText ?: validationMessageOrNull(error),
         enabled = enabled,
         height = height,
-        outlined = outlined,
         trailing = trailing,
     )
 }
@@ -150,7 +146,6 @@ fun PhoneField(
     errorText: String? = null,
     enabled: Boolean = true,
     height: Dp = FieldHeight,
-    outlined: Boolean = false,
     trailing: @Composable (() -> Unit)? = null,
 ) {
     val typed = value.trimStart()
@@ -169,7 +164,6 @@ fun PhoneField(
         error = errorText ?: validationMessageOrNull(error),
         enabled = enabled,
         height = height,
-        outlined = outlined,
         trailing = trailing,
     )
 }
@@ -240,7 +234,6 @@ fun PriceField(
     errorText: String? = null,
     enabled: Boolean = true,
     height: Dp = FieldHeight,
-    outlined: Boolean = false,
 ) {
     FilledTextField(
         value = value,
@@ -252,7 +245,6 @@ fun PriceField(
         error = errorText ?: validationMessageOrNull(error),
         enabled = enabled,
         height = height,
-        outlined = outlined,
     )
 }
 

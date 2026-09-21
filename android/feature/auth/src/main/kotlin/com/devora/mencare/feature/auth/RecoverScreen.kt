@@ -49,6 +49,7 @@ import com.devora.mencare.core.designsystem.theme.Bone
 import com.devora.mencare.core.designsystem.theme.ErrorRed
 import com.devora.mencare.core.designsystem.theme.Ink
 import com.devora.mencare.core.designsystem.theme.OliveLight
+import com.devora.mencare.core.designsystem.theme.OliveTint
 import com.devora.mencare.core.designsystem.theme.OliveWood
 import com.devora.mencare.core.designsystem.theme.Stone
 
@@ -114,7 +115,6 @@ fun RecoverScreen(
                 onValueChange = viewModel::onEmailChange,
                 label = stringResource(R.string.auth_email_account),
                 leadingIcon = Icons.Outlined.MailOutline,
-                outlined = true,
                 error = state.emailError,
             )
             AccentButton(
@@ -133,7 +133,7 @@ fun RecoverScreen(
                 )
             }
             if (state.sent) {
-                StoneCard(corner = 16.dp, container = OliveWood.copy(alpha = 0.14f)) {
+                StoneCard(corner = 16.dp, container = OliveTint) {
                     Column(Modifier.padding(14.dp)) {
                         Text(
                             stringResource(R.string.auth_recover_sent_title),
